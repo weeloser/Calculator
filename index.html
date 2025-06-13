@@ -6,38 +6,33 @@
     <title>Calculator_ByWeeloser</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📈%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
+        /* CSS Variables for theming */
         :root {
-            --primary: #06b6d4; /* Основной цвет по умолчанию (Неон) */
-            --secondary: #10b981; /* Вторичный цвет по умолчанию (Неон) */
-            --accent: #facc15; /* Акцентный цвет по умолчанию (Неон) */
-            --bg: #0c0a09; /* Цвет фона по умолчанию (Неон) */
-            --card-bg: #1c1917; /* Цвет фона карточек по умолчанию (Неон) */
-            --text: #f8fafc; /* Цвет текста по умолчанию (Неон) */
+            --primary: #06b6d4;
+            --secondary: #10b981;
+            --accent: #facc15;
+            --bg: #0c0a09;
+            --card-bg: #1c1917;
+            --text: #f8fafc;
             --border-radius: 12px;
             --transition: all 0.3s ease;
-            --shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
+            --shadow: 0 4px 12px rgba(var(--primary-rgb), 0.3);
             --primary-rgb: 6, 182, 212;
             --accent-rgb: 250, 204, 21;
             --placeholder-text-color: #a1a1aa;
             --warning-color: #ef4444;
+            --profit-color: #10b981;
             --button-bg: var(--primary);
             --button-text: #0c0a09;
             --button-hover-bg: var(--accent);
             --button-active-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
 
             --container-max-width: 1200px;
-            --body-padding: 2rem;
-            --tab-padding: 1rem 2rem;
-            --input-padding: 0.85rem 1.1rem;
+            --body-padding: 1.5rem;
+            --tab-padding: 0.75rem 1.5rem;
+            --input-padding: 0.75rem 1rem;
             --font-size-base: 1rem;
             --font-size-h2: 1.8rem;
             --font-size-result-title: 1.1rem;
@@ -46,141 +41,206 @@
             --gap-medium: 1.5rem;
             --gap-small: 1rem;
 
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.08);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-input-bg: #2d3748;
+            --settings-input-border: 1px solid #4a5568;
+            --selection-bg: var(--primary);
+            --selection-text: white;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --primary: #5a67d8;
+            --secondary: #4299e1;
+            --accent: #8b5cf6;
+            --bg: #1a202c;
+            --card-bg: #2d3748;
+            --text: #e2e8f0;
+            --shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+            --primary-rgb: 90, 103, 216;
+            --accent-rgb: 139, 92, 246;
+            --placeholder-text-color: #a0aec0;
+            --button-bg: var(--primary);
+            --button-text: #e2e8f0;
+            --button-hover-bg: var(--accent);
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
+            --settings-input-bg: #1a202c;
+            --settings-input-border: 1px solid #4a5568;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] {
+            --primary: #4c51bf;
+            --secondary: #3182ce;
+            --accent: #6b46c1;
+            --bg: #f0f4f8;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --shadow: 0 6px 16px rgba(76, 81, 191, 0.15), 0 2px 8px rgba(0,0,0,0.05);
+            --primary-rgb: 76, 81, 191;
+            --accent-rgb: 107, 70, 193;
+            --placeholder-text-color: #64748b;
+            --button-bg: var(--primary);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--accent);
             --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.1);
             --settings-item-bg: rgba(var(--primary-rgb), 0.05);
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.1);
-            --settings-input-bg: var(--bg);
-            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.1);
+            --settings-input-bg: #f8fafc;
+            --settings-input-border: 1px solid #cbd5e1;
+            --profit-color: #059669;
+            --warning-color: #dc2626;
+            --selection-bg: var(--primary);
+            --selection-text: white;
+        }
+        
+        /* Blue Theme */
+        [data-theme="blue"] {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #a855f7;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #e0f2fe;
+            --shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            --primary-rgb: 37, 99, 235;
+            --accent-rgb: 168, 85, 247;
+            --placeholder-text-color: #94a3b8;
+            --button-bg: var(--primary);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--accent);
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
+            --settings-input-bg: #0f172a;
+            --settings-input-border: 1px solid #475569;
         }
 
-        [data-theme="neon"] {
-            --primary: #06b6d4;
+        /* Green Theme */
+        [data-theme="green"] {
+            --primary: #059669;
             --secondary: #10b981;
-            --accent: #facc15;
-            --bg: #0c0a09;
-            --card-bg: #1c1917;
-            --text: #f8fafc;
-            --shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
-            --primary-rgb: 6, 182, 212;
-            --accent-rgb: 250, 204, 21;
-            --placeholder-text-color: #a1a1aa;
-            --button-bg: var(--primary);
-            --button-text: #0c0a09;
-            --button-hover-bg: var(--accent);
-
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
-        }
-        
-        [data-theme="emerald"] {
-            --primary: #10b981;
-            --secondary: #059669;
-            --accent: #06b6d4;
+            --accent: #84cc16;
             --bg: #0a0a0a;
-            --card-bg: #121212;
-            --text: #f4f4f5;
-            --shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            --primary-rgb: 16, 185, 129;
-            --accent-rgb: 6, 182, 212;
-            --placeholder-text-color: #a1a1aa;
-            --button-bg: var(--primary);
-            --button-text: white;
-            --button-hover-bg: var(--accent);
-
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
-        }
-
-        [data-theme="synthwave"] {
-            --primary: #f472b6;
-            --secondary: #a78bfa;
-            --accent: #06b6d4;
-            --bg: #171717;
-            --card-bg: #262626;
-            --text: #fbcfe8;
-            --shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
-            --primary-rgb: 244, 114, 182;
-            --accent-rgb: 6, 182, 212;
-            --placeholder-text-color: #a1a1aa;
-            --button-bg: var(--primary);
-            --button-text: white;
-            --button-hover-bg: var(--accent);
-
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
-        }
-
-        [data-theme="galaxy"] {
-            --primary: #8b5cf6;
-            --secondary: #a78bfa;
-            --accent: #22d3ee;
-            --bg: #0c0a09;
             --card-bg: #1c1917;
-            --text: #e9d5ff;
-            --shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            --primary-rgb: 139, 92, 246;
-            --accent-rgb: 34, 211, 238;
+            --text: #f0fdf4;
+            --shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            --primary-rgb: 5, 150, 105;
+            --accent-rgb: 132, 204, 22;
             --placeholder-text-color: #a1a1aa;
             --button-bg: var(--primary);
-            --button-text: white;
+            --button-text: #ffffff;
             --button-hover-bg: var(--accent);
-
             --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
             --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
+            --settings-input-bg: #0a0a0a;
             --settings-input-border: 1px solid #4a5568;
         }
-        
+
+        /* Pink Theme */
+        [data-theme="pink"] {
+            --primary: #d82777;
+            --secondary: #f472b6;
+            --accent: #facc15;
+            --bg: linear-gradient(135deg, #1a0610 0%, #290f1a 100%);
+            --card-bg: #2d101c;
+            --text: #fef0f8;
+            --shadow: 0 8px 20px rgba(216, 39, 119, 0.35), 0 4px 10px rgba(0,0,0,0.1);
+            --primary-rgb: 216, 39, 119;
+            --secondary-rgb: 244, 114, 182;
+            --accent-rgb: 250, 204, 21;
+            --placeholder-text-color: #fbcfe8;
+            --button-bg: var(--primary);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--accent);
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.4);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.2);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.3);
+            --settings-input-bg: rgba(45, 16, 28, 0.7);
+            --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
+            --profit-color: #84cc16;
+            --warning-color: #ef4444;
+        }
+
+        /* Purple Theme */
+        [data-theme="purple"] {
+            --primary: #9333ea;
+            --secondary: #d946ef;
+            --accent: #06b6d4;
+            --bg: linear-gradient(135deg, #15062a 0%, #250b3e 100%);
+            --card-bg: #2e1248;
+            --text: #f3e8ff;
+            --shadow: 0 8px 20px rgba(147, 51, 234, 0.35), 0 4px 10px rgba(0,0,0,0.1);
+            --primary-rgb: 147, 51, 234;
+            --secondary-rgb: 217, 70, 239;
+            --accent-rgb: 6, 182, 212;
+            --placeholder-text-color: #d8b4fe;
+            --button-bg: var(--primary);
+            --button-text: #ffffff;
+            --button-hover-bg: var(--accent);
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.4);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.2);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.3);
+            --settings-input-bg: rgba(46, 18, 72, 0.7);
+            --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
+            --profit-color: #4ade80;
+            --warning-color: #ef4444;
+        }
+
+        /* Global Body Styles */
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             color: var(--text);
-            position: relative;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            padding: var(--body-padding);
+        }
+
+        /* Background Animated Elements */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.8;
+            filter: blur(12px);
         }
 
         body::before {
-            content: '';
-            position: fixed;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 75% 25%, rgba(var(--primary-rgb), 0.2) 0%, transparent 40%),
-                        radial-gradient(circle at 25% 75%, rgba(var(--accent-rgb, var(--primary-rgb)), 0.2) 0%, transparent 40%);
+            background: radial-gradient(circle at 75% 25%, rgba(var(--primary-rgb), 0.25) 0%, transparent 40%),
+                        radial-gradient(circle at 25% 75%, rgba(var(--accent-rgb), 0.25) 0%, transparent 40%);
             background-size: 100% 100%;
             animation: moveGradient 20s ease-in-out infinite alternate,
                        hueRotate 40s linear infinite;
-            z-index: -1;
-            opacity: 0.7;
-            filter: blur(10px);
         }
 
         body::after {
-            content: '';
-            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg,
-                rgba(var(--secondary), 0.05) 0%,
+                rgba(var(--secondary-rgb, 0,0,0), 0.08) 0%,
                 transparent 50%,
-                rgba(var(--primary), 0.05) 100%
+                rgba(var(--primary-rgb), 0.08) 100%
             );
             background-size: 200% 200%;
             animation: backgroundPan 30s linear infinite alternate;
-            z-index: -2;
-            opacity: 0.6;
         }
         
         .background-element {
@@ -193,71 +253,23 @@
             z-index: -3;
         }
 
-        .background-element:nth-child(1) {
-            width: 150px;
-            height: 150px;
-            top: 10%;
-            left: 15%;
-            animation-delay: 0s;
-            background-color: rgba(var(--primary-rgb), 0.4);
-        }
-        .background-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 60%;
-            left: 70%;
-            animation-delay: 8s;
-            background-color: rgba(var(--accent-rgb), 0.4);
-        }
-        .background-element:nth-child(3) {
-            width: 100px;
-            height: 100px;
-            top: 30%;
-            left: 80%;
-            animation-delay: 15s;
-            background-color: rgba(var(--secondary), 0.4);
-        }
-        .background-element:nth-child(4) {
-            width: 180px;
-            height: 180px;
-            top: 80%;
-            left: 20%;
-            animation-delay: 22s;
-            background-color: rgba(var(--primary-rgb), 0.4);
-        }
-        .background-element:nth-child(5) {
-            width: 120px;
-            height: 120px;
-            top: 5%;
-            left: 40%;
-            animation-delay: 5s;
-            background-color: rgba(var(--accent-rgb), 0.3);
-        }
-        .background-element:nth-child(6) {
-            width: 90px;
-            height: 90px;
-            top: 70%;
-            left: 5%;
-            animation-delay: 12s;
-            background-color: rgba(var(--primary-rgb), 0.3);
-        }
-        .background-element:nth-child(7) {
-            width: 160px;
-            height: 160px;
-            top: 25%;
-            left: 55%;
-            animation-delay: 18s;
-            background-color: rgba(var(--secondary), 0.3);
-        }
+        .background-element:nth-child(1) { width: 150px; height: 150px; top: 10%; left: 15%; animation-delay: 0s; background-color: rgba(var(--primary-rgb), 0.45); }
+        .background-element:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 8s; background-color: rgba(var(--accent-rgb), 0.45); }
+        .background-element:nth-child(3) { width: 100px; height: 100px; top: 30%; left: 80%; animation-delay: 15s; background-color: rgba(var(--secondary-rgb, 0,0,0), 0.45); }
+        .background-element:nth-child(4) { width: 180px; height: 180px; top: 80%; left: 20%; animation-delay: 22s; background-color: rgba(var(--primary-rgb), 0.45); }
+        .background-element:nth-child(5) { width: 120px; height: 120px; top: 5%; left: 40%; animation-delay: 5s; background-color: rgba(var(--accent-rgb), 0.35); }
+        .background-element:nth-child(6) { width: 90px; height: 90px; top: 70%; left: 5%; animation-delay: 12s; background-color: rgba(var(--primary-rgb), 0.35); }
+        .background-element:nth-child(7) { width: 160px; height: 160px; top: 25%; left: 55%; animation-delay: 18s; background-color: rgba(var(--secondary-rgb, 0,0,0), 0.35); }
 
+        /* Keyframe Animations */
         @keyframes moveGradient {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-50%, -50%); }
         }
 
         @keyframes hueRotate {
-            0% { filter: hue-rotate(0deg) blur(10px); }
-            100% { filter: hue-rotate(360deg) blur(10px); }
+            0% { filter: hue-rotate(0deg) blur(12px); }
+            100% { filter: hue-rotate(360deg) blur(12px); }
         }
 
         @keyframes backgroundPan {
@@ -272,9 +284,10 @@
             100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
         }
 
-
+        /* Main Container Styling */
         .container {
             max-width: var(--container-max-width);
+            width: 100%;
             margin: 0 auto;
             padding: 0 1rem;
             position: relative;
@@ -287,6 +300,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Author Section */
         .author {
             text-align: center;
             margin-bottom: var(--gap-large);
@@ -315,26 +329,25 @@
             text-shadow: 0 0 8px var(--accent);
         }
 
+        /* Theme Switcher */
         .theme-switcher {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
             margin-top: var(--gap-small);
             justify-content: center;
-            animation: popInButtons 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s backwards;
-            max-width: 300px; /* Уменьшаем ширину секции тем */
+            animation: none;
+            max-width: 380px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        @keyframes popInButtons {
-            from { transform: scale(0.5) rotate(-15deg); opacity: 0; }
-            to { transform: scale(1) rotate(0deg); opacity: 1; }
+            margin-bottom: var(--gap-large);
+            opacity: 1;
+            transform: none;
         }
 
         .theme-button {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border: 2px solid transparent;
             border-radius: 50%;
             cursor: pointer;
@@ -377,17 +390,19 @@
             transform: scale(1.15) rotate(5deg);
         }
 
-        .theme-neon { background: #06b6d4; border: 2px solid #000000; }
-        .theme-emerald { background: #10b981; border: 2px solid #000000; }
-        .theme-synthwave { background: #f472b6; border: 2px solid #000000; }
-        .theme-galaxy { background: #8b5cf6; border: 2px solid #000000; }
+        .theme-dark { background: #1a202c; border: 2px solid #a0aec0; }
+        .theme-light { background: #f8fafc; border: 2px solid #64748b; }
+        .theme-blue { background: #2563eb; border: 2px solid #e0f2fe; }
+        .theme-green { background: #059669; border: 2px solid #f0fdf4; }
+        .theme-pink { background: #db2777; border: 2px solid #fef0f8; }
+        .theme-purple { background: #9333ea; border: 2px solid #f3e8ff; }
 
-
+        /* Tabs (Calculations/Settings) */
         .tabs {
             display: flex;
             margin-bottom: var(--gap-large);
             border-radius: var(--border-radius);
-            overflow: visible;
+            overflow: hidden;
             background: var(--card-bg);
             padding: 0.5rem;
             box-shadow: var(--shadow);
@@ -443,7 +458,7 @@
         .tab.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 6px 12px rgba(var(--primary-rgb), 0.4), 0 0 20px rgba(var(--accent-rgb, var(--primary-rgb)), 0.25);
+            box-shadow: 0 6px 12px rgba(var(--primary-rgb), 0.4), 0 0 20px rgba(var(--accent-rgb), 0.25);
             position: relative;
             overflow: hidden;
             transform: translateY(-3px) scale(1.03);
@@ -468,6 +483,7 @@
             100% { left: 150%; }
         }
 
+        /* Tab Content */
         .tab-content {
             display: none;
             background: var(--card-bg);
@@ -488,6 +504,7 @@
             display: block;
         }
 
+        /* Sub Tabs */
         .sub-tabs {
             display: flex;
             margin-bottom: var(--gap-medium);
@@ -526,12 +543,14 @@
             display: block;
         }
 
+        /* Calculator Layout */
         .calculator {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--gap-large);
         }
 
+        /* Input Section */
         .input-section {
             display: grid;
             gap: var(--gap-medium);
@@ -607,11 +626,12 @@
         .input-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb, var(--primary-rgb)), 0.3);
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb), 0.3);
             background-color: var(--card-bg);
             transform: scale(1.01);
         }
 
+        /* Slider Styling */
         .slider-container {
             display: flex;
             flex-direction: column;
@@ -654,7 +674,7 @@
             background: white;
             cursor: pointer;
             transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
-            box-shadow: 0 3px 7px rgba(var(--accent-rgb, 236, 72, 153), 0.5), 0 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
         }
 
@@ -664,19 +684,20 @@
             border-radius: 50%;
             background: white;
             cursor: pointer;
-            box-shadow: 0 3px 7px rgba(var(--accent-rgb, 236, 72, 153), 0.5), 0 1px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
         }
 
         .slider::-webkit-slider-thumb:hover {
             transform: scale(1.25) rotate(10deg);
-            box-shadow: 0 5px 10px rgba(var(--accent-rgb, 236, 72, 153), 0.7), 0 0 15px var(--accent);
+            box-shadow: 0 5px 10px rgba(var(--accent-rgb), 0.7), 0 0 15px var(--accent);
         }
          .slider::-moz-range-thumb:hover {
             transform: scale(1.25) rotate(10deg);
-            box-shadow: 0 5px 10px rgba(var(--accent-rgb, 236, 72, 153), 0.7), 0 0 15px var(--accent);
+            box-shadow: 0 5px 10px rgba(var(--accent-rgb), 0.7), 0 0 15px var(--accent);
         }
 
+        /* Results Section */
         .results {
             margin-top: var(--gap-large);
              animation: resultsAppear 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s backwards;
@@ -689,7 +710,7 @@
 
         .result-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: var(--gap-medium);
         }
 
@@ -789,11 +810,12 @@
             display: none;
         }
 
+        /* Settings Section */
         .settings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             background: var(--card-bg);
             box-shadow: var(--shadow);
@@ -848,7 +870,6 @@
         .settings-section-card:hover h3::after {
             width: 100%;
         }
-
 
         .settings-list {
             display: flex;
@@ -905,34 +926,82 @@
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
         }
 
-        .settings-dropdown select {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: var(--border-radius);
-            border: var(--settings-input-border);
+        /* Custom Dropdown for Precision */
+        .settings-dropdown-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 80px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .settings-dropdown-display {
             background-color: var(--settings-input-bg);
+            border: var(--settings-input-border);
+            border-radius: var(--border-radius);
+            padding: 0.75rem;
             color: var(--text);
             font-size: 1rem;
-            appearance: none;
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .settings-dropdown select:focus {
+
+        .settings-dropdown-display.focused {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
         }
 
+        .settings-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--settings-input-bg);
+            border: var(--settings-input-border);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        }
 
+        .settings-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .settings-dropdown-menu button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .settings-dropdown-menu button:hover,
+        .settings-dropdown-menu button.selected {
+            background-color: var(--primary);
+            color: var(--selection-text);
+        }
+
+        /* Checkbox Styling */
         .checkbox-container {
             position: relative;
             display: inline-block;
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
             vertical-align: middle;
         }
@@ -947,8 +1016,8 @@
             position: absolute;
             top: 0;
             left: 0;
-            height: 24px;
-            width: 24px;
+            height: 28px;
+            width: 28px;
             background-color: #eee;
             border-radius: 6px;
             transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
@@ -966,8 +1035,8 @@
             content: "";
             position: absolute;
             display: none;
-            left: 7px; /* Adjusted for better alignment */
-            top: 3px; /* Adjusted for better alignment */
+            left: 10px; /* Adjusted for better centering */
+            top: 4px; /* Adjusted for better centering */
             width: 6px;
             height: 12px;
             border: solid white;
@@ -983,12 +1052,12 @@
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
         }
 
-
+        /* Reset Button */
         .reset-button {
             background-color: #f44336;
             color: white;
             border: none;
-            padding: 0.75rem 1.2rem;
+            padding: 0.85rem 1.4rem;
             border-radius: var(--border-radius);
             font-size: 1rem;
             font-weight: 600;
@@ -1012,6 +1081,7 @@
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
         }
 
+        /* Validation Messages */
         .validation-message {
             color: var(--warning-color);
             font-size: 0.85rem;
@@ -1030,6 +1100,7 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
         }
 
+        /* Notifications */
         .notification-container {
             position: fixed;
             top: 1rem;
@@ -1065,6 +1136,7 @@
             to { opacity: 0; transform: translateX(120%) scale(0.9); }
         }
 
+        /* Slider Thumb Animation */
         .slider-container .slider::-webkit-slider-thumb:active {
             animation: thumbPop 0.3s ease-in-out;
         }
@@ -1078,6 +1150,7 @@
             50% { transform: scale(1.1); }
         }
 
+        /* Function Toggle Button (Risk Amount) */
         .function-toggle-button-container {
             display: flex;
             align-items: center;
@@ -1122,77 +1195,7 @@
             display: none !important;
         }
 
-
-        .function-dropdown-toggle {
-            padding: 0.75rem 1rem;
-            border: none;
-            background: none;
-            color: inherit;
-            cursor: pointer;
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-            transition: background-color 0.2s ease;
-        }
-
-        .function-dropdown-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .function-dropdown-toggle svg {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .function-dropdown-toggle.rotated svg {
-            transform: rotate(180deg);
-        }
-
-        .function-selector {
-            position: absolute;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.1);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            z-index: 100;
-            width: calc(100% - 2rem);
-            margin-top: 0.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-        }
-
-        .function-selector.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .function-selector button {
-            display: block;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .function-selector button:hover {
-            background-color: rgba(var(--primary-rgb), 0.1);
-            color: var(--primary);
-        }
-
-        .function-selector button:first-child {
-            border-top-left-radius: inherit;
-            border-top-right-radius: inherit;
-        }
-        .function-selector button:last-child {
-            border-bottom-left-radius: inherit;
-            border-bottom-right-radius: inherit;
-        }
-
+        /* Trade Type Switcher (Long/Short) */
         .trade-type-switcher {
             display: flex;
             width: 100%;
@@ -1232,10 +1235,215 @@
             background-color: #ef4444;
         }
 
+        /* Copy All Button */
+        .copy-all-button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem; /* Smaller padding */
+            border-radius: var(--border-radius);
+            font-size: 0.85rem; /* Smaller font size */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px rgba(var(--secondary-rgb, 0,0,0), 0.2); /* Smaller shadow */
+            margin-top: var(--gap-medium);
+            width: fit-content;
+            align-self: flex-start;
+            display: block;
+        }
 
-        @media (max-width: 768px) {
+        .copy-all-button:hover {
+            background-color: var(--primary);
+            transform: translateY(-1px); /* Smaller lift */
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3); /* Adjusted shadow */
+        }
+
+        .copy-all-button:active {
+            transform: translateY(0);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Adjusted inset shadow */
+        }
+
+        /* Responsive Design for Mobile (Landscape 4:3 aspect ratio) */
+        @media (max-width: 768px) and (orientation: landscape) {
             body {
                 padding: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start; /* Align to top to give space for tabs */
+            }
+
+            .container {
+                padding: 0.5rem;
+                display: flex;
+                flex-direction: column; /* Keep column layout for main sections */
+                width: 100%;
+                height: 100vh; /* Make container take full viewport height */
+                overflow-y: auto; /* Allow scrolling within the container */
+            }
+
+            .tabs {
+                flex-direction: row; /* Keep tabs in a row for landscape */
+                justify-content: center;
+                margin-bottom: 1rem; /* Reduce margin */
+                padding: 0.25rem;
+            }
+
+            .tab {
+                min-width: unset;
+                flex-basis: auto;
+                margin: 0 0.25rem; /* Small margin between tabs */
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem; /* Smaller padding for tabs */
+            }
+
+            .tab-content {
+                padding: 1rem; /* Smaller padding for tab content */
+                flex-grow: 1; /* Allow tab content to grow */
+                display: flex; /* Use flex for inner layout */
+                flex-direction: column; /* Default to column for inner content */
+                height: auto; /* Allow content height to adjust */
+            }
+
+            /* Specific layout for calculations tab in landscape */
+            #calculations.tab-content.active {
+                flex-direction: row; /* Arrange sections side-by-side */
+                flex-wrap: wrap; /* Allow wrapping */
+                justify-content: center; /* Center content */
+                align-items: flex-start; /* Align items to the start */
+                gap: 1rem; /* Smaller gap */
+            }
+
+            .sub-tabs {
+                order: -1; /* Move sub-tabs to the top */
+                width: 100%; /* Take full width */
+                margin-bottom: 0.75rem; /* Smaller margin */
+                padding: 0.15rem;
+            }
+            .sub-tab {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                min-width: unset;
+                flex-basis: auto;
+            }
+
+            .calculator {
+                grid-template-columns: 1fr; /* Keep single column for input/results sections */
+                width: 48%; /* Each section takes roughly half the width */
+                margin-top: 0; /* Remove top margin from calculator */
+                gap: 0.75rem; /* Smaller gap between input and results */
+                flex-direction: column; /* Ensure inner content stacks vertically */
+                height: auto; /* Adjust height dynamically */
+            }
+
+            .input-section {
+                padding: 0.5rem; /* Smaller padding */
+                gap: 0.75rem; /* Smaller gap between inputs */
+            }
+            .input-group label {
+                margin-bottom: 0.25rem; /* Smaller label margin */
+                font-size: 0.9rem;
+            }
+            .input-group input {
+                padding: 0.5rem 0.75rem; /* Smaller input padding */
+                font-size: 0.9rem;
+            }
+            .function-toggle-button-container {
+                margin-bottom: 0.5rem; /* Smaller margin */
+            }
+            .function-toggle-button {
+                padding: 0.6rem 0.8rem; /* Smaller padding */
+                font-size: 0.9rem;
+            }
+            .slider-container {
+                padding: 0.5rem 0; /* Smaller padding */
+            }
+            .slider-label span {
+                font-size: 0.9rem;
+            }
+            .slider {
+                height: 10px; /* Smaller slider height */
+            }
+            .slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
+                width: 20px; /* Smaller thumb */
+                height: 20px;
+                border: 2px solid var(--accent); /* Smaller border */
+            }
+
+            .results {
+                margin-top: 0; /* Remove top margin from results */
+                padding: 0.5rem; /* Smaller padding */
+            }
+            .result-grid {
+                grid-template-columns: 1fr; /* Keep single column for results */
+                gap: 0.75rem; /* Smaller gap between result cards */
+            }
+            .result-card {
+                padding: 0.75rem; /* Smaller result card padding */
+                border-left-width: 4px; /* Smaller border */
+            }
+            .result-title {
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+            .result-value {
+                font-size: 1.2rem;
+            }
+
+            .copy-all-button {
+                padding: 0.4rem 0.8rem; /* Even smaller copy button */
+                font-size: 0.75rem;
+                margin-top: 0.75rem; /* Adjusted margin */
+            }
+            .reset-button {
+                width: 100%;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin-top: 0.75rem;
+            }
+
+            /* Settings tab for landscape */
+            #settings.tab-content.active {
+                flex-direction: column; /* Stack settings sections */
+            }
+            .settings-grid {
+                grid-template-columns: 1fr; /* Single column for settings sections */
+                padding: 1rem;
+                gap: 1rem;
+            }
+            .settings-section-card {
+                padding: 1rem;
+            }
+            .settings-section-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.5rem;
+            }
+            .setting-item {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+            .settings-dropdown-wrapper, #currencySymbolInput {
+                width: 60px; /* Smaller width for dropdown and currency input */
+                font-size: 0.9rem;
+                padding: 0.4rem;
+            }
+            .settings-dropdown-display, .settings-dropdown-menu button {
+                 font-size: 0.9rem;
+                 padding: 0.5rem;
+            }
+
+            /* Currency symbol input specific mobile landscape adjustment */
+            #currencySymbolInput {
+                text-align: center; /* Center align for better look on small screen */
+            }
+        }
+
+        /* Default Mobile (Portrait) */
+        @media (max-width: 768px) and (orientation: portrait) {
+            body {
+                padding: 0.75rem;
             }
             .container {
                  padding: 0.5rem;
@@ -1251,7 +1459,7 @@
 
             .settings-grid {
                 grid-template-columns: 1fr;
-                padding: 0.75rem;
+                padding: 1rem;
             }
 
             .tabs {
@@ -1278,11 +1486,12 @@
                 box-shadow: none;
                 background: none;
                 justify-content: center;
+                margin-bottom: var(--gap-medium);
              }
 
              .theme-button {
-                 width: 30px;
-                 height: 30px;
+                 width: 36px;
+                 height: 36px;
              }
 
              .sub-tabs {
@@ -1306,10 +1515,20 @@
                  padding-right: 0;
              }
 
-             .function-selector {
-                 width: calc(100% - 1rem);
-                 left: 0.5rem;
-             }
+             /* Corrected currency symbol input position for portrait mobile */
+            #currencySymbolInput {
+                width: 80px;
+                text-align: right;
+                padding: 0.5rem 0.75rem;
+                position: relative; /* Ensure proper positioning */
+                left: 0; /* Reset left position */
+                box-sizing: border-box; /* Include padding and border in element's total width and height */
+            }
+            /* Corrected checkbox position for portrait mobile */
+            .custom-checkbox:after {
+                left: 10px; /* Adjusted for better centering on mobile */
+                top: 4px; /* Adjusted for better centering on mobile */
+            }
 
             .reset-button {
                 width: 100%;
@@ -1320,18 +1539,63 @@
             }
 
             .settings-section-card {
-                padding: 1rem;
+                padding: 1.25rem;
             }
             .settings-section-card h3 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 margin-bottom: 1rem;
                 padding-bottom: 0.5rem;
             }
             .setting-item {
-                padding: 0.5rem 0.75rem;
+                padding: 0.65rem 0.9rem;
             }
         }
 
+        /* Tablet and Desktop (769px and above) */
+        @media (min-width: 769px) {
+            .calculator {
+                grid-template-columns: 1fr 1fr; /* Two columns for input and results */
+            }
+
+            /* Align sub-tabs in a single row for larger screens */
+            .sub-tabs {
+                flex-wrap: nowrap;
+            }
+
+            .sub-tab {
+                flex-basis: auto;
+                margin-bottom: 0; /* Remove mobile-specific margin */
+            }
+
+            .settings-dropdown-wrapper {
+                width: 100px; /* Wider for desktop */
+            }
+            .settings-dropdown-display {
+                padding: 0.75rem;
+            }
+            #currencySymbolInput {
+                width: 80px; /* Default width for desktop */
+                text-align: right; /* Align text to the right for desktop */
+            }
+             .custom-checkbox:after {
+                left: 10px; /* Adjusted for better centering on desktop */
+                top: 4px; /* Adjusted for better centering on desktop */
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            .calculator {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+            .result-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1351,6 +1615,7 @@
             background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
 
+        /* Focus Visible Outline */
         :focus-visible {
             outline: 3px solid rgba(var(--primary-rgb), 0.7);
             outline-offset: 3px;
@@ -1359,6 +1624,7 @@
     </style>
 </head>
 <body>
+    <!-- Background Animated Elements -->
     <div class="background-element"></div>
     <div class="background-element"></div>
     <div class="background-element"></div>
@@ -1367,49 +1633,56 @@
     <div class="background-element"></div>
     <div class="background-element"></div>
 
+    <!-- Notification Container -->
     <div class="notification-container"></div>
 
+    <!-- Main Container -->
     <div class="container">
+        <!-- Author Link -->
         <div class="author">
             <p>© <a href="https://t.me/weeloser " target="_blank">@weeloser</a></p>
         </div>
 
+        <!-- Main Tabs -->
         <div class="tabs">
             <div class="tab active" onclick="switchTab('calculations')">Расчеты</div>
             <div class="tab" onclick="switchTab('settings')">Настройки</div>
         </div>
 
+        <!-- Calculations Tab Content -->
         <div id="calculations" class="tab-content active">
+            <!-- Sub-tabs for Calculations -->
             <div class="sub-tabs">
                 <div class="sub-tab active" onclick="switchSubTab('risk-on-deal')">Риск на сделку</div>
                 <div class="sub-tab" onclick="switchSubTab('risk-reward-ratio')">R/R</div>
                 <div class="sub-tab" onclick="switchSubTab('pnl-calculator')">Расчет п/у</div>
             </div>
 
+            <!-- Risk on Deal Calculator -->
             <div id="risk-on-deal" class="sub-tab-content active">
                 <div class="calculator">
                     <div class="input-section">
                         <div class="input-group">
                             <label for="balance">Баланс</label>
-                            <input type="number" id="balance" placeholder="Введите ваш баланс" min="0.01">
+                            <input type="number" id="balance" placeholder="Введите ваш баланс" min="0.01" step="any">
                             <div class="validation-message" id="balance-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="leverage">Плечо</label>
-                            <input type="number" id="leverage" placeholder="Введите кредитное плечо" min="1">
+                            <input type="number" id="leverage" placeholder="Введите кредитное плечо" min="1" step="any">
                             <div class="validation-message" id="leverage-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="entryPoint">Точка входа</label>
-                            <input type="number" id="entryPoint" placeholder="Введите точку входа" min="0.01">
+                            <input type="number" id="entryPoint" placeholder="Введите точку входа" min="0.01" step="any">
                             <div class="validation-message" id="entryPoint-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="stopLoss">Цена стоп-лосса</label>
-                            <input type="number" id="stopLoss" placeholder="Введите цену стоп-лосса" min="0.01">
+                            <input type="number" id="stopLoss" placeholder="Введите цену стоп-лосса" min="0.01" step="any">
                             <div class="validation-message" id="stopLoss-validation"></div>
                         </div>
 
@@ -1429,7 +1702,7 @@
                         <div id="fixedLossInput" style="display: none;">
                             <div class="input-group">
                                 <label for="fixedLoss">Фиксированный убыток</label>
-                                <input type="number" id="fixedLoss" placeholder="Введите сумму убытка" min="0.01">
+                                <input type="number" id="fixedLoss" placeholder="Введите сумму убытка" min="0.01" step="any">
                                 <div class="validation-message" id="fixedLoss-validation"></div>
                             </div>
                         </div>
@@ -1459,28 +1732,30 @@
                                 <div class="result-value" id="pureMovement">0.00%</div>
                             </div>
                         </div>
+                        <button class="copy-all-button" onclick="copyAllResults('risk-on-deal')">Копировать все результаты</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Risk/Reward Ratio Calculator -->
             <div id="risk-reward-ratio" class="sub-tab-content">
                 <div class="calculator">
                     <div class="input-section">
                         <div class="input-group">
                             <label for="rrEntryPoint">Точка входа</label>
-                            <input type="number" id="rrEntryPoint" placeholder="Введите точку входа" min="0.01">
+                            <input type="number" id="rrEntryPoint" placeholder="Введите точку входа" min="0.01" step="any">
                             <div class="validation-message" id="rrEntryPoint-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="rrStopLoss">Цена стоп-лосса</label>
-                            <input type="number" id="rrStopLoss" placeholder="Введите цену стоп-лосса" min="0.01">
+                            <input type="number" id="rrStopLoss" placeholder="Введите цену стоп-лосса" min="0.01" step="any">
                             <div class="validation-message" id="rrStopLoss-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="rrTakeProfit">Цена тейк-профита</label>
-                            <input type="number" id="rrTakeProfit" placeholder="Введите цену тейк-профита" min="0.01">
+                            <input type="number" id="rrTakeProfit" placeholder="Введите цену тейк-профита" min="0.01" step="any">
                             <div class="validation-message" id="rrTakeProfit-validation"></div>
                         </div>
                         <button class="reset-button" onclick="resetRiskRewardCalculator()">Сброс</button>
@@ -1503,10 +1778,12 @@
                                 <div class="result-value" id="rrRatio">0:0</div>
                             </div>
                         </div>
+                        <button class="copy-all-button" onclick="copyAllResults('risk-reward-ratio')">Копировать все результаты</button>
                     </div>
                 </div>
             </div>
 
+            <!-- PnL Calculator -->
             <div id="pnl-calculator" class="sub-tab-content">
                 <div class="calculator">
                     <div class="input-section">
@@ -1516,25 +1793,25 @@
                         </div>
                         <div class="input-group">
                             <label for="pnlEntryPrice">Цена входа</label>
-                            <input type="number" id="pnlEntryPrice" placeholder="Введите цену входа" min="0.01">
+                            <input type="number" id="pnlEntryPrice" placeholder="Введите цену входа" min="0.01" step="any">
                             <div class="validation-message" id="pnlEntryPrice-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="pnlExitPrice">Цена выхода</label>
-                            <input type="number" id="pnlExitPrice" placeholder="Введите цену выхода" min="0.01">
+                            <input type="number" id="pnlExitPrice" placeholder="Введите цену выхода" min="0.01" step="any">
                             <div class="validation-message" id="pnlExitPrice-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="pnlPositionAmount">Сумма позиции <span style="color: var(--placeholder-text-color); font-size: 0.8em;">(не путать с маржой)</span></label>
-                            <input type="number" id="pnlPositionAmount" placeholder="Введите сумму позиции" min="0.01">
+                            <input type="number" id="pnlPositionAmount" placeholder="Введите сумму позиции" min="0.01" step="any">
                             <div class="validation-message" id="pnlPositionAmount-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="pnlLeverage">Плечо</label>
-                            <input type="number" id="pnlLeverage" placeholder="Введите плечо (необязательно)" min="1">
+                            <input type="number" id="pnlLeverage" placeholder="Введите плечо (необязательно)" min="1" step="any">
                             <div class="validation-message" id="pnlLeverage-validation"></div>
                         </div>
 
@@ -1562,11 +1839,13 @@
                                 <div class="result-value" id="pnlPointsBetweenEntryExit">0.00</div>
                             </div>
                         </div>
+                        <button class="copy-all-button" onclick="copyAllResults('pnl-calculator')">Копировать все результаты</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Settings Tab Content -->
         <div id="settings" class="tab-content">
             <div class="settings-grid">
                 <div class="settings-section-card">
@@ -1587,13 +1866,16 @@
                         </div>
                         <div class="setting-item">
                             <label for="precisionInput">Точность</label>
-                            <select id="precisionInput" style="width: 80px; text-align: right; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; appearance: none; cursor: pointer; background-image: url('data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 20 20\\' fill=\\'currentColor\\'%3E%3Cpath fill-rule=\\'evenodd\\' d=\\'M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\\' clip-rule=\\'evenodd\\' /%3E%3C/svg\\>'); background-repeat: no-repeat; background-position: right 0.75rem center; background-size: 1.5rem;">
-                                <!-- Options populated by JavaScript -->
-                            </select>
+                            <div class="settings-dropdown-wrapper">
+                                <div class="settings-dropdown-display" id="precisionDisplay">2</div>
+                                <div class="settings-dropdown-menu" id="precisionDropdownMenu">
+                                    <!-- Precision options will be generated here by JS -->
+                                </div>
+                            </div>
                         </div>
                         <div class="setting-item">
                             <label for="currencySymbolInput">Валютный символ</label>
-                            <input type="text" id="currencySymbolInput" maxlength="5" placeholder="$, €, ₽" style="width: 80px; text-align: right; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+                            <input type="text" id="currencySymbolInput" maxlength="10" placeholder="$, €, ₽" style="width: 80px; text-align: center; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
                         </div>
                         <button class="reset-button" onclick="resetAllSettings()">Сбросить все настройки</button>
                     </div>
@@ -1603,6 +1885,7 @@
     </div>
 
     <script>
+        // Global variables for DOM elements and state
         let balanceInput, leverageInput, riskSlider, riskValue, riskWarning;
         let marginDisplay, positionSizeDisplay, riskAmountDisplay, pureMovementDisplay;
 
@@ -1625,6 +1908,11 @@
 
         const placeholderMessage = "Заполните больше полей для расчета";
 
+        /**
+         * Displays a notification message to the user.
+         * @param {string} message - The message to display.
+         * @param {string} type - Optional type for specific notification styling (e.g., 'theme', 'global').
+         */
         function showNotification(message, type = 'global') {
             if (!notificationsEnabled) return;
 
@@ -1632,6 +1920,7 @@
             if (!container) return;
             const notification = document.createElement('div');
             notification.classList.add('notification');
+            notification.classList.add(`notification-${type}`); 
             notification.textContent = message;
 
             container.appendChild(notification);
@@ -1652,20 +1941,31 @@
             }, 3500);
         }
 
+        // Available themes for the calculator
         const availableThemes = [
-            { name: 'neon', label: 'Импульс Неона' },
-            { name: 'emerald', label: 'Зенит Изумруда' },
-            { name: 'synthwave', label: 'Волна Ретро' },
-            { name: 'galaxy', label: 'Галактический Портал' },
+            { name: 'dark', label: 'Темная' },
+            { name: 'light', label: 'Светлая' },
+            { name: 'blue', label: 'Голубая' },
+            { name: 'green', label: 'Зеленая' },
+            { name: 'pink', label: 'Розовая' },
+            { name: 'purple', label: 'Фиолетовая' },
         ];
 
+        /**
+         * Sets the active theme for the application.
+         * @param {string} themeName - The name of the theme to set.
+         */
         function setTheme(themeName) {
             document.body.setAttribute('data-theme', themeName);
             localStorage.setItem('theme', themeName);
-            showNotification(`Тема изменена на "${availableThemes.find(t => t.name === themeName).label}"`, 'theme');
+            const themeLabel = availableThemes.find(t => t.name === themeName)?.label || themeName;
+            showNotification(`Тема изменена на "${themeLabel}"`, 'theme');
             updateThemeButtonActiveState(themeName);
         }
 
+        /**
+         * Creates theme selection buttons dynamically.
+         */
         function createThemeButtons() {
             const container = document.getElementById('settingsThemeSwitcher');
             if (!container) return;
@@ -1681,6 +1981,10 @@
             });
         }
 
+        /**
+         * Updates the visual active state of theme buttons.
+         * @param {string} activeThemeName - The name of the currently active theme.
+         */
         function updateThemeButtonActiveState(activeThemeName) {
              document.querySelectorAll('.theme-button').forEach(button => {
                  button.classList.remove('active-theme');
@@ -1690,20 +1994,45 @@
              });
         }
 
+        /**
+         * Toggles the notification system on or off.
+         * @param {boolean} enabled - True to enable notifications, false to disable.
+         */
         function toggleNotifications(enabled) {
             notificationsEnabled = enabled;
             localStorage.setItem('notificationsEnabled', enabled);
             showNotification(`Уведомления ${enabled ? 'включены' : 'выключены'}`, 'global');
         }
 
+        /**
+         * Sets the display precision for calculated results.
+         * @param {number} precision - The number of decimal places to display.
+         */
         function setPrecision(precision) {
             currentPrecision = parseInt(precision);
             localStorage.setItem('currentPrecision', currentPrecision);
+            // Update display value
+            const precisionDisplay = document.getElementById('precisionDisplay');
+            if (precisionDisplay) {
+                precisionDisplay.textContent = currentPrecision;
+                // Update active state in dropdown
+                document.querySelectorAll('#precisionDropdownMenu button').forEach(btn => {
+                    btn.classList.remove('selected');
+                    if (parseInt(btn.dataset.value) === currentPrecision) {
+                        btn.classList.add('selected');
+                    }
+                });
+            }
             calculateRiskOnDeal();
             calculateRiskReward();
             calculatePnL();
+            showNotification(`Точность установлена на ${currentPrecision}`, 'settings');
         }
 
+        /**
+         * Sets the currency symbol to be used in results.
+         * @param {string} symbol - The currency symbol.
+         */
         function setCurrencySymbol(symbol) {
             currencySymbol = symbol;
             localStorage.setItem('currencySymbol', currencySymbol);
@@ -1711,20 +2040,33 @@
             calculatePnL();
         }
 
+        /**
+         * Resets all application settings to their default values.
+         */
         function resetAllSettings() {
             localStorage.clear();
             notificationsEnabled = true;
             currentPrecision = 2;
             currencySymbol = '';
 
-            const themeReset = 'neon';
+            const themeReset = 'dark';
             setTheme(themeReset);
 
             const notificationToggleInput = document.getElementById('notificationToggle');
             if (notificationToggleInput) notificationToggleInput.checked = true;
 
-            const precisionInput = document.getElementById('precisionInput');
-            if (precisionInput) precisionInput.value = 2;
+            // Reset precision dropdown
+            const precisionDisplay = document.getElementById('precisionDisplay');
+            if (precisionDisplay) precisionDisplay.textContent = 2;
+            const precisionDropdownMenu = document.getElementById('precisionDropdownMenu');
+            if (precisionDropdownMenu) {
+                Array.from(precisionDropdownMenu.children).forEach(button => {
+                    button.classList.remove('selected');
+                    if (parseInt(button.dataset.value) === 2) {
+                        button.classList.add('selected');
+                    }
+                });
+            }
             
             const currencySymbolInput = document.getElementById('currencySymbolInput');
             if (currencySymbolInput) currencySymbolInput.value = '';
@@ -1735,8 +2077,13 @@
             showNotification('Все настройки сброшены до значений по умолчанию.');
         }
 
+        /**
+         * Initializes the application when the DOM is fully loaded.
+         * Attaches event listeners and loads saved settings.
+         */
         document.addEventListener('DOMContentLoaded', () => {
             try {
+                // Get DOM elements
                 balanceInput = document.getElementById('balance');
                 leverageInput = document.getElementById('leverage');
                 riskSlider = document.getElementById('riskSlider');
@@ -1772,37 +2119,60 @@
 
                 createThemeButtons();
 
-                const savedTheme = localStorage.getItem('theme') || 'neon';
+                // Load saved theme or set default
+                const savedTheme = localStorage.getItem('theme') || 'dark';
                 if (availableThemes.some(t => t.name === savedTheme)) {
                     setTheme(savedTheme);
                 } else {
-                    setTheme('neon');
+                    setTheme('dark');
                 }
 
+                // Load notification setting
                 notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
-
                 const notificationToggleInput = document.getElementById('notificationToggle');
                 if (notificationToggleInput) {
                     notificationToggleInput.checked = notificationsEnabled;
                     notificationToggleInput.addEventListener('change', () => toggleNotifications(notificationToggleInput.checked));
                 }
 
+                // Initialize Precision Dropdown
                 currentPrecision = parseInt(localStorage.getItem('currentPrecision') || '2');
-                const precisionInput = document.getElementById('precisionInput');
-                if (precisionInput) {
-                    precisionInput.innerHTML = '';
+                const precisionDisplay = document.getElementById('precisionDisplay');
+                const precisionDropdownMenu = document.getElementById('precisionDropdownMenu');
+
+                if (precisionDisplay && precisionDropdownMenu) {
+                    precisionDisplay.textContent = currentPrecision;
                     for (let i = 1; i <= 5; i++) {
-                        const option = document.createElement('option');
-                        option.value = i;
-                        option.textContent = i;
-                        precisionInput.appendChild(option);
+                        const optionButton = document.createElement('button');
+                        optionButton.dataset.value = i;
+                        optionButton.textContent = i;
+                        if (i === currentPrecision) {
+                            optionButton.classList.add('selected');
+                        }
+                        optionButton.addEventListener('click', () => {
+                            setPrecision(i);
+                            precisionDropdownMenu.classList.remove('active');
+                            precisionDisplay.classList.remove('focused');
+                        });
+                        precisionDropdownMenu.appendChild(optionButton);
                     }
-                    precisionInput.value = currentPrecision;
-                    precisionInput.addEventListener('change', (event) => {
-                        setPrecision(event.target.value);
+
+                    precisionDisplay.addEventListener('click', () => {
+                        precisionDropdownMenu.classList.toggle('active');
+                        precisionDisplay.classList.toggle('focused');
+                    });
+
+                    // Close dropdown if clicked outside
+                    document.addEventListener('click', (event) => {
+                        if (!precisionDisplay.contains(event.target) && !precisionDropdownMenu.contains(event.target)) {
+                            precisionDropdownMenu.classList.remove('active');
+                            precisionDisplay.classList.remove('focused');
+                        }
                     });
                 }
 
+
+                // Load currency symbol
                 currencySymbol = localStorage.getItem('currencySymbol') || '';
                 const currencySymbolInput = document.getElementById('currencySymbolInput');
                 if (currencySymbolInput) {
@@ -1812,11 +2182,13 @@
                     });
                 }
 
+                // Restore active tab and sub-tab
                 const initialTab = localStorage.getItem('activeTab') || 'calculations';
                 switchTab(initialTab);
                 const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                 switchSubTab(initialSubTab);
 
+                // Add event listeners for calculator inputs
                 if (balanceInput) balanceInput.addEventListener('input', calculateRiskOnDeal);
                 if (leverageInput) leverageInput.addEventListener('input', calculateRiskOnDeal);
                 if (riskSlider) riskSlider.addEventListener('input', () => {
@@ -1837,6 +2209,7 @@
                 if (pnlPositionAmountInput) pnlPositionAmountInput.addEventListener('input', calculatePnL);
                 if (pnlLeverageInput) pnlLeverageInput.addEventListener('input', calculatePnL);
 
+                // Event listeners for PnL trade type buttons
                 if (pnlTradeTypeLongButton) {
                     pnlTradeTypeLongButton.addEventListener('click', () => {
                         currentPnLTradeType = 'long';
@@ -1852,16 +2225,18 @@
                     });
                 }
 
+                // Event listeners for result cards to copy value
                 document.querySelectorAll('.result-card').forEach(card => {
                     card.addEventListener('click', (event) => {
                         const valueElement = card.querySelector('.result-value');
                         if (valueElement && !valueElement.classList.contains('is-placeholder')) {
-                            const textToCopy = valueElement.textContent.trim();
+                            const textToCopy = valueElement.textContent.replace(/[^0-9.-]/g, ''); // Remove non-numeric characters for copying
                             copyToClipboard(textToCopy);
                         }
                     });
                 });
 
+                // Logic for toggling risk amount mode
                 const riskAmountToggleContainer = document.getElementById('riskAmountToggleContainer');
                 const riskToggleButton = document.getElementById('riskToggleButton');
                 const riskPercentageSliderContainer = document.getElementById('riskPercentageSlider');
@@ -1875,25 +2250,31 @@
                     });
                 }
 
+                /**
+                 * Updates the UI based on whether fixed loss mode is active for Risk on Deal calculator.
+                 */
                 function updateRiskAmountUIMode() {
                     if (isFixedLossModeForRiskOnDeal) {
                         riskToggleButton.textContent = 'Фиксированный убыток 🔄';
                         riskPercentageSliderContainer.style.display = 'none';
                         fixedLossInputContainer.style.display = 'block';
+                        if (fixedLossInput) fixedLossInput.value = '';
                     } else {
                         riskToggleButton.textContent = '% риска на сделку 🔄';
                         fixedLossInputContainer.style.display = 'none';
                         riskPercentageSliderContainer.style.display = 'flex';
                     }
-                    riskSlider.value = 3;
-                    riskValue.textContent = '3.0%';
-                    fixedLossInput.value = '';
+                    if (riskSlider) riskSlider.value = 3;
+                    if (riskValue) riskValue.textContent = '3.0%';
                     if (fixedLossValidation) fixedLossValidation.textContent = '';
                     if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
                 }
 
+                /**
+                 * Updates the visual active state of PnL trade type buttons.
+                 */
                 function updatePnLTradeTypeUI() {
-                    if (pnlTradeTypeLongButton) {
+                    if (pnlTradeTypeLongButton && pnlTradeTypeShortButton) {
                         if (currentPnLTradeType === 'long') {
                             pnlTradeTypeLongButton.classList.add('active');
                             pnlTradeTypeShortButton.classList.remove('active');
@@ -1904,8 +2285,43 @@
                     }
                 }
                 
+                // Initial UI updates
                 updateRiskAmountUIMode();
                 updatePnLTradeTypeUI();
+
+                // Keyboard navigation for inputs (Enter key to move to next input)
+                document.addEventListener('keydown', (event) => {
+                    if (event.ctrlKey && event.key === '1') {
+                        event.preventDefault();
+                        switchTab('calculations');
+                    }
+
+                    if (event.key === 'Enter') {
+                        const activeElement = document.activeElement;
+                        // Select all visible and enabled input/select elements
+                        const formElements = Array.from(document.querySelectorAll('input:not([type="hidden"]):not([disabled]), select:not([disabled])'))
+                                            .filter(el => {
+                                                // Check if element or its parent is hidden by style
+                                                let isHidden = false;
+                                                let current = el;
+                                                while(current && current !== document.body) {
+                                                    const style = window.getComputedStyle(current);
+                                                    if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+                                                        isHidden = true;
+                                                        break;
+                                                    }
+                                                    current = current.parentElement;
+                                                }
+                                                return !isHidden;
+                                            });
+
+                        const currentIndex = formElements.indexOf(activeElement);
+                        if (currentIndex > -1 && currentIndex < formElements.length - 1) {
+                            event.preventDefault(); // Prevent default Enter key behavior (e.g., form submission)
+                            formElements[currentIndex + 1].focus();
+                        }
+                    }
+                });
 
             } catch (error) {
                 console.error("Произошла ошибка инициализации: ", error);
@@ -1913,6 +2329,10 @@
             }
         });
 
+        /**
+         * Copies text to the clipboard.
+         * @param {string} text - The text to copy.
+         */
         function copyToClipboard(text) {
             const tempInput = document.createElement('textarea');
             tempInput.value = text;
@@ -1929,6 +2349,45 @@
             }
         }
 
+        /**
+         * Copies all visible results from a given sub-tab to the clipboard.
+         * @param {string} subTabId - The ID of the sub-tab to copy results from.
+         */
+        function copyAllResults(subTabId) {
+            let resultsText = '';
+            let titles = [];
+            let values = [];
+
+            const currentSubTabContent = document.getElementById(subTabId);
+            if (!currentSubTabContent) return;
+
+            const resultCards = currentSubTabContent.querySelectorAll('.result-card');
+            resultCards.forEach(card => {
+                const titleElement = card.querySelector('.result-title');
+                const valueElement = card.querySelector('.result-value');
+                if (titleElement && valueElement && !valueElement.classList.contains('is-placeholder')) {
+                    titles.push(titleElement.textContent.trim());
+                    values.push(valueElement.textContent.trim());
+                }
+            });
+
+            if (titles.length === 0) {
+                showNotification('Нет результатов для копирования.', 'warning');
+                return;
+            }
+
+            // Format for copying: "Title: Value\nTitle: Value"
+            for (let i = 0; i < titles.length; i++) {
+                resultsText += `${titles[i]}: ${values[i]}\n`;
+            }
+
+            copyToClipboard(resultsText.trim());
+        }
+
+        /**
+         * Switches the active main tab.
+         * @param {string} tabId - The ID of the tab to activate ('calculations' or 'settings').
+         */
         function switchTab(tabId) {
             try {
                 document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -1946,6 +2405,7 @@
                 }
                 localStorage.setItem('activeTab', tabId);
 
+                // If switching to calculations tab, restore its last active sub-tab
                 if (tabId === 'calculations') {
                     const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                     switchSubTab(initialSubTab);
@@ -1956,6 +2416,10 @@
             }
         }
 
+        /**
+         * Switches the active sub-tab within the "Calculations" tab.
+         * @param {string} subTabId - The ID of the sub-tab to activate (e.g., 'risk-on-deal').
+         */
         function switchSubTab(subTabId) {
             try {
                 document.querySelectorAll('#calculations .sub-tab').forEach(tab => tab.classList.remove('active'));
@@ -1973,6 +2437,7 @@
                 }
                 localStorage.setItem('activeSubTab-calculations', subTabId);
 
+                // Recalculate based on the new active sub-tab
                 if (subTabId === 'risk-on-deal') {
                     calculateRiskOnDeal();
                 } else if (subTabId === 'risk-reward-ratio') {
@@ -1986,6 +2451,14 @@
             }
         }
 
+        /**
+         * Validates a numeric input field.
+         * @param {HTMLElement} inputElement - The input HTML element.
+         * @param {HTMLElement} messageElement - The validation message display element.
+         * @param {number} min - The minimum allowed value.
+         * @param {number} max - The maximum allowed value (defaults to Infinity).
+         * @returns {boolean} True if the input is valid, false otherwise.
+         */
         function validateInput(inputElement, messageElement, min, max = Infinity) {
             if (!inputElement || !messageElement) return true;
             const value = parseFloat(inputElement.value);
@@ -1993,7 +2466,7 @@
             let message = '';
 
             if (inputElement.value.trim() === '') {
-                message = '';
+                message = ''; // No message for empty input
                 isValid = true;
             } else if (isNaN(value)) {
                 message = 'Некорректное число.';
@@ -2016,7 +2489,16 @@
             return isValid;
         }
 
-        function displayResult(element, value, unit = '', isPlaceholder = false) {
+        /**
+         * Displays a calculated result in a formatted way.
+         * Includes animations and status-based coloring.
+         * @param {HTMLElement} element - The HTML element to display the value in.
+         * @param {number|string} value - The numerical or string value to display.
+         * @param {string} unit - Optional unit to append (e.g., '%').
+         * @param {boolean} isPlaceholder - If true, displays a placeholder message.
+         * @param {string} status - Optional status ('positive', 'negative') for coloring.
+         */
+        function displayResult(element, value, unit = '', isPlaceholder = false, status = '') {
             if (!element) return;
 
             if (isPlaceholder) {
@@ -2033,36 +2515,43 @@
                 element.classList.remove('is-placeholder');
                 let formattedValue;
                 if (typeof value === 'number') {
-                    formattedValue = `${value.toFixed(currentPrecision)}${unit}`;
+                    formattedValue = `${value > 0 && (element.id === 'pnlTotalPnL' || element.id === 'pnlRoi') ? '+' : ''}${value.toFixed(currentPrecision)}`;
                 } else {
-                    formattedValue = `${value}${unit}`;
+                    formattedValue = `${value}`; // For R:R ratio, it's already a string
                 }
 
+                // Special formatting for specific result fields
                 if (element.id === 'riskAmount') {
                     const currentBalance = parseFloat(balanceInput?.value);
-                    if (!isNaN(currentBalance) && currentBalance > 0) {
-                        const riskAmountVal = typeof value === 'number' ? value : parseFloat(value);
-                        const riskPercentageDisplay = (riskAmountVal / currentBalance) * 100;
-
+                    if (!isNaN(currentBalance) && currentBalance > 0 && typeof value === 'number') {
+                        const riskPercentageDisplay = (value / currentBalance) * 100;
                         if (riskPercentageDisplay > 5) {
                             element.classList.add('high-risk');
                         } else {
                             element.classList.remove('high-risk');
                         }
-                        
-                        if (isFixedLossModeForRiskOnDeal) {
-                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)}${currencySymbol} (${riskPercentageDisplay.toFixed(2)}%)`;
-                        } else {
-                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)}${currencySymbol}`;
-                        }
+                        formattedValue = `${value.toFixed(currentPrecision)}${currencySymbol} (${riskPercentageDisplay.toFixed(2)}%)`;
                     } else {
                         element.classList.remove('high-risk');
                         formattedValue = `${value.toFixed(currentPrecision)}${currencySymbol}`;
                     }
                 } else if (element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
-                    formattedValue = `${value.toFixed(currentPrecision)}${currencySymbol}`;
+                    formattedValue = `${value > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${value.toFixed(currentPrecision)}${currencySymbol}`;
+                } else if (element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') {
+                    formattedValue = `${value > 0 && (element.id === 'pnlRoi') ? '+' : ''}${value.toFixed(currentPrecision)}${unit}`;
+                } else if (element.id === 'rrTPPoints' || element.id === 'rrSLPoints' || element.id === 'pnlPointsBetweenEntryExit') {
+                     formattedValue = value.toFixed(currentPrecision);
                 }
 
+
+                element.style.color = 'var(--text)'; // Default text color
+                if (status === 'positive') {
+                    element.style.color = 'var(--profit-color)';
+                } else if (status === 'negative') {
+                    element.style.color = 'var(--warning-color)';
+                }
+
+                // Animate change if value is different
                 if (element.textContent !== formattedValue) {
                     element.style.opacity = '0';
                     element.style.transform = 'translateY(10px) scale(0.95)';
@@ -2078,6 +2567,9 @@
             }
         }
 
+        /**
+         * Calculates and displays results for the "Risk on Deal" calculator.
+         */
         function calculateRiskOnDeal() {
             const balanceVal = parseFloat(balanceInput?.value);
             const leverageVal = parseFloat(leverageInput?.value) || 1;
@@ -2088,6 +2580,7 @@
 
             let isValid = true;
 
+            // Validate all necessary inputs
             isValid = validateInput(balanceInput, document.getElementById('balance-validation'), 0.01) && isValid;
             isValid = validateInput(leverageInput, document.getElementById('leverage-validation'), 1) && isValid;
             isValid = validateInput(entryPointInput, document.getElementById('entryPoint-validation'), 0.01) && isValid;
@@ -2102,7 +2595,8 @@
                 }
             }
 
-            if (!isValid || isNaN(balanceVal) || isNaN(leverageVal) || isNaN(entryPointVal) || isNaN(stopLossVal)) {
+            // If any input is invalid or missing, show placeholders
+            if (!isValid || isNaN(balanceVal) || isNaN(entryPointVal) || isNaN(stopLossVal)) {
                 displayResult(riskAmountDisplay, '', '', true);
                 displayResult(marginDisplay, '', '', true);
                 displayResult(positionSizeDisplay, '', '', true);
@@ -2110,34 +2604,36 @@
                 return;
             }
 
-            let margin = 0, positionSize = 0, riskAmount = 0, pureMovement = 0;
+            const riskPercentOfEntry = Math.abs((entryPointVal - stopLossVal) / entryPointVal);
 
-            pureMovement = (Math.abs(entryPointVal - stopLossVal) / entryPointVal) * 100;
-            let calculatedROI = pureMovement * leverageVal;
-
+            let actualRiskAmount = 0;
             if (isFixedLossModeForRiskOnDeal && !isNaN(fixedLossVal)) {
-                riskAmount = fixedLossVal;
+                actualRiskAmount = fixedLossVal;
             } else {
-                riskAmount = (balanceVal * riskPercentage) / 100;
+                actualRiskAmount = (balanceVal * riskPercentage) / 100;
             }
 
-            if (calculatedROI === 0) {
-                 displayResult(riskAmountDisplay, '', '', true);
-                 displayResult(marginDisplay, '', '', true);
-                 displayResult(positionSizeDisplay, '', '', true);
-                 displayResult(pureMovementDisplay, '', '', true);
-                 return;
+            if (riskPercentOfEntry === 0) {
+                displayResult(riskAmountDisplay, actualRiskAmount, currencySymbol);
+                displayResult(marginDisplay, 0, currencySymbol);
+                displayResult(positionSizeDisplay, 0, currencySymbol);
+                displayResult(pureMovementDisplay, 0, '%');
+                return;
             }
 
-            positionSize = (riskAmount / (calculatedROI / 100)) * 100;
-            margin = positionSize / leverageVal;
+            const calculatedPositionSize = actualRiskAmount / riskPercentOfEntry;
+            const calculatedMargin = calculatedPositionSize / leverageVal;
+            const calculatedPureMovement = riskPercentOfEntry * 100;
 
-            displayResult(riskAmountDisplay, riskAmount);
-            displayResult(marginDisplay, margin);
-            displayResult(positionSizeDisplay, positionSize);
-            displayResult(pureMovementDisplay, pureMovement, '%');
+            displayResult(riskAmountDisplay, actualRiskAmount, currencySymbol);
+            displayResult(marginDisplay, calculatedMargin, currencySymbol);
+            displayResult(positionSizeDisplay, calculatedPositionSize, currencySymbol);
+            displayResult(pureMovementDisplay, calculatedPureMovement, '%');
         }
 
+        /**
+         * Calculates and displays results for the "Risk/Reward Ratio" calculator.
+         */
         function calculateRiskReward() {
             if (!rrEntryPointInput || !rrStopLossInput || !rrTakeProfitInput ||
                 !rrSLPointsDisplay || !rrTPPointsDisplay || !rrRatioDisplay) {
@@ -2163,18 +2659,21 @@
             const slPoints = Math.abs(entryPoint - stopLoss);
             const tpPoints = Math.abs(entryPoint - takeProfit);
 
-            displayResult(rrTPPointsDisplay, tpPoints, '', false);
-            displayResult(rrSLPointsDisplay, slPoints, '', false);
+            displayResult(rrTPPointsDisplay, tpPoints);
+            displayResult(rrSLPointsDisplay, slPoints);
 
             if (slPoints > 0) {
                 const ratio = tpPoints / slPoints;
-                displayResult(rrRatioDisplay, `1:${ratio.toFixed(currentPrecision)}`, '');
+                displayResult(rrRatioDisplay, `1:${ratio.toFixed(currentPrecision)}`);
             } else {
                 showNotification('Количество пунктов до стоп-лосса равно 0. Соотношение риска/прибыли не может быть рассчитано.', 'warning');
                 displayResult(rrRatioDisplay, 'Невозможно рассчитать (SL = TP)', '', true);
             }
         }
 
+        /**
+         * Calculates and displays results for the "Profit/Loss" (PnL) calculator.
+         */
         function calculatePnL() {
             if (!pnlEntryPriceInput || !pnlExitPriceInput || !pnlPositionAmountInput || !pnlLeverageInput ||
                 !pnlTotalPnLDisplay || !pnlRoiDisplay || !pnlPureMovementDisplay || !pnlPointsBetweenEntryExitDisplay) {
@@ -2192,10 +2691,12 @@
             let leverage = parseFloat(pnlLeverageInput.value);
             const tradeType = currentPnLTradeType;
 
+            // Default leverage to 1 if not provided or invalid
             if (isNaN(leverage) || leverage < 1) {
                 leverage = 1;
             }
 
+            // If critical inputs are invalid, show placeholders
             if (!isEntryPriceValid || !isExitPriceValid) {
                 displayResult(pnlTotalPnLDisplay, '', '', true);
                 displayResult(pnlRoiDisplay, '', '', true);
@@ -2207,7 +2708,7 @@
             let pureMovement;
             if (tradeType === 'long') {
                 pureMovement = ((exitPrice - entryPrice) / entryPrice) * 100;
-            } else {
+            } else { // short
                 pureMovement = ((entryPrice - exitPrice) / entryPrice) * 100;
             }
             
@@ -2216,6 +2717,7 @@
             let totalPnL = 0;
             let roi = 0;
 
+            // Calculate PnL and ROI based on whether position amount is provided
             if (!isNaN(positionAmount) && isPositionAmountValid) {
                 if (tradeType === 'long') {
                     totalPnL = (exitPrice - entryPrice) * (positionAmount / entryPrice);
@@ -2230,6 +2732,7 @@
                     roi = 0;
                 }
             } else {
+                // If position amount is invalid but not empty, show placeholders
                 if (pnlPositionAmountInput.value.trim() !== '' && !isPositionAmountValid) {
                     displayResult(pnlTotalPnLDisplay, '', '', true);
                     displayResult(pnlRoiDisplay, '', '', true);
@@ -2237,17 +2740,21 @@
                     displayResult(pnlPointsBetweenEntryExitDisplay, '', '', true);
                     return;
                 }
-                totalPnL = 0;
-                roi = pureMovement;
+                totalPnL = 0; // Cannot calculate total PnL without position amount
+                roi = pureMovement * leverage; // ROI is based on pure movement and leverage if no position amount
             }
             
-            displayResult(pnlTotalPnLDisplay, totalPnL, '');
-            displayResult(pnlRoiDisplay, roi, '%');
+            displayResult(pnlTotalPnLDisplay, totalPnL, '', false, totalPnL > 0 ? 'positive' : (totalPnL < 0 ? 'negative' : ''));
+            displayResult(pnlRoiDisplay, roi, '%', false, roi > 0 ? 'positive' : (roi < 0 ? 'negative' : ''));
             displayResult(pnlPureMovementDisplay, pureMovement, '%');
             displayResult(pnlPointsBetweenEntryExitDisplay, pnlPoints);
         }
 
+        /**
+         * Resets the "Risk on Deal" calculator inputs and results.
+         */
         function resetRiskOnDealCalculator() {
+            // Clear input values
             if (balanceInput) balanceInput.value = '';
             if (leverageInput) leverageInput.value = '';
             if (entryPointInput) entryPointInput.value = '';
@@ -2256,18 +2763,21 @@
             if (riskValue) riskValue.textContent = '3.0%';
             if (fixedLossInput) fixedLossInput.value = '';
 
+            // Clear validation messages
             if (document.getElementById('balance-validation')) document.getElementById('balance-validation').textContent = '';
             if (document.getElementById('leverage-validation')) document.getElementById('leverage-validation').textContent = '';
             if (document.getElementById('entryPoint-validation')) document.getElementById('entryPoint-validation').textContent = '';
             if (document.getElementById('stopLoss-validation')) document.getElementById('stopLoss-validation').textContent = '';
             if (fixedLossValidation) fixedLossValidation.textContent = '';
 
+            // Remove invalid input styling
             if (balanceInput) balanceInput.classList.remove('invalid-input');
             if (leverageInput) leverageInput.classList.remove('invalid-input');
             if (entryPointInput) entryPointInput.classList.remove('invalid-input');
             if (stopLossInput) stopLossInput.classList.remove('invalid-input');
             if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
 
+            // Reset risk mode and update UI
             isFixedLossModeForRiskOnDeal = false;
             if (document.getElementById('riskToggleButton')) document.getElementById('riskToggleButton').textContent = '% риска на сделку 🔄';
             if (document.getElementById('riskPercentageSlider')) document.getElementById('riskPercentageSlider').style.display = 'flex';
@@ -2277,38 +2787,53 @@
             showNotification('Калькулятор "Риск на сделку" сброшен.');
         }
 
+        /**
+         * Resets the "Risk/Reward Ratio" calculator inputs and results.
+         */
         function resetRiskRewardCalculator() {
+            // Clear input values
             if (rrEntryPointInput) rrEntryPointInput.value = '';
             if (rrStopLossInput) rrStopLossInput.value = '';
             if (rrTakeProfitInput) rrTakeProfitInput.value = '';
+
+            // Clear validation messages
             if (document.getElementById('rrEntryPoint-validation')) document.getElementById('rrEntryPoint-validation').textContent = '';
             if (document.getElementById('rrStopLoss-validation')) document.getElementById('rrStopLoss-validation').textContent = '';
             if (document.getElementById('rrTakeProfit-validation')) document.getElementById('rrTakeProfit-validation').textContent = '';
+
+            // Remove invalid input styling
             if (rrEntryPointInput) rrEntryPointInput.classList.remove('invalid-input');
             if (rrStopLossInput) rrStopLossInput.classList.remove('invalid-input');
             if (rrTakeProfitInput) rrTakeProfitInput.classList.remove('invalid-input');
+
             calculateRiskReward();
             showNotification('Калькулятор соотношения риска/прибыли сброшен.');
         }
 
+        /**
+         * Resets the "Profit/Loss" (PnL) calculator inputs and results.
+         */
         function resetPnLCalculator() {
+            // Clear input values
             if (pnlEntryPriceInput) pnlEntryPriceInput.value = '';
             if (pnlExitPriceInput) pnlExitPriceInput.value = '';
             if (pnlPositionAmountInput) pnlPositionAmountInput.value = '';
             if (pnlLeverageInput) pnlLeverageInput.value = '';
-            currentPnLTradeType = 'long';
+            currentPnLTradeType = 'long'; // Reset trade type to long
 
+            // Clear validation messages
             if (document.getElementById('pnlEntryPrice-validation')) document.getElementById('pnlEntryPrice-validation').textContent = '';
             if (document.getElementById('pnlExitPrice-validation')) document.getElementById('pnlExitPrice-validation').textContent = '';
             if (document.getElementById('pnlPositionAmount-validation')) document.getElementById('pnlPositionAmount-validation').textContent = '';
             if (document.getElementById('pnlLeverage-validation')) document.getElementById('pnlLeverage-validation').textContent = '';
 
+            // Remove invalid input styling
             if (pnlEntryPriceInput) pnlEntryPriceInput.classList.remove('invalid-input');
             if (pnlExitPriceInput) pnlExitPriceInput.classList.remove('invalid-input');
             if (pnlPositionAmountInput) pnlPositionAmountInput.classList.remove('invalid-input');
             if (pnlLeverageInput) pnlLeverageInput.classList.remove('invalid-input');
 
-            updatePnLTradeTypeUI();
+            updatePnLTradeTypeUI(); // Update UI for trade type
             calculatePnL();
             showNotification('Калькулятор прибыли/убытка сброшен.');
         }
