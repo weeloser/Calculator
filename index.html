@@ -8,7 +8,6 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📈%3C/text%3E%3C/svg%3E" type="image/svg+xml">
 
     <style>
-        /* Общие стили и переменные */
         * {
             margin: 0;
             padding: 0;
@@ -47,7 +46,6 @@
             --gap-medium: 1.5rem;
             --gap-small: 1rem;
 
-            /* Переменные для нового дизайна настроек */
             --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.1);
             --settings-item-bg: rgba(var(--primary-rgb), 0.05);
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.1);
@@ -55,19 +53,18 @@
             --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.1);
         }
 
-        /* Темы */
         [data-theme="dark"] {
             --primary: #60a5fa;
             --secondary: #3b82f6;
             --accent: #f472b6;
-            --bg: #1a1a2e; /* Более глубокий темный */
-            --card-bg: #2a2a4a; /* Более глубокий темный */
-            --text: #e0e0e0; /* Светлее текст */
-            --shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Более выразительная тень */
+            --bg: #1a1a2e;
+            --card-bg: #2a2a4a;
+            --text: #e0e0e0;
+            --shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
             --primary-rgb: 96, 165, 250;
             --accent-rgb: 244, 114, 182;
             --placeholder-text-color: #888;
-            --button-bg: #3c3c66; /* Соответствующий цвет кнопки */
+            --button-bg: #3c3c66;
             --button-text: #fff;
             --button-hover-bg: var(--accent);
 
@@ -76,6 +73,20 @@
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
             --settings-input-bg: #3a3a5a;
             --settings-input-border: 1px solid #555;
+            
+            color: var(--text);
+        }
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3,
+        [data-theme="dark"] .tab,
+        [data-theme="dark"] .sub-tab,
+        [data-theme="dark"] .result-title,
+        [data-theme="dark"] .input-group label {
+            color: var(--text);
+        }
+        [data-theme="dark"] .tab.active,
+        [data-theme="dark"] .sub-tab.active {
+            color: white;
         }
 
         [data-theme="light"] {
@@ -100,153 +111,138 @@
             --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.1);
         }
 
-        [data-theme="neon"] {
-            --primary: #06b6d4;
-            --secondary: #10b981;
-            --accent: #facc15;
-            --bg: #0c0a09;
-            --card-bg: #1c1917;
-            --text: #f8fafc;
-            --shadow: 0 4px 12px rgba(6, 182, 212, 0.4);
-            --primary-rgb: 6, 182, 212;
-            --accent-rgb: 250, 204, 21;
-            --placeholder-text-color: #a1a1aa;
+        [data-theme="professional-blue"] {
+            --primary: #1e3a8a;
+            --secondary: #1d4ed8;
+            --accent: #9333ea;
+            --bg: #e0f2f7;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
+            --primary-rgb: 30, 58, 138;
+            --accent-rgb: 147, 51, 234;
+            --placeholder-text-color: #6b7280;
             --button-bg: var(--primary);
-            --button-text: #0c0a09;
+            --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.15);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.08);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.12);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.15);
         }
         
-        [data-theme="emerald"] {
-            --primary: #10b981;
+        [data-theme="modern-green"] {
+            --primary: #047857;
             --secondary: #059669;
-            --accent: #06b6d4;
-            --bg: #0a0a0a;
-            --card-bg: #121212;
-            --text: #f4f4f5;
-            --shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-            --primary-rgb: 16, 185, 129;
-            --accent-rgb: 6, 182, 212;
-            --placeholder-text-color: #a1a1aa;
+            --accent: #d97706;
+            --bg: #ecfdf5;
+            --card-bg: #ffffff;
+            --text: #064e3b;
+            --shadow: 0 4px 12px rgba(4, 120, 87, 0.2);
+            --primary-rgb: 4, 120, 87;
+            --accent-rgb: 217, 119, 6;
+            --placeholder-text-color: #6b7280;
             --button-bg: var(--primary);
             --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.15);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.08);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.12);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.15);
         }
 
-        [data-theme="deep-blue"] {
-            --primary: #4f46e5;
-            --secondary: #6366f1;
-            --accent: #e879f9;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #e2e8f0;
-            --shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-            --primary-rgb: 79, 70, 229;
-            --accent-rgb: 232, 121, 249;
-            --placeholder-text-color: #94a3b8;
+        [data-theme="sleek-purple"] {
+            --primary: #7e22ce;
+            --secondary: #9333ea;
+            --accent: #db2777;
+            --bg: #f3e8ff;
+            --card-bg: #ffffff;
+            --text: #4c0519;
+            --shadow: 0 4px 15px rgba(126, 34, 206, 0.25);
+            --primary-rgb: 126, 34, 206;
+            --accent-rgb: 219, 39, 119;
+            --placeholder-text-color: #8b5cf6;
             --button-bg: var(--primary);
             --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.1);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.2);
         }
 
-        [data-theme="volcanic"] {
-            --primary: #dc2626;
-            --secondary: #ef4444;
-            --accent: #f97316;
-            --bg: #1a0a0a;
-            --card-bg: #2a1a1a;
-            --text: #fca5a5;
-            --shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
-            --primary-rgb: 220, 38, 38;
-            --accent-rgb: 249, 115, 22;
-            --placeholder-text-color: #e5e5e5;
+        [data-theme="corporate-red"] {
+            --primary: #b91c1c;
+            --secondary: #dc2626;
+            --accent: #f59e0b;
+            --bg: #fef2f2;
+            --card-bg: #ffffff;
+            --text: #7f1d1d;
+            --shadow: 0 4px 15px rgba(185, 28, 28, 0.25);
+            --primary-rgb: 185, 28, 28;
+            --accent-rgb: 245, 158, 11;
+            --placeholder-text-color: #991b1b;
             --button-bg: var(--primary);
             --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.1);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.2);
         }
 
-        [data-theme="synthwave"] {
-            --primary: #f472b6;
-            --secondary: #a78bfa;
-            --accent: #06b6d4;
-            --bg: #171717;
-            --card-bg: #262626;
-            --text: #fbcfe8;
-            --shadow: 0 4px 15px rgba(244, 114, 182, 0.4);
-            --primary-rgb: 244, 114, 182;
-            --accent-rgb: 6, 182, 212;
-            --placeholder-text-color: #a1a1aa;
+        [data-theme="calm-teal"] {
+            --primary: #0d9488;
+            --secondary: #14b8a6;
+            --accent: #7e22ce;
+            --bg: #f0fdfa;
+            --card-bg: #ffffff;
+            --text: #0f766e;
+            --shadow: 0 4px 15px rgba(13, 148, 136, 0.25);
+            --primary-rgb: 13, 148, 136;
+            --accent-rgb: 126, 34, 206;
+            --placeholder-text-color: #0d9488;
             --button-bg: var(--primary);
             --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.1);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.2);
         }
 
-        [data-theme="galaxy"] {
-            --primary: #8b5cf6;
-            --secondary: #a78bfa;
-            --accent: #22d3ee;
-            --bg: #0c0a09;
-            --card-bg: #1c1917;
-            --text: #e9d5ff;
-            --shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-            --primary-rgb: 139, 92, 246;
-            --accent-rgb: 34, 211, 238;
-            --placeholder-text-color: #a1a1aa;
+        [data-theme="royal-gold"] {
+            --primary: #b45309;
+            --secondary: #d97706;
+            --accent: #facc15;
+            --bg: #fffbeb;
+            --card-bg: #ffffff;
+            --text: #78350f;
+            --shadow: 0 4px 15px rgba(180, 83, 9, 0.25);
+            --primary-rgb: 180, 83, 9;
+            --accent-rgb: 250, 204, 21;
+            --placeholder-text-color: #b45309;
             --button-bg: var(--primary);
             --button-text: white;
             --button-hover-bg: var(--accent);
 
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.3);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.15);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-input-bg: #2d3748;
-            --settings-input-border: 1px solid #4a5568;
+            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
+            --settings-item-bg: rgba(var(--primary-rgb), 0.1);
+            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
+            --settings-input-bg: var(--bg);
+            --settings-input-border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.2);
         }
 
-        /* Общие стили для тела страницы */
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            padding: var(--body-padding);
-            transition: background-color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), color 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-            overflow-y: auto;
-            font-size: var(--font-size-base);
-        }
-
-        /* Анимация градиентного фона */
         body::before {
             content: '';
             position: fixed;
@@ -266,7 +262,6 @@
             100% { background-position: 100% 50%; transform: rotate(2deg) scale(1.6); }
         }
 
-        /* Контейнер приложения */
         .container {
             max-width: var(--container-max-width);
             margin: 0 auto;
@@ -281,7 +276,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Авторская подпись */
         .author {
             text-align: center;
             margin-bottom: var(--gap-large);
@@ -309,7 +303,6 @@
             text-shadow: 0 0 8px var(--accent);
         }
 
-        /* Переключатель тем */
         .theme-switcher {
             display: flex;
             flex-wrap: wrap;
@@ -371,15 +364,14 @@
 
         .theme-light { background: #ffffff; border: 2px solid #000000; }
         .theme-dark { background: #000000; border: 2px solid #ffffff; }
-        .theme-neon { background: #06b6d4; border: 2px solid #000000; }
-        .theme-emerald { background: #10b981; border: 2px solid #000000; }
-        .theme-deep-blue { background: #4f46e5; border: 2px solid #000000; }
-        .theme-volcanic { background: #dc2626; border: 2px solid #000000; }
-        .theme-synthwave { background: #f472b6; border: 2px solid #000000; }
-        .theme-galaxy { background: #8b5cf6; border: 2px solid #000000; }
+        .theme-professional-blue { background: #1e3a8a; border: 2px solid #000000; }
+        .theme-modern-green { background: #047857; border: 2px solid #000000; }
+        .theme-sleek-purple { background: #7e22ce; border: 2px solid #000000; }
+        .theme-corporate-red { background: #b91c1c; border: 2px solid #000000; }
+        .theme-calm-teal { background: #0d9488; border: 2px solid #000000; }
+        .theme-royal-gold { background: #b45309; border: 2px solid #000000; }
 
 
-        /* Вкладки навигации */
         .tabs {
             display: flex;
             margin-bottom: var(--gap-large);
@@ -483,7 +475,6 @@
             display: block;
         }
 
-        /* Подвкладки */
         .sub-tabs {
             display: flex;
             margin-bottom: var(--gap-medium);
@@ -521,7 +512,6 @@
             display: block;
         }
 
-        /* Стили калькулятора */
         .calculator {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -781,7 +771,6 @@
             to { color: #cc3333; text-shadow: 0 0 10px rgba(255,0,0,0.7); }
         }
 
-        /* Футер */
         .footer {
             margin-top: 3rem;
             text-align: center;
@@ -803,7 +792,6 @@
             text-shadow: 0 0 8px var(--accent);
         }
 
-        /* НОВЫЙ ДИЗАЙН НАСТРОЕК */
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -815,7 +803,7 @@
         }
 
         .settings-section-card {
-            background: rgba(var(--primary-rgb), 0.03); /* Lighter background for sections */
+            background: rgba(var(--primary-rgb), 0.03);
             border: var(--settings-card-border);
             border-radius: var(--border-radius);
             padding: 1.5rem;
@@ -941,60 +929,54 @@
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
         }
 
-
-        /* Улучшенные переключатели */
-        .switch {
+        .checkbox-switch {
             position: relative;
             display: inline-block;
-            width: 54px; /* Немного шире */
-            height: 30px; /* Немного выше */
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
         }
 
-        .switch input {
+        .checkbox-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
 
-        .slider-switch {
+        .checkbox-custom {
             position: absolute;
-            cursor: pointer;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #a0aec0; /* Светло-серый, когда выключен */
-            transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-            border-radius: 34px;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); /* Внутренняя тень */
-            border: 2px solid transparent; /* Добавим для активного состояния */
+            height: 24px;
+            width: 24px;
+            background-color: #eee;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        .slider-switch:before {
-            position: absolute;
-            content: "";
-            height: 22px; /* Чуть больше */
-            width: 22px; /* Чуть больше */
-            left: 4px; /* Отступ */
-            bottom: 4px; /* Отступ */
-            background-color: white;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), background-color 0.3s ease; /* Добавлен ease-in-out */
-            border-radius: 50%;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.3); /* Более выраженная тень */
-        }
-
-        input:checked + .slider-switch {
+        .checkbox-switch input:checked + .checkbox-custom {
             background-color: var(--primary);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2), 0 0 12px rgba(var(--primary-rgb), 0.6); /* Внешняя тень */
-            border-color: var(--accent); /* Цветная обводка */
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5);
         }
 
-        input:checked + .slider-switch:before {
-            transform: translateX(24px); /* Больше смещение */
-            background-color: var(--accent); /* Цвет для активного состояния */
+        .checkbox-custom:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 8px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
         }
 
-        /* Кнопка сброса */
+        .checkbox-switch input:checked + .checkbox-custom:after {
+            display: block;
+        }
+
         .reset-button {
             background-color: #f44336;
             color: white;
@@ -1023,7 +1005,6 @@
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Сообщения валидации */
         .validation-message {
             color: var(--warning-color);
             font-size: 0.85rem;
@@ -1042,7 +1023,6 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
         }
 
-        /* Уведомления */
         .notification-container {
             position: fixed;
             top: 1rem;
@@ -1078,7 +1058,6 @@
             to { opacity: 0; transform: translateX(120%) scale(0.9); }
         }
 
-        /* Анимации для слайдера */
         .slider-container .slider::-webkit-slider-thumb:active {
             animation: thumbPop 0.3s ease-in-out;
         }
@@ -1092,191 +1071,6 @@
             50% { transform: scale(1.1); }
         }
 
-        /* Дисклеймер */
-        .disclaimer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .disclaimer-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .disclaimer-modal {
-            background-color: var(--card-bg);
-            color: var(--text);
-            padding: 2.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            text-align: center;
-            transform: scale(0.8) translateY(20px);
-            opacity: 0;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
-        }
-
-        .disclaimer-overlay.show .disclaimer-modal {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-
-        .disclaimer-modal h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            text-shadow: 1px 1px 3px rgba(var(--primary-rgb), 0.2);
-        }
-
-        .disclaimer-modal p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .disclaimer-modal button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: var(--border-radius);
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.3);
-        }
-
-        .disclaimer-modal button:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(var(--accent-rgb), 0.4);
-        }
-
-        .disclaimer-modal button:active {
-            transform: translateY(0) scale(0.98);
-            box-shadow: 0 2px 5px rgba(var(--primary-rgb), 0.2);
-        }
-
-        /* Пользовательские модальные окна */
-        .custom-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 4000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .custom-modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .custom-modal {
-            background-color: var(--card-bg);
-            color: var(--text);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            transform: scale(0.9) translateY(-20px);
-            opacity: 0;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
-        }
-
-        .custom-modal-overlay.show .custom-modal {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-
-        .custom-modal h3 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .custom-modal p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .custom-modal input[type="text"] {
-            width: calc(100% - 20px);
-            padding: 0.75rem 1rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(var(--text-rgb, 0,0,0), 0.2);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            background-color: var(--bg);
-            color: var(--text);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .custom-modal input[type="text"]:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
-        }
-
-        .custom-modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .custom-modal-buttons button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3);
-        }
-
-        .custom-modal-buttons button:hover {
-            background-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(var(--accent-rgb), 0.4);
-        }
-
-        .custom-modal-buttons button:active {
-            transform: translateY(0);
-            box-shadow: var(--button-active-shadow);
-        }
-
-        .custom-modal-buttons button.cancel-button {
-            background-color: #6c757d;
-        }
-        .custom-modal-buttons button.cancel-button:hover {
-            background-color: #495057;
-        }
-
-        /* Переключатели режимов */
         .function-toggle-button-container {
             display: flex;
             align-items: center;
@@ -1316,7 +1110,6 @@
             outline: none;
         }
 
-        /* Удаление стрелки и селектора для переключателей */
         .function-toggle-button-container:not(.has-dropdown) .function-dropdown-toggle,
         .function-selector:not(.has-dropdown) {
             display: none !important;
@@ -1353,7 +1146,7 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             z-index: 100;
-            width: calc(100% - 2rem); /* Adjusted for padding */
+            width: calc(100% - 2rem);
             margin-top: 0.5rem;
             opacity: 0;
             visibility: hidden;
@@ -1393,7 +1186,6 @@
             border-bottom-right-radius: inherit;
         }
 
-        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             body {
                 padding: 0.5rem;
@@ -1493,7 +1285,6 @@
             }
         }
 
-        /* Стили для скроллбара */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1513,7 +1304,6 @@
             background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
 
-        /* Фокус для доступности */
         :focus-visible {
             outline: 3px solid rgba(var(--primary-rgb), 0.7);
             outline-offset: 3px;
@@ -1524,52 +1314,16 @@
 <body>
     <div class="notification-container"></div>
 
-    <!-- Модальное окно дисклеймера -->
-    <div class="disclaimer-overlay" id="disclaimerOverlay">
-        <div class="disclaimer-modal">
-            <h2>Важное уведомление</h2>
-            <p>Автор калькулятора не несет ответственности за расчеты, возможные финансовые риски и любые убытки, возникшие в результате использования данного инструмента. Все расчеты предоставляются исключительно в информационных целях. Используйте информацию на свой страх и риск.</p>
-            <button id="disclaimerAcceptButton">ОК</button>
-        </div>
-    </div>
-
-    <!-- Общие модальные окна (для подтверждения/ввода) - оставлены для будущего использования, если понадобится -->
-    <div class="custom-modal-overlay" id="confirmModalOverlay">
-        <div class="custom-modal">
-            <h3 id="confirmModalTitle">Подтверждение</h3>
-            <p id="confirmModalMessage"></p>
-            <div class="custom-modal-buttons">
-                <button id="confirmModalOkButton">ОК</button>
-                <button id="confirmModalCancelButton" class="cancel-button">Отмена</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="custom-modal-overlay" id="promptModalOverlay">
-        <div class="custom-modal">
-            <h3 id="promptModalTitle">Введите значение</h3>
-            <p id="promptModalMessage"></p>
-            <input type="text" id="promptModalInput">
-            <div class="custom-modal-buttons">
-                <button id="promptModalOkButton">ОК</button>
-                <button id="promptModalCancelButton" class="cancel-button">Отмена</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Основной контейнер приложения -->
     <div class="container">
         <div class="author">
             <p>© <a href="https://t.me/weeloser " target="_blank">@weeloser</a></p>
         </div>
 
-        <!-- Вкладки навигации -->
         <div class="tabs">
             <div class="tab active" onclick="switchTab('calculations')">Расчеты</div>
             <div class="tab" onclick="switchTab('settings')">Настройки</div>
         </div>
 
-        <!-- Содержимое вкладки "Расчеты" -->
         <div id="calculations" class="tab-content active">
             <h2>Расчеты</h2>
             <div class="sub-tabs">
@@ -1578,12 +1332,11 @@
                 <div class="sub-tab" onclick="switchSubTab('pnl-calculator')">Калькулятор прибыли/убытка</div>
             </div>
 
-            <!-- Подвкладка "Риск на сделку" -->
             <div id="risk-on-deal" class="sub-tab-content active">
                 <div class="calculator">
                     <div class="input-section">
                         <div class="input-group">
-                            <label for="balance">Баланс (USDT)</label>
+                            <label for="balance">Баланс</label>
                             <input type="number" id="balance" placeholder="Введите ваш баланс" min="0.01">
                             <div class="validation-message" id="balance-validation"></div>
                         </div>
@@ -1594,34 +1347,18 @@
                             <div class="validation-message" id="leverage-validation"></div>
                         </div>
 
-                        <!-- Переключатель режима ENTRY/SL и ROI -->
-                        <div class="function-toggle-button-container" id="entrySlRoiToggleContainer">
-                            <button id="mainButtonTextPart" class="function-toggle-button">ENTRY/SL 🔄</button>
+                        <div class="input-group">
+                            <label for="entryPoint">Точка входа</label>
+                            <input type="number" id="entryPoint" placeholder="Введите точку входа" min="0.01">
+                            <div class="validation-message" id="entryPoint-validation"></div>
                         </div>
 
-                        <div id="twhStopFields">
-                            <div class="input-group">
-                                <label for="entryPoint">Точка входа</label>
-                                <input type="number" id="entryPoint" placeholder="Введите точку входа" min="0.01">
-                                <div class="validation-message" id="entryPoint-validation"></div>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="stopLoss">Цена стоп-лосса</label>
-                                <input type="number" id="stopLoss" placeholder="Введите цену стоп-лосса" min="0.01">
-                                <div class="validation-message" id="stopLoss-validation"></div>
-                            </div>
+                        <div class="input-group">
+                            <label for="stopLoss">Цена стоп-лосса</label>
+                            <input type="number" id="stopLoss" placeholder="Введите цену стоп-лосса" min="0.01">
+                            <div class="validation-message" id="stopLoss-validation"></div>
                         </div>
 
-                        <div id="roiField" style="display: none;">
-                            <div class="input-group">
-                                <label for="roi">ROI между SL и ENTRY (%)</label>
-                                <input type="number" id="roi" placeholder="Введите ROI" min="0.01">
-                                <div class="validation-message" id="roi-validation"></div>
-                            </div>
-                        </div>
-
-                        <!-- Переключатель режима % риска на сделку / Фиксированный убыток -->
                         <div class="function-toggle-button-container" id="riskAmountToggleContainer">
                             <button id="riskToggleButton" class="function-toggle-button">% риска на сделку 🔄</button>
                         </div>
@@ -1637,7 +1374,7 @@
 
                         <div id="fixedLossInput" style="display: none;">
                             <div class="input-group">
-                                <label for="fixedLoss">Фиксированный убыток (USDT)</label>
+                                <label for="fixedLoss">Фиксированный убыток</label>
                                 <input type="number" id="fixedLoss" placeholder="Введите сумму убытка" min="0.01">
                                 <div class="validation-message" id="fixedLoss-validation"></div>
                             </div>
@@ -1647,21 +1384,20 @@
                     </div>
 
                     <div class="results">
-                        <h3>Результаты</h3>
                         <div class="result-grid">
                             <div class="result-card transition-hover">
                                 <div class="result-title">Маржа</div>
-                                <div class="result-value" id="margin">0.00 USDT</div>
+                                <div class="result-value" id="margin">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Размер позиции</div>
-                                <div class="result-value" id="positionSize">0.00 USDT</div>
+                                <div class="result-value" id="positionSize">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Риск на сделку</div>
-                                <div class="result-value" id="riskAmount">0.00 USDT</div>
+                                <div class="result-value" id="riskAmount">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
@@ -1673,7 +1409,6 @@
                 </div>
             </div>
 
-            <!-- Подвкладка "Калькулятор соотношения риска/прибыли" -->
             <div id="risk-reward-ratio" class="sub-tab-content">
                 <h2>Калькулятор соотношения риска/прибыли</h2>
                 <div class="calculator">
@@ -1699,15 +1434,14 @@
                     </div>
 
                     <div class="results">
-                        <h3>Результаты</h3>
                         <div class="result-grid">
                             <div class="result-card transition-hover">
-                                <div class="result-title">Кол-во пунктов до тейк-профита</div>
+                                <div class="result-title">Пунктов до тейк-профита</div>
                                 <div class="result-value" id="rrTPPoints">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
-                                <div class="result-title">Кол-во пунктов до стоп-лосса</div>
+                                <div class="result-title">Пунктов до стоп-лосса</div>
                                 <div class="result-value" id="rrSLPoints">0.00</div>
                             </div>
 
@@ -1720,7 +1454,6 @@
                 </div>
             </div>
 
-            <!-- Подвкладка "Калькулятор прибыли/убытка" -->
             <div id="pnl-calculator" class="sub-tab-content">
                 <h2>Калькулятор прибыли/убытка</h2>
                 <div class="calculator">
@@ -1738,14 +1471,14 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="pnlPositionAmount">Сумма позиции (USDT)</label>
+                            <label for="pnlPositionAmount">Сумма позиции <span class="text-gray-400 text-sm">(не путать с маржой)</span></label>
                             <input type="number" id="pnlPositionAmount" placeholder="Введите сумму позиции" min="0.01">
                             <div class="validation-message" id="pnlPositionAmount-validation"></div>
                         </div>
 
                         <div class="input-group">
                             <label for="pnlLeverage">Плечо</label>
-                            <input type="number" id="pnlLeverage" placeholder="Введите плечо" min="1">
+                            <input type="number" id="pnlLeverage" placeholder="Введите плечо (необязательно)" min="1">
                             <div class="validation-message" id="pnlLeverage-validation"></div>
                         </div>
 
@@ -1753,11 +1486,10 @@
                     </div>
 
                     <div class="results">
-                        <h3>Результаты</h3>
                         <div class="result-grid">
                             <div class="result-card transition-hover">
                                 <div class="result-title">Общая прибыль/убыток</div>
-                                <div class="result-value" id="pnlTotalPnL">0.00 USDT</div>
+                                <div class="result-value" id="pnlTotalPnL">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
@@ -1769,104 +1501,56 @@
                                 <div class="result-title">Чистое движение в %</div>
                                 <div class="result-value" id="pnlPureMovement">0.00%</div>
                             </div>
+                            <div class="result-card transition-hover">
+                                <div class="result-title">Пунктов между входом/выходом</div>
+                                <div class="result-value" id="pnlPointsBetweenEntryExit">0.00</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Содержимое вкладки "Настройки" -->
         <div id="settings" class="tab-content">
             <h2>Настройки</h2>
             <div class="settings-grid">
-                <!-- Секция "Значения по умолчанию" -->
-                <div class="settings-section-card">
-                    <h3>Значения по умолчанию</h3>
-                    <div class="settings-list">
-                        <div class="setting-item">
-                            <label for="defaultBalanceToggle">Баланс по умолчанию</label>
-                            <label class="switch">
-                                <input type="checkbox" id="defaultBalanceToggle">
-                                <span class="slider-switch"></span>
-                            </label>
-                        </div>
-                        <div class="input-group settings-input">
-                            <input type="number" id="defaultBalance" placeholder="Введите значение по умолчанию" min="0.01">
-                            <div class="validation-message" id="defaultBalance-validation"></div>
-                        </div>
-
-                        <div class="setting-item">
-                            <label for="defaultLeverageToggle">Плечо по умолчанию</label>
-                            <label class="switch">
-                                <input type="checkbox" id="defaultLeverageToggle">
-                                <span class="slider-switch"></span>
-                            </label>
-                        </div>
-                        <div class="input-group settings-input">
-                            <input type="number" id="defaultLeverage" placeholder="Введите значение по умолчанию" min="1">
-                            <div class="validation-message" id="defaultLeverage-validation"></div>
-                        </div>
-
-                        <div class="setting-item">
-                            <label for="defaultRiskToggle">Риск по умолчанию</label>
-                            <label class="switch">
-                                <input type="checkbox" id="defaultRiskToggle">
-                                <span class="slider-switch"></span>
-                            </label>
-                        </div>
-                        <div class="input-group settings-input">
-                            <input type="number" id="defaultRisk" placeholder="Введите значение по умолчанию" min="0.5" max="100" step="0.1">
-                            <div class="validation-message" id="defaultRisk-validation"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Секция "Темы оформления" -->
                 <div class="settings-section-card">
                     <h3>Темы оформления</h3>
                     <p>Выберите одну из предустановленных тем.</p>
                     <div class="theme-switcher" id="settingsThemeSwitcher"></div>
                 </div>
 
-                <!-- Секция "Настройки уведомлений" -->
                 <div class="settings-section-card">
-                    <h3>Настройки уведомлений</h3>
+                    <h3>Другое</h3>
                     <div class="settings-list">
                         <div class="setting-item">
-                            <label for="notificationToggle">Включить все уведомления</label>
-                            <label class="switch">
+                            <label for="notificationToggle">Включить уведомления</label>
+                            <label class="checkbox-switch">
                                 <input type="checkbox" id="notificationToggle">
-                                <span class="slider-switch"></span>
+                                <span class="checkbox-custom"></span>
                             </label>
                         </div>
                         <div class="setting-item">
-                            <label for="themeChangeNotificationToggle">Уведомления о смене темы</label>
-                            <label class="switch">
-                                <input type="checkbox" id="themeChangeNotificationToggle">
-                                <span class="slider-switch"></span>
-                            </label>
+                            <label for="precisionInput">Точность</label>
+                            <input type="number" id="precisionInput" min="1" max="5" value="2" style="width: 80px; text-align: right; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
                         </div>
                         <div class="setting-item">
-                            <label for="defaultSettingsNotificationToggle">Уведомления о смене настроек по умолчанию</label>
-                            <label class="switch">
-                                <input type="checkbox" id="defaultSettingsNotificationToggle">
-                                <span class="slider-switch"></span>
-                            </label>
+                            <label for="currencySymbolInput">Валютный символ</label>
+                            <input type="text" id="currencySymbolInput" maxlength="5" placeholder="$, €, ₽" style="width: 80px; text-align: right; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
                         </div>
+                        <button class="reset-button" onclick="resetAllSettings()">Сбросить все настройки</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Футер -->
     <div class="footer">
         <p>© <a href="https://t.me/weeloser " target="_blank">@weeloser</a></p>
     </div>
 
     <script>
-        // Объявление переменных DOM-элементов
-        let balanceInput, leverageInput, roiInput, riskSlider, riskValue, riskWarning;
+        let balanceInput, leverageInput, riskSlider, riskValue, riskWarning;
         let marginDisplay, positionSizeDisplay, riskAmountDisplay, pureMovementDisplay;
 
         let entryPointInput, stopLossInput;
@@ -1876,27 +1560,16 @@
         let rrSLPointsDisplay, rrTPPointsDisplay, rrRatioDisplay;
 
         let pnlEntryPriceInput, pnlExitPriceInput, pnlPositionAmountInput, pnlLeverageInput;
-        let pnlTotalPnLDisplay, pnlRoiDisplay, pnlPureMovementDisplay;
+        let pnlTotalPnLDisplay, pnlRoiDisplay, pnlPureMovementDisplay, pnlPointsBetweenEntryExitDisplay;
 
-        // Сообщения и состояния
-        const placeholderMessage = "Заполните все поля для расчета";
         let notificationsEnabled = true;
-        let notificationsEnabledForThemeChange = true;
-        let notificationsEnabledForDefaultSettings = true;
+        let currentPrecision = 2;
+        let currencySymbol = '';
 
-        let isROIModeForRiskOnDeal = false;
         let isFixedLossModeForRiskOnDeal = false;
-        const currentPrecision = 2; // Фиксированное значение точности
 
-        /**
-         * Отображает временное уведомление в правом верхнем углу.
-         * @param {string} message - Текст уведомления.
-         * @param {string} type - Тип уведомления (для фильтрации по настройкам).
-         */
         function showNotification(message, type = 'global') {
             if (!notificationsEnabled) return;
-            if (type === 'theme' && !notificationsEnabledForThemeChange) return;
-            if (type === 'defaultSettings' && !notificationsEnabledForDefaultSettings) return;
 
             const container = document.querySelector('.notification-container');
             if (!container) return;
@@ -1922,47 +1595,24 @@
             }, 3500);
         }
 
-        const defaultTypeLabels = {
-            'balance': 'Баланс',
-            'leverage': 'Плечо',
-            'risk': 'Риск'
-        };
-
-        /**
-         * Устанавливает активную тему оформления.
-         * @param {string} themeName - Название темы.
-         */
-        function setTheme(themeName) {
-            document.body.setAttribute('data-theme', themeName);
-            localStorage.setItem('theme', themeName);
-            showNotification(`Тема изменена на "${getThemeLabel(themeName)}"`, 'theme');
-            updateThemeButtonActiveState(themeName);
-        }
-
-        /**
-         * Возвращает удобочитаемое название темы.
-         * @param {string} themeName - Название темы.
-         * @returns {string} - Удобочитаемое название темы.
-         */
-        function getThemeLabel(themeName) {
-             const theme = availableThemes.find(t => t.name === themeName);
-             return theme ? theme.label : themeName;
-        }
-
         const availableThemes = [
             { name: 'light', label: 'Светлая Тема' },
             { name: 'dark', label: 'Темная Тема' },
-            { name: 'neon', label: 'Неоновая Вспышка' },
-            { name: 'emerald', label: 'Изумрудный Бриз' },
-            { name: 'deep-blue', label: 'Глубина Океана' },
-            { name: 'volcanic', label: 'Вулканическая Лава' },
-            { name: 'synthwave', label: 'Синтвейв Ретро' },
-            { name: 'galaxy', label: 'Галактическая Ночь' },
+            { name: 'professional-blue', label: 'Профессиональный Синий' },
+            { name: 'modern-green', label: 'Современный Зеленый' },
+            { name: 'sleek-purple', label: 'Изящный Фиолетовый' },
+            { name: 'corporate-red', label: 'Корпоративный Красный' },
+            { name: 'calm-teal', label: 'Спокойный Бирюзовый' },
+            { name: 'royal-gold', label: 'Королевское Золото' },
         ];
 
-        /**
-         * Создает кнопки для выбора тем оформления.
-         */
+        function setTheme(themeName) {
+            document.body.setAttribute('data-theme', themeName);
+            localStorage.setItem('theme', themeName);
+            showNotification(`Тема изменена на "${availableThemes.find(t => t.name === themeName).label}"`, 'theme');
+            updateThemeButtonActiveState(themeName);
+        }
+
         function createThemeButtons() {
             const container = document.getElementById('settingsThemeSwitcher');
             if (!container) return;
@@ -1978,10 +1628,6 @@
             });
         }
 
-        /**
-         * Обновляет активное состояние кнопок тем.
-         * @param {string} activeThemeName - Название активной темы.
-         */
         function updateThemeButtonActiveState(activeThemeName) {
              document.querySelectorAll('.theme-button').forEach(button => {
                  button.classList.remove('active-theme');
@@ -1991,45 +1637,55 @@
              });
         }
 
-        /**
-         * Переключает состояние уведомлений.
-         * @param {string} type - Тип уведомлений ('global', 'theme', 'defaultSettings').
-         * @param {boolean} enabled - Включить или выключить.
-         */
-        function toggleNotifications(type, enabled) {
-            if (type === 'global') {
-                notificationsEnabled = enabled;
-                localStorage.setItem('notificationsEnabled', enabled);
-                if (!enabled) {
-                    notificationsEnabledForThemeChange = false;
-                    notificationsEnabledForDefaultSettings = false;
-
-                    const themeToggle = document.getElementById('themeChangeNotificationToggle');
-                    const defaultToggle = document.getElementById('defaultSettingsNotificationToggle');
-
-                    if(themeToggle) themeToggle.checked = false;
-                    if(defaultToggle) defaultToggle.checked = false;
-
-                    localStorage.setItem('notificationsEnabledForThemeChange', false);
-                    localStorage.setItem('notificationsEnabledForDefaultSettings', false);
-                }
-            } else if (type === 'theme') {
-                notificationsEnabledForThemeChange = enabled;
-                localStorage.setItem('notificationsEnabledForThemeChange', enabled);
-            } else if (type === 'defaultSettings') {
-                notificationsEnabledForDefaultSettings = enabled;
-                localStorage.setItem('notificationsEnabledForDefaultSettings', enabled);
-            }
-            showNotification(`Уведомления ${type === 'global' ? 'глобально' : (type === 'theme' ? 'о смене темы' : 'о смене настроек по умолчанию')} ${enabled ? 'включены' : 'выключены'}`, type);
+        function toggleNotifications(enabled) {
+            notificationsEnabled = enabled;
+            localStorage.setItem('notificationsEnabled', enabled);
+            showNotification(`Уведомления ${enabled ? 'включены' : 'выключены'}`, 'global');
         }
 
-        // Инициализация после загрузки DOM
+        function setPrecision(precision) {
+            currentPrecision = parseInt(precision);
+            localStorage.setItem('currentPrecision', currentPrecision);
+            calculateRiskOnDeal();
+            calculateRiskReward();
+            calculatePnL();
+        }
+
+        function setCurrencySymbol(symbol) {
+            currencySymbol = symbol;
+            localStorage.setItem('currencySymbol', currencySymbol);
+            calculateRiskOnDeal();
+            calculatePnL();
+        }
+
+        function resetAllSettings() {
+            localStorage.clear();
+            notificationsEnabled = true;
+            currentPrecision = 2;
+            currencySymbol = '';
+
+            const themeReset = 'dark';
+            setTheme(themeReset);
+
+            const notificationToggleInput = document.getElementById('notificationToggle');
+            if (notificationToggleInput) notificationToggleInput.checked = true;
+
+            const precisionInput = document.getElementById('precisionInput');
+            if (precisionInput) precisionInput.value = 2;
+            
+            const currencySymbolInput = document.getElementById('currencySymbolInput');
+            if (currencySymbolInput) currencySymbolInput.value = '';
+
+            calculateRiskOnDeal();
+            calculateRiskReward();
+            calculatePnL();
+            showNotification('Все настройки сброшены до значений по умолчанию.');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             try {
-                // Привязка DOM-элементов к переменным
                 balanceInput = document.getElementById('balance');
                 leverageInput = document.getElementById('leverage');
-                roiInput = document.getElementById('roi');
                 riskSlider = document.getElementById('riskSlider');
                 riskValue = document.getElementById('riskValue');
                 riskWarning = document.getElementById('riskWarning');
@@ -2057,78 +1713,55 @@
                 pnlTotalPnLDisplay = document.getElementById('pnlTotalPnL');
                 pnlRoiDisplay = document.getElementById('pnlRoi');
                 pnlPureMovementDisplay = document.getElementById('pnlPureMovement');
+                pnlPointsBetweenEntryExitDisplay = document.getElementById('pnlPointsBetweenEntryExit');
 
                 createThemeButtons();
 
-                // Установка темной темы по умолчанию
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 if (availableThemes.some(t => t.name === savedTheme)) {
                     setTheme(savedTheme);
                 } else {
-                    setTheme('dark'); // Fallback to dark if saved theme is invalid
+                    setTheme('dark');
                 }
 
-                // Загрузка и установка настроек уведомлений
                 notificationsEnabled = localStorage.getItem('notificationsEnabled') === 'true' || true;
-                notificationsEnabledForThemeChange = localStorage.getItem('notificationsEnabledForThemeChange') === 'true' || true;
-                notificationsEnabledForDefaultSettings = localStorage.getItem('notificationsEnabledForDefaultSettings') === 'true' || true;
 
-                // Привязка слушателей к переключателям уведомлений
                 const notificationToggleInput = document.getElementById('notificationToggle');
-                const themeChangeNotificationToggle = document.getElementById('themeChangeNotificationToggle');
-                const defaultSettingsNotificationToggle = document.getElementById('defaultSettingsNotificationToggle');
-
                 if (notificationToggleInput) {
                     notificationToggleInput.checked = notificationsEnabled;
-                    notificationToggleInput.addEventListener('change', () => toggleNotifications('global', notificationToggleInput.checked));
-                }
-                if (themeChangeNotificationToggle) {
-                    themeChangeNotificationToggle.checked = notificationsEnabledForThemeChange;
-                    themeChangeNotificationToggle.addEventListener('change', () => toggleNotifications('theme', themeChangeNotificationToggle.checked));
-                }
-                if (defaultSettingsNotificationToggle) {
-                    defaultSettingsNotificationToggle.checked = notificationsEnabledForDefaultSettings;
-                    defaultSettingsNotificationToggle.addEventListener('change', () => toggleNotifications('defaultSettings', defaultSettingsNotificationToggle.checked));
+                    notificationToggleInput.addEventListener('change', () => toggleNotifications(notificationToggleInput.checked));
                 }
 
-                // Загрузка и установка значений по умолчанию
-                loadDefaults();
-                updateCalculatorWithDefaults();
+                currentPrecision = parseInt(localStorage.getItem('currentPrecision') || '2');
+                const precisionInput = document.getElementById('precisionInput');
+                if (precisionInput) {
+                    precisionInput.value = currentPrecision;
+                    precisionInput.addEventListener('input', (event) => {
+                        let val = parseInt(event.target.value);
+                        if (isNaN(val) || val < 1) val = 1;
+                        if (val > 5) val = 5;
+                        event.target.value = val;
+                        setPrecision(val);
+                    });
+                }
 
-                // Установка начальной вкладки и подвкладки
+                currencySymbol = localStorage.getItem('currencySymbol') || '';
+                const currencySymbolInput = document.getElementById('currencySymbolInput');
+                if (currencySymbolInput) {
+                    currencySymbolInput.value = currencySymbol;
+                    currencySymbolInput.addEventListener('input', (event) => {
+                        setCurrencySymbol(event.target.value);
+                    });
+                }
+
+
                 const initialTab = localStorage.getItem('activeTab') || 'calculations';
                 switchTab(initialTab);
                 const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                 switchSubTab(initialSubTab);
 
-                // Привязка слушателей к полям ввода по умолчанию
-                const defaultBalanceInput = document.getElementById('defaultBalance');
-                const defaultLeverageInput = document.getElementById('defaultLeverage');
-                const defaultRiskInput = document.getElementById('defaultRisk');
-
-                if (defaultBalanceInput) {
-                    defaultBalanceInput.addEventListener('input', () => {
-                        saveDefault('balance');
-                        validateInput(defaultBalanceInput, document.getElementById('defaultBalance-validation'), 0.01);
-                    });
-                }
-                if (defaultLeverageInput) {
-                    defaultLeverageInput.addEventListener('input', () => {
-                        saveDefault('leverage');
-                        validateInput(defaultLeverageInput, document.getElementById('defaultLeverage-validation'), 1);
-                    });
-                }
-                if (defaultRiskInput) {
-                    defaultRiskInput.addEventListener('input', () => {
-                        saveDefault('risk');
-                        validateInput(defaultRiskInput, document.getElementById('defaultRisk-validation'), 0.5, 100);
-                    });
-                }
-
-                // Привязка слушателей к полям калькулятора "Риск на сделку"
                 if (balanceInput) balanceInput.addEventListener('input', calculateRiskOnDeal);
                 if (leverageInput) leverageInput.addEventListener('input', calculateRiskOnDeal);
-                if (roiInput) roiInput.addEventListener('input', calculateRiskOnDeal);
                 if (riskSlider) riskSlider.addEventListener('input', () => {
                     const riskVal = parseFloat(riskSlider.value);
                     if (riskValue) riskValue.textContent = `${riskVal.toFixed(1)}%`;
@@ -2138,18 +1771,15 @@
                 if (stopLossInput) stopLossInput.addEventListener('input', calculateRiskOnDeal);
                 if (fixedLossInput) fixedLossInput.addEventListener('input', calculateRiskOnDeal);
 
-                // Привязка слушателей к полям калькулятора "R/R"
                 if (rrEntryPointInput) rrEntryPointInput.addEventListener('input', calculateRiskReward);
                 if (rrStopLossInput) rrStopLossInput.addEventListener('input', calculateRiskReward);
                 if (rrTakeProfitInput) rrTakeProfitInput.addEventListener('input', calculateRiskReward);
 
-                // Привязка слушателей к полям калькулятора "Прибыли/убытка"
                 if (pnlEntryPriceInput) pnlEntryPriceInput.addEventListener('input', calculatePnL);
                 if (pnlExitPriceInput) pnlExitPriceInput.addEventListener('input', calculatePnL);
                 if (pnlPositionAmountInput) pnlPositionAmountInput.addEventListener('input', calculatePnL);
                 if (pnlLeverageInput) pnlLeverageInput.addEventListener('input', calculatePnL);
 
-                // Привязка слушателей для копирования результатов
                 document.querySelectorAll('.result-card').forEach(card => {
                     card.addEventListener('click', (event) => {
                         const valueElement = card.querySelector('.result-value');
@@ -2160,69 +1790,6 @@
                     });
                 });
 
-                // Логика отображения дисклеймера (показывается один раз)
-                const disclaimerOverlay = document.getElementById('disclaimerOverlay');
-                const disclaimerAcceptButton = document.getElementById('disclaimerAcceptButton');
-                const disclaimerShownBefore = localStorage.getItem('disclaimerShown');
-                if (!disclaimerShownBefore && disclaimerOverlay && disclaimerAcceptButton) {
-                    disclaimerOverlay.classList.add('show');
-                    disclaimerAcceptButton.addEventListener('click', () => {
-                        disclaimerOverlay.classList.remove('show');
-                        localStorage.setItem('disclaimerShown', 'true');
-                    });
-                } else if (disclaimerOverlay) {
-                    disclaimerOverlay.classList.remove('show');
-                }
-
-                // Обработчики клавиатурных сокращений
-                document.addEventListener('keydown', (event) => {
-                    if (event.ctrlKey) {
-                        if (event.key === '1') {
-                            event.preventDefault();
-                            switchTab('calculations');
-                        } else if (event.key === '2') {
-                            event.preventDefault();
-                            switchTab('settings');
-                        }
-                    }
-                });
-
-                // Логика переключения ENTRY/SL и ROI
-                const entrySlRoiToggleContainer = document.getElementById('entrySlRoiToggleContainer');
-                const mainButtonTextPart = document.getElementById('mainButtonTextPart');
-                const twhStopFields = document.getElementById('twhStopFields');
-                const roiFieldContainer = document.getElementById('roiField');
-
-                if (entrySlRoiToggleContainer) {
-                    entrySlRoiToggleContainer.addEventListener('click', () => {
-                        isROIModeForRiskOnDeal = !isROIModeForRiskOnDeal;
-                        updateRiskOnDealUIMode();
-                        calculateRiskOnDeal();
-                    });
-                }
-
-                function updateRiskOnDealUIMode() {
-                    if (isROIModeForRiskOnDeal) {
-                        mainButtonTextPart.textContent = 'ROI между SL и ENTRY (%) 🔄';
-                        twhStopFields.style.display = 'none';
-                        roiFieldContainer.style.display = 'block';
-                    } else {
-                        mainButtonTextPart.textContent = 'ENTRY/SL 🔄';
-                        roiFieldContainer.style.display = 'none';
-                        twhStopFields.style.display = 'block';
-                    }
-                    entryPointInput.value = '';
-                    stopLossInput.value = '';
-                    roiInput.value = '';
-                    document.getElementById('entryPoint-validation').textContent = '';
-                    document.getElementById('stopLoss-validation').textContent = '';
-                    document.getElementById('roi-validation').textContent = '';
-                    entryPointInput.classList.remove('invalid-input');
-                    stopLossInput.classList.remove('invalid-input');
-                    roiInput.classList.remove('invalid-input');
-                }
-
-                // Логика переключения % риска на сделку и Фиксированного убытка
                 const riskAmountToggleContainer = document.getElementById('riskAmountToggleContainer');
                 const riskToggleButton = document.getElementById('riskToggleButton');
                 const riskPercentageSliderContainer = document.getElementById('riskPercentageSlider');
@@ -2249,24 +1816,18 @@
                     riskSlider.value = 3;
                     riskValue.textContent = '3.0%';
                     fixedLossInput.value = '';
-                    fixedLossValidation.textContent = '';
-                    fixedLossInput.classList.remove('invalid-input');
+                    if (fixedLossValidation) fixedLossValidation.textContent = '';
+                    if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
                 }
 
-                // Первоначальное обновление UI режимов
-                updateRiskOnDealUIMode();
                 updateRiskAmountUIMode();
 
             } catch (error) {
-                console.error("Ошибка при инициализации DOM:", error);
+                console.error("Произошла ошибка инициализации: ", error);
                 showNotification(`Произошла ошибка инициализации: ${error.message}`, 'error');
             }
         });
 
-        /**
-         * Копирует текст в буфер обмена.
-         * @param {string} text - Текст для копирования.
-         */
         function copyToClipboard(text) {
             const tempInput = document.createElement('textarea');
             tempInput.value = text;
@@ -2283,10 +1844,6 @@
             }
         }
 
-        /**
-         * Переключает активную вкладку.
-         * @param {string} tabId - ID вкладки для активации.
-         */
         function switchTab(tabId) {
             try {
                 document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -2309,15 +1866,11 @@
                     switchSubTab(initialSubTab);
                 }
             } catch (error) {
-                console.error("Ошибка в switchTab:", error);
+                console.error("Ошибка переключения вкладок: ", error);
                 showNotification(`Ошибка переключения вкладок: ${error.message}`, 'error');
             }
         }
 
-        /**
-         * Переключает активную подвкладку.
-         * @param {string} subTabId - ID подвкладки для активации.
-         */
         function switchSubTab(subTabId) {
             try {
                 document.querySelectorAll('#calculations .sub-tab').forEach(tab => tab.classList.remove('active'));
@@ -2343,19 +1896,11 @@
                     calculatePnL();
                 }
             } catch (error) {
-                console.error("Ошибка в switchSubTab:", error);
+                console.error("Ошибка переключения подвкладок: ", error);
                 showNotification(`Ошибка переключения подвкладок: ${error.message}`, 'error');
             }
         }
 
-        /**
-         * Валидирует поле ввода.
-         * @param {HTMLElement} inputElement - Элемент input.
-         * @param {HTMLElement} messageElement - Элемент для вывода сообщения валидации.
-         * @param {number} min - Минимальное допустимое значение.
-         * @param {number} [max=Infinity] - Максимальное допустимое значение.
-         * @returns {boolean} - true, если ввод валиден, иначе false.
-         */
         function validateInput(inputElement, messageElement, min, max = Infinity) {
             if (!inputElement || !messageElement) return true;
             const value = parseFloat(inputElement.value);
@@ -2386,163 +1931,11 @@
             return isValid;
         }
 
-        /**
-         * Переключает использование значений по умолчанию для определенных типов.
-         * @param {string} type - Тип значения ('balance', 'leverage', 'risk').
-         */
-        function toggleDefault(type) {
-            const toggleInput = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}Toggle`);
-            if (!toggleInput) return;
-            const toggle = toggleInput.checked;
-            localStorage.setItem(`useDefault${type.charAt(0).toUpperCase() + type.slice(1)}`, toggle);
-
-            const defaultValueInput = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            const validationMessageElement = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}-validation`);
-
-            if (!toggle) {
-                localStorage.removeItem(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                 if (defaultValueInput) {
-                    defaultValueInput.value = '';
-                    defaultValueInput.classList.remove('invalid-input');
-                    if (validationMessageElement) validationMessageElement.textContent = '';
-                 }
-
-                if (type === 'risk') {
-                    if(riskSlider) riskSlider.value = 3;
-                    if(riskValue) riskValue.textContent = '3.0%';
-                }
-            } else {
-                const value = defaultValueInput ? parseFloat(defaultValueInput.value) : '';
-                if (!isNaN(value) && value !== '') {
-                    localStorage.setItem(`default${type.charAt(0).toUpperCase() + type.slice(1)}`, value.toString());
-                     if (type === 'risk') {
-                        const numericValue = parseFloat(value);
-                         if (!isNaN(numericValue)) {
-                            if (riskSlider) riskSlider.value = Math.min(numericValue, 10);
-                            if (riskValue) riskValue.textContent = `${Math.min(numericValue, 10).toFixed(1)}%`;
-                         }
-                    }
-                } else {
-                    toggleInput.checked = false;
-                    localStorage.setItem(`useDefault${type.charAt(0).toUpperCase() + type.slice(1)}`, false);
-                    showNotification(`Не удалось установить значение по умолчанию для "${defaultTypeLabels[type]}": введите корректное число.`, 'warning');
-                }
-            }
-            updateCalculatorWithDefaults();
-            const activeSubTabElement = document.querySelector('#calculations .sub-tab.active');
-            if (activeSubTabElement && activeSubTabElement.id === 'risk-on-deal') {
-                calculateRiskOnDeal();
-            }
-            showNotification(`Значение по умолчанию для "${defaultTypeLabels[type]}" ${toggle ? 'включено' : 'выключено'}`, 'defaultSettings');
-        }
-
-        /**
-         * Сохраняет значение по умолчанию для определенного типа.
-         * @param {string} type - Тип значения ('balance', 'leverage', 'risk').
-         */
-        function saveDefault(type) {
-            const valueInput = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            const value = valueInput ? parseFloat(valueInput.value) : NaN;
-            const toggleInput = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}Toggle`);
-            if (!toggleInput) return;
-            const toggle = toggleInput.checked;
-
-            if (toggle && !isNaN(value) && value !== '') {
-                localStorage.setItem(`default${type.charAt(0).toUpperCase() + type.slice(1)}`, value.toString());
-                if (type === 'risk') {
-                    const numericValue = parseFloat(value);
-                     if (!isNaN(numericValue)) {
-                        if (riskSlider) riskSlider.value = Math.min(numericValue, 10);
-                        if (riskValue) riskValue.textContent = `${Math.min(numericValue, 10).toFixed(1)}%`;
-                     }
-                }
-                 showNotification(`Значение по умолчанию для "${defaultTypeLabels[type]}" сохранено`, 'defaultSettings');
-            } else if (toggle && (isNaN(value) || value === '')) {
-                 localStorage.removeItem(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                 if (type === 'risk') {
-                     if (riskSlider) riskSlider.value = 3;
-                     if (riskValue) riskValue.textContent = '3.0%';
-                 }
-                 showNotification(`Значение по умолчанию для "${defaultTypeLabels[type]}" очищено`, 'defaultSettings');
-            }
-            updateCalculatorWithDefaults();
-            const activeSubTabElement = document.querySelector('#calculations .sub-tab.active');
-            if (activeSubTabElement && activeSubTabElement.id === 'risk-on-deal') {
-                calculateRiskOnDeal();
-            }
-        }
-
-        /**
-         * Загружает все сохраненные значения по умолчанию.
-         */
-        function loadDefaults() {
-            const types = ['balance', 'leverage', 'risk'];
-            types.forEach(type => {
-                const useDefault = localStorage.getItem(`useDefault${type.charAt(0).toUpperCase() + type.slice(1)}`) === 'true';
-                const toggleElement = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}Toggle`);
-                 if (toggleElement) {
-                    toggleElement.checked = useDefault;
-                 }
-
-                const defaultValue = localStorage.getItem(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                const defaultValueInput = document.getElementById(`default${type.charAt(0).toUpperCase() + type.slice(1)}`);
-                if (defaultValueInput && defaultValue !== null) {
-                    defaultValueInput.value = defaultValue;
-                }
-            });
-        }
-
-        /**
-         * Обновляет поля калькулятора значениями по умолчанию, если они включены.
-         */
-        function updateCalculatorWithDefaults() {
-            const useDefaultBalance = localStorage.getItem('useDefaultBalance') === 'true';
-            const useDefaultLeverage = localStorage.getItem('useDefaultLeverage') === 'true';
-            const useDefaultRisk = localStorage.getItem('useDefaultRisk') === 'true';
-
-            if (useDefaultBalance) {
-                const defaultBalance = localStorage.getItem('defaultBalance');
-                if (defaultBalance !== null && balanceInput) balanceInput.value = defaultBalance;
-            } else {
-                 // Очищаем, только если текущее значение совпадает с сохраненным значением по умолчанию,
-                 // чтобы не стереть ввод пользователя, если он отключил значение по умолчанию.
-                 if (balanceInput && balanceInput.value === localStorage.getItem('defaultBalance')) balanceInput.value = '';
-            }
-
-            if (useDefaultLeverage) {
-                const defaultLeverage = localStorage.getItem('defaultLeverage');
-                if (defaultLeverage !== null && leverageInput) leverageInput.value = defaultLeverage;
-            } else {
-                 if (leverageInput && leverageInput.value === localStorage.getItem('defaultLeverage')) leverageInput.value = '';
-            }
-
-            if (useDefaultRisk) {
-                const defaultRisk = localStorage.getItem('defaultRisk');
-                if (defaultRisk !== null) {
-                    const numericValue = parseFloat(defaultRisk);
-                     if (!isNaN(numericValue)) {
-                        if (riskSlider) riskSlider.value = Math.min(numericValue, 10);
-                        if (riskValue) riskValue.textContent = `${Math.min(numericValue, 10).toFixed(1)}%`;
-                     }
-                }
-            } else {
-                 if (riskSlider) riskSlider.value = 3;
-                 if (riskValue) riskValue.textContent = '3.0%';
-            }
-        }
-
-        /**
-         * Отображает результат в указанном элементе с анимацией.
-         * @param {HTMLElement} element - Элемент для отображения результата.
-         * @param {number|string} value - Значение для отображения.
-         * @param {string} unit - Единицы измерения (например, ' USDT', '%').
-         * @param {boolean} isPlaceholder - true, если нужно отобразить сообщение-заглушку.
-         */
         function displayResult(element, value, unit = '', isPlaceholder = false) {
             if (!element) return;
 
             if (isPlaceholder) {
-                element.textContent = placeholderMessage;
+                element.textContent = 'Заполните все поля для расчета';
                 element.classList.add('is-placeholder');
                 element.classList.remove('high-risk');
                 element.style.opacity = '0';
@@ -2560,7 +1953,6 @@
                     formattedValue = `${value}${unit}`;
                 }
 
-                // Логика для подсветки риска на сделку
                 if (element.id === 'riskAmount') {
                     const currentBalance = parseFloat(balanceInput?.value);
                     if (!isNaN(currentBalance) && currentBalance > 0) {
@@ -2574,17 +1966,21 @@
                         }
                         
                         if (isFixedLossModeForRiskOnDeal) {
-                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)} USDT (${riskPercentageDisplay.toFixed(2)}%)`;
+                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)}${currencySymbol} (${riskPercentageDisplay.toFixed(2)}%)`;
                         } else {
-                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)} USDT`;
+                             formattedValue = `${riskAmountVal.toFixed(currentPrecision)}${currencySymbol}`;
                         }
                     } else {
                         element.classList.remove('high-risk');
-                        formattedValue = `${value.toFixed(currentPrecision)} USDT`;
+                        formattedValue = `${value.toFixed(currentPrecision)}${currencySymbol}`;
+                    }
+                } else if (element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
+                    formattedValue = `${value.toFixed(currentPrecision)}${currencySymbol}`;
+                    if (element.id === 'pnlTotalPnL' && isNaN(parseFloat(pnlPositionAmountInput.value))) {
+                         formattedValue += ' (Н/Д)';
                     }
                 }
 
-                // Анимация при изменении значения
                 if (element.textContent !== formattedValue) {
                     element.style.opacity = '0';
                     element.style.transform = 'translateY(10px) scale(0.95)';
@@ -2600,9 +1996,6 @@
             }
         }
 
-        /**
-         * Выполняет расчеты для калькулятора "Риск на сделку".
-         */
         function calculateRiskOnDeal() {
             const balanceVal = parseFloat(balanceInput?.value);
             const leverageVal = parseFloat(leverageInput?.value) || 1;
@@ -2610,19 +2003,15 @@
             const fixedLossVal = parseFloat(fixedLossInput?.value);
             const entryPointVal = parseFloat(entryPointInput?.value);
             const stopLossVal = parseFloat(stopLossInput?.value);
-            const roiVal = parseFloat(roiInput?.value);
 
             let isValid = true;
 
             isValid = validateInput(balanceInput, document.getElementById('balance-validation'), 0.01) && isValid;
             isValid = validateInput(leverageInput, document.getElementById('leverage-validation'), 1) && isValid;
-
-            if (isROIModeForRiskOnDeal) {
-                isValid = validateInput(roiInput, document.getElementById('roi-validation'), 0.01) && isValid;
-            } else {
-                isValid = validateInput(entryPointInput, document.getElementById('entryPoint-validation'), 0.01) && isValid;
-                isValid = validateInput(stopLossInput, document.getElementById('stopLoss-validation'), 0.01) && isValid;
-            }
+            
+            isValid = validateInput(entryPointInput, document.getElementById('entryPoint-validation'), 0.01) && isValid;
+            isValid = validateInput(stopLossInput, document.getElementById('stopLoss-validation'), 0.01) && isValid;
+            
 
             if (isFixedLossModeForRiskOnDeal) {
                 isValid = validateInput(fixedLossInput, fixedLossValidation, 0.01) && isValid;
@@ -2633,30 +2022,19 @@
                 }
             }
 
-            if (!isValid || isNaN(balanceVal) || isNaN(leverageVal)) {
-                displayResult(riskAmountDisplay, placeholderMessage, '', true);
-                displayResult(marginDisplay, placeholderMessage, '', true);
-                displayResult(positionSizeDisplay, placeholderMessage, '', true);
-                displayResult(pureMovementDisplay, placeholderMessage, '', true);
+            if (!isValid || isNaN(balanceVal) || isNaN(leverageVal) || isNaN(entryPointVal) || isNaN(stopLossVal)) {
+                displayResult(riskAmountDisplay, '', '', true);
+                displayResult(marginDisplay, '', '', true);
+                displayResult(positionSizeDisplay, '', '', true);
+                displayResult(pureMovementDisplay, '', '', true);
                 return;
             }
 
             let margin = 0, positionSize = 0, riskAmount = 0, pureMovement = 0;
 
-            let calculatedROI = 0;
-            if (isROIModeForRiskOnDeal && !isNaN(roiVal)) {
-                calculatedROI = roiVal;
-            } else if (!isROIModeForRiskOnDeal && !isNaN(entryPointVal) && !isNaN(stopLossVal) && Math.abs(entryPointVal - stopLossVal) > 0) {
-                pureMovement = (Math.abs(entryPointVal - stopLossVal) / entryPointVal) * 100;
-                calculatedROI = pureMovement * leverageVal;
-            } else {
-                displayResult(riskAmountDisplay, placeholderMessage, '', true);
-                displayResult(marginDisplay, placeholderMessage, '', true);
-                displayResult(positionSizeDisplay, placeholderMessage, '', true);
-                displayResult(pureMovementDisplay, placeholderMessage, '', true);
-                return;
-            }
-
+            pureMovement = (Math.abs(entryPointVal - stopLossVal) / entryPointVal) * 100;
+            let calculatedROI = pureMovement * leverageVal;
+            
             if (isFixedLossModeForRiskOnDeal && !isNaN(fixedLossVal)) {
                 riskAmount = fixedLossVal;
             } else {
@@ -2664,33 +2042,22 @@
             }
 
             if (calculatedROI === 0) {
-                 displayResult(riskAmountDisplay, placeholderMessage, '', true);
-                 displayResult(marginDisplay, placeholderMessage, '', true);
-                 displayResult(positionSizeDisplay, placeholderMessage, '', true);
-                 displayResult(pureMovementDisplay, placeholderMessage, '', true);
+                 displayResult(riskAmountDisplay, '', '', true);
+                 displayResult(marginDisplay, '', '', true);
+                 displayResult(positionSizeDisplay, '', '', true);
+                 displayResult(pureMovementDisplay, '', '', true);
                  return;
             }
 
             positionSize = (riskAmount / (calculatedROI / 100)) * 100;
             margin = positionSize / leverageVal;
 
-            if (!isROIModeForRiskOnDeal && !isNaN(entryPointVal) && !isNaN(stopLossVal) && Math.abs(entryPointVal - stopLossVal) > 0) {
-                // pureMovement уже рассчитан из entry/stop
-            } else if (positionSize > 0) {
-                pureMovement = (riskAmount * 100) / positionSize;
-            } else {
-                pureMovement = 0;
-            }
-
             displayResult(riskAmountDisplay, riskAmount);
-            displayResult(marginDisplay, margin, ' USDT');
-            displayResult(positionSizeDisplay, positionSize, ' USDT');
+            displayResult(marginDisplay, margin);
+            displayResult(positionSizeDisplay, positionSize);
             displayResult(pureMovementDisplay, pureMovement, '%');
         }
 
-        /**
-         * Выполняет расчеты для калькулятора "Соотношение риска/прибыли".
-         */
         function calculateRiskReward() {
             if (!rrEntryPointInput || !rrStopLossInput || !rrTakeProfitInput ||
                 !rrSLPointsDisplay || !rrTPPointsDisplay || !rrRatioDisplay) {
@@ -2707,9 +2074,9 @@
 
             if (!isEntryPointValid || !isStopLossValid || !isTakeProfitValid ||
                 isNaN(entryPoint) || isNaN(stopLoss) || isNaN(takeProfit)) {
-                displayResult(rrTPPointsDisplay, placeholderMessage, '', true);
-                displayResult(rrSLPointsDisplay, placeholderMessage, '', true);
-                displayResult(rrRatioDisplay, placeholderMessage, '', true);
+                displayResult(rrTPPointsDisplay, '', '', true);
+                displayResult(rrSLPointsDisplay, '', '', true);
+                displayResult(rrRatioDisplay, '', '', true);
                 return;
             }
 
@@ -2728,58 +2095,71 @@
             }
         }
 
-        /**
-         * Выполняет расчеты для калькулятора "Прибыли/убытка".
-         */
         function calculatePnL() {
             if (!pnlEntryPriceInput || !pnlExitPriceInput || !pnlPositionAmountInput || !pnlLeverageInput ||
-                !pnlTotalPnLDisplay || !pnlRoiDisplay || !pnlPureMovementDisplay) {
+                !pnlTotalPnLDisplay || !pnlRoiDisplay || !pnlPureMovementDisplay || !pnlPointsBetweenEntryExitDisplay) {
                 return;
             }
 
             const isEntryPriceValid = validateInput(pnlEntryPriceInput, document.getElementById('pnlEntryPrice-validation'), 0.01);
             const isExitPriceValid = validateInput(pnlExitPriceInput, document.getElementById('pnlExitPrice-validation'), 0.01);
-            const isPositionAmountValid = validateInput(pnlPositionAmountInput, document.getElementById('pnlPositionAmount-validation'), 0.01);
-            const isLeverageValid = validateInput(pnlLeverageInput, document.getElementById('pnlLeverage-validation'), 1);
+            const isPositionAmountValid = pnlPositionAmountInput.value.trim() === '' || validateInput(pnlPositionAmountInput, document.getElementById('pnlPositionAmount-validation'), 0.01);
+            const isLeverageValid = pnlLeverageInput.value.trim() === '' || validateInput(pnlLeverageInput, document.getElementById('pnlLeverage-validation'), 1);
 
             const entryPrice = parseFloat(pnlEntryPriceInput.value);
             const exitPrice = parseFloat(pnlExitPriceInput.value);
             const positionAmount = parseFloat(pnlPositionAmountInput.value);
-            const leverage = parseFloat(pnlLeverageInput.value);
+            let leverage = parseFloat(pnlLeverageInput.value);
 
-            if (!isEntryPriceValid || !isExitPriceValid || !isPositionAmountValid || !isLeverageValid ||
-                isNaN(entryPrice) || isNaN(exitPrice) || isNaN(positionAmount) || isNaN(leverage)) {
-                displayResult(pnlTotalPnLDisplay, placeholderMessage, '', true);
-                displayResult(pnlRoiDisplay, placeholderMessage, '', true);
-                displayResult(pnlPureMovementDisplay, placeholderMessage, '', true);
+            if (isNaN(leverage) || leverage < 1) {
+                leverage = 1;
+            }
+
+            if (!isEntryPriceValid || !isExitPriceValid) {
+                displayResult(pnlTotalPnLDisplay, '', '', true);
+                displayResult(pnlRoiDisplay, '', '', true);
+                displayResult(pnlPureMovementDisplay, '', '', true);
+                displayResult(pnlPointsBetweenEntryExitDisplay, '', '', true);
                 return;
             }
 
-            const totalPnL = (exitPrice - entryPrice) * (positionAmount / entryPrice);
             const pureMovement = ((exitPrice - entryPrice) / entryPrice) * 100;
-            
-            let roi = 0;
-            const margin = positionAmount / leverage; // Изначальная маржа (стоимость позиции / плечо)
-            if (margin > 0) {
-                 roi = (totalPnL / margin) * 100; // ROI = (Общая прибыль/убыток / Маржа) * 100
-            } else {
-                roi = 0;
-            }
+            const pnlPoints = Math.abs(exitPrice - entryPrice);
 
-            displayResult(pnlTotalPnLDisplay, totalPnL, ' USDT');
+            let totalPnL = 0;
+            let roi = 0;
+
+            if (!isNaN(positionAmount) && isPositionAmountValid) {
+                totalPnL = (exitPrice - entryPrice) * (positionAmount / entryPrice);
+                const margin = positionAmount / leverage;
+                if (margin > 0) {
+                    roi = (totalPnL / margin) * 100;
+                } else {
+                    roi = 0;
+                }
+            } else {
+                if (pnlPositionAmountInput.value.trim() !== '' && !isPositionAmountValid) {
+                    displayResult(pnlTotalPnLDisplay, '', '', true);
+                    displayResult(pnlRoiDisplay, '', '', true);
+                    displayResult(pnlPureMovementDisplay, '', '', true);
+                    displayResult(pnlPointsBetweenEntryExitDisplay, '', '', true);
+                    return;
+                }
+                totalPnL = 0;
+                roi = pureMovement;
+            }
+            
+            displayResult(pnlTotalPnLDisplay, totalPnL, isNaN(positionAmount) ? ' (Н/Д)' : '');
             displayResult(pnlRoiDisplay, roi, '%');
             displayResult(pnlPureMovementDisplay, pureMovement, '%');
+            displayResult(pnlPointsBetweenEntryExitDisplay, pnlPoints);
         }
 
-        /**
-         * Сбрасывает поля и результаты калькулятора "Риск на сделку".
-         */
         function resetRiskOnDealCalculator() {
             if (balanceInput) balanceInput.value = '';
             if (leverageInput) leverageInput.value = '';
             if (entryPointInput) entryPointInput.value = '';
             if (stopLossInput) stopLossInput.value = '';
-            if (roiInput) roiInput.value = '';
             if (riskSlider) riskSlider.value = 3;
             if (riskValue) riskValue.textContent = '3.0%';
             if (fixedLossInput) fixedLossInput.value = '';
@@ -2788,22 +2168,15 @@
             if (document.getElementById('leverage-validation')) document.getElementById('leverage-validation').textContent = '';
             if (document.getElementById('entryPoint-validation')) document.getElementById('entryPoint-validation').textContent = '';
             if (document.getElementById('stopLoss-validation')) document.getElementById('stopLoss-validation').textContent = '';
-            if (document.getElementById('roi-validation')) document.getElementById('roi-validation').textContent = '';
             if (fixedLossValidation) fixedLossValidation.textContent = '';
 
             if (balanceInput) balanceInput.classList.remove('invalid-input');
             if (leverageInput) leverageInput.classList.remove('invalid-input');
             if (entryPointInput) entryPointInput.classList.remove('invalid-input');
             if (stopLossInput) stopLossInput.classList.remove('invalid-input');
-            if (roiInput) roiInput.classList.remove('invalid-input');
             if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
 
-            isROIModeForRiskOnDeal = false;
             isFixedLossModeForRiskOnDeal = false;
-            if (document.getElementById('mainButtonTextPart')) document.getElementById('mainButtonTextPart').textContent = 'ENTRY/SL 🔄';
-            if (document.getElementById('twhStopFields')) document.getElementById('twhStopFields').style.display = 'block';
-            if (document.getElementById('roiField')) document.getElementById('roiField').style.display = 'none';
-
             if (document.getElementById('riskToggleButton')) document.getElementById('riskToggleButton').textContent = '% риска на сделку 🔄';
             if (document.getElementById('riskPercentageSlider')) document.getElementById('riskPercentageSlider').style.display = 'flex';
             if (document.getElementById('fixedLossInput')) document.getElementById('fixedLossInput').style.display = 'none';
@@ -2812,9 +2185,6 @@
             showNotification('Калькулятор "Риск на сделку" сброшен.');
         }
 
-        /**
-         * Сбрасывает поля и результаты калькулятора "Соотношение риска/прибыли".
-         */
         function resetRiskRewardCalculator() {
             if (rrEntryPointInput) rrEntryPointInput.value = '';
             if (rrStopLossInput) rrStopLossInput.value = '';
@@ -2829,9 +2199,6 @@
             showNotification('Калькулятор соотношения риска/прибыли сброшен.');
         }
 
-        /**
-         * Сбрасывает поля и результаты калькулятора "Прибыли/убытка".
-         */
         function resetPnLCalculator() {
             if (pnlEntryPriceInput) pnlEntryPriceInput.value = '';
             if (pnlExitPriceInput) pnlExitPriceInput.value = '';
