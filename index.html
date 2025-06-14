@@ -8,7 +8,9 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📈%3C/text%3E%3C/svg%3E" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS Variables for theming */
+        html {
+            scroll-behavior: smooth; /* 1. Плавная прокрутка */
+        }
         :root {
             --primary: #06b6d4;
             --secondary: #10b981;
@@ -28,7 +30,6 @@
             --button-text: #0c0a09;
             --button-hover-bg: var(--accent);
             --button-active-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-
             --container-max-width: 1200px;
             --body-padding: 1.5rem;
             --tab-padding: 0.75rem 1.5rem;
@@ -40,7 +41,6 @@
             --gap-large: 2rem;
             --gap-medium: 1.5rem;
             --gap-small: 1rem;
-
             --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.2);
             --settings-item-bg: rgba(var(--primary-rgb), 0.08);
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.15);
@@ -48,9 +48,9 @@
             --settings-input-border: 1px solid #4a5568;
             --selection-bg: var(--primary);
             --selection-text: white;
+            --history-item-bg: #282422;
         }
 
-        /* Dark Theme */
         [data-theme="dark"] {
             --primary: #5a67d8;
             --secondary: #4299e1;
@@ -60,6 +60,7 @@
             --text: #e2e8f0;
             --shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
             --primary-rgb: 90, 103, 216;
+            --secondary-rgb: 66, 153, 225;
             --accent-rgb: 139, 92, 246;
             --placeholder-text-color: #a0aec0;
             --button-bg: var(--primary);
@@ -70,9 +71,9 @@
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
             --settings-input-bg: #1a202c;
             --settings-input-border: 1px solid #4a5568;
+            --history-item-bg: #222938;
         }
 
-        /* Light Theme */
         [data-theme="light"] {
             --primary: #4c51bf;
             --secondary: #3182ce;
@@ -82,6 +83,7 @@
             --text: #1e293b;
             --shadow: 0 6px 16px rgba(76, 81, 191, 0.15), 0 2px 8px rgba(0,0,0,0.05);
             --primary-rgb: 76, 81, 191;
+            --secondary-rgb: 49, 130, 206;
             --accent-rgb: 107, 70, 193;
             --placeholder-text-color: #64748b;
             --button-bg: var(--primary);
@@ -96,9 +98,9 @@
             --warning-color: #dc2626;
             --selection-bg: var(--primary);
             --selection-text: white;
+            --history-item-bg: #f5f8fb;
         }
         
-        /* Blue Theme */
         [data-theme="blue"] {
             --primary: #2563eb;
             --secondary: #3b82f6;
@@ -108,6 +110,7 @@
             --text: #e0f2fe;
             --shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
             --primary-rgb: 37, 99, 235;
+            --secondary-rgb: 59, 130, 246;
             --accent-rgb: 168, 85, 247;
             --placeholder-text-color: #94a3b8;
             --button-bg: var(--primary);
@@ -118,9 +121,9 @@
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
             --settings-input-bg: #0f172a;
             --settings-input-border: 1px solid #475569;
+            --history-item-bg: #1a2230;
         }
 
-        /* Green Theme */
         [data-theme="green"] {
             --primary: #059669;
             --secondary: #10b981;
@@ -130,6 +133,7 @@
             --text: #f0fdf4;
             --shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
             --primary-rgb: 5, 150, 105;
+            --secondary-rgb: 16, 185, 129;
             --accent-rgb: 132, 204, 22;
             --placeholder-text-color: #a1a1aa;
             --button-bg: var(--primary);
@@ -140,9 +144,9 @@
             --settings-item-hover-bg: rgba(var(--primary-rgb), 0.25);
             --settings-input-bg: #0a0a0a;
             --settings-input-border: 1px solid #4a5568;
+            --history-item-bg: #161a19;
         }
 
-        /* Pink Theme */
         [data-theme="pink"] {
             --primary: #d82777;
             --secondary: #f472b6;
@@ -165,9 +169,9 @@
             --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
             --profit-color: #84cc16;
             --warning-color: #ef4444;
+            --history-item-bg: #240c17;
         }
 
-        /* Purple Theme */
         [data-theme="purple"] {
             --primary: #9333ea;
             --secondary: #d946ef;
@@ -190,9 +194,9 @@
             --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
             --profit-color: #4ade80;
             --warning-color: #ef4444;
+            --history-item-bg: #25103a;
         }
 
-        /* Global Body Styles */
         body {
             background: var(--bg);
             color: var(--text);
@@ -206,8 +210,7 @@
             font-family: 'Inter', sans-serif;
             padding: var(--body-padding);
         }
-
-        /* Background Animated Elements */
+        /* 4. Более выразительная анимация фона */
         body::before, body::after {
             content: '';
             position: fixed;
@@ -215,6 +218,7 @@
             pointer-events: none;
             opacity: 0.8;
             filter: blur(12px);
+            background-size: 200% 200%;
         }
 
         body::before {
@@ -224,9 +228,9 @@
             height: 200%;
             background: radial-gradient(circle at 75% 25%, rgba(var(--primary-rgb), 0.25) 0%, transparent 40%),
                         radial-gradient(circle at 25% 75%, rgba(var(--accent-rgb), 0.25) 0%, transparent 40%);
-            background-size: 100% 100%;
             animation: moveGradient 20s ease-in-out infinite alternate,
-                       hueRotate 40s linear infinite;
+                       hueRotate 40s linear infinite,
+                       radialScale 25s ease-in-out infinite alternate; /* 5. Динамическая радиальная анимация фона */
         }
 
         body::after {
@@ -235,11 +239,10 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg,
-                rgba(var(--secondary-rgb, 0,0,0), 0.08) 0%,
+                rgba(var(--secondary-rgb), 0.08) 0%, /* Использовать secondary-rgb */
                 transparent 50%,
                 rgba(var(--primary-rgb), 0.08) 100%
             );
-            background-size: 200% 200%;
             animation: backgroundPan 30s linear infinite alternate;
         }
         
@@ -253,15 +256,28 @@
             z-index: -3;
         }
 
+        /* 2. Анимированные фоновые частицы - добавлены rotate и scale для динамичности */
         .background-element:nth-child(1) { width: 150px; height: 150px; top: 10%; left: 15%; animation-delay: 0s; background-color: rgba(var(--primary-rgb), 0.45); }
         .background-element:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 8s; background-color: rgba(var(--accent-rgb), 0.45); }
-        .background-element:nth-child(3) { width: 100px; height: 100px; top: 30%; left: 80%; animation-delay: 15s; background-color: rgba(var(--secondary-rgb, 0,0,0), 0.45); }
+        .background-element:nth-child(3) { width: 100px; height: 100px; top: 30%; left: 80%; animation-delay: 15s; background-color: rgba(var(--secondary-rgb), 0.45); }
         .background-element:nth-child(4) { width: 180px; height: 180px; top: 80%; left: 20%; animation-delay: 22s; background-color: rgba(var(--primary-rgb), 0.45); }
         .background-element:nth-child(5) { width: 120px; height: 120px; top: 5%; left: 40%; animation-delay: 5s; background-color: rgba(var(--accent-rgb), 0.35); }
         .background-element:nth-child(6) { width: 90px; height: 90px; top: 70%; left: 5%; animation-delay: 12s; background-color: rgba(var(--primary-rgb), 0.35); }
-        .background-element:nth-child(7) { width: 160px; height: 160px; top: 25%; left: 55%; animation-delay: 18s; background-color: rgba(var(--secondary-rgb, 0,0,0), 0.35); }
+        .background-element:nth-child(7) { width: 160px; height: 160px; top: 25%; left: 55%; animation-delay: 18s; background-color: rgba(var(--secondary-rgb), 0.35); }
+        /* 3. Тонкое наложение текстуры шума */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVDb2xvck1hdHJpeCBpbi1rZXl3b3Jkcz0ic2F0dXJhdGUiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMC41IDAgMCI+PC9mZUNvbG9yTWF0cml4PjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcn0idXJsKCNuKSIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-        /* Keyframe Animations */
         @keyframes moveGradient {
             0% { transform: translate(0, 0); }
             100% { transform: translate(-50%, -50%); }
@@ -271,20 +287,25 @@
             0% { filter: hue-rotate(0deg) blur(12px); }
             100% { filter: hue-rotate(360deg) blur(12px); }
         }
+        /* 5. Динамическая радиальная анимация фона */
+        @keyframes radialScale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
         @keyframes backgroundPan {
             0% { background-position: 0% 0%; }
             100% { background-position: 100% 100%; }
         }
-
+        /* 2. Анимированные фоновые частицы - обновлено */
         @keyframes floatAndFade {
-            0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+            0% { transform: translateY(0) scale(0.8) rotateZ(0deg); opacity: 0; }
+            20% { opacity: 0.6; transform: translateY(-20px) scale(0.9) rotateZ(10deg); }
+            80% { opacity: 0.6; transform: translateY(-180px) scale(1.1) rotateZ(-10deg); }
+            100% { transform: translateY(-200px) scale(1.2) rotateZ(0deg); opacity: 0; }
         }
 
-        /* Main Container Styling */
         .container {
             max-width: var(--container-max-width);
             width: 100%;
@@ -293,27 +314,38 @@
             position: relative;
             z-index: 1;
             opacity: 0;
-            transform: translateY(20px);
-            animation: containerFadeIn 0.8s ease-out 0.2s forwards;
+            transform: translateY(20px) scale(0.98) rotateX(2deg); /* 9. Улучшена анимация загрузки страницы */
+            animation: containerFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+            /* 6. Эффект свечения краев на контейнере */
+            box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7);
+            animation: containerFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards,
+                       edgeGlow 4s ease-in-out infinite alternate 1s;
         }
-        @keyframes containerFadeIn {
-            to { opacity: 1; transform: translateY(0); }
+        /* 6. Эффект свечения краев на контейнере */
+        @keyframes edgeGlow {
+            0% { box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7); }
+            50% { box-shadow: 0 0 25px 5px rgba(var(--primary-rgb), 0.7), 0 0 50px 10px rgba(var(--accent-rgb), 0.5); }
+            100% { box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7); }
         }
 
-        /* Author Section */
+        @keyframes containerFadeIn {
+            to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+        }
+
         .author {
             text-align: center;
             margin-bottom: var(--gap-large);
             font-size: 0.9rem;
             opacity: 0;
-            animation: fadeInAuthor 1.5s ease-out 0.7s forwards;
+            /* 7. Анимация появления текста автора */
+            animation: fadeInAuthor 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             color: var(--text); 
         }
 
         @keyframes fadeInAuthor {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 0.8; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px) scale(0.9); }
+            to { opacity: 0.8; transform: translateY(0) scale(1); }
         }
 
         .author a {
@@ -329,7 +361,6 @@
             text-shadow: 0 0 8px var(--accent);
         }
 
-        /* Theme Switcher */
         .theme-switcher {
             display: flex;
             flex-wrap: wrap;
@@ -356,6 +387,25 @@
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        /* 8. Эффект мерцания при наведении на кнопку темы */
+        .theme-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.8), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+        }
+        .theme-button:hover::before {
+            width: 100px;
+            height: 100px;
+            opacity: 0.2;
+        }
 
         .theme-button::after {
             content: '';
@@ -370,8 +420,9 @@
             transform: scale(1) translate(-50%, -50%);
             transform-origin: 50% 50%;
         }
+        /* 9. Анимация нажатия кнопки темы */
         .theme-button:active::after {
-            animation: themeButtonClickRipple 0.5s ease-out;
+            animation: themeButtonClickRipple 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         @keyframes themeButtonClickRipple {
             0% { transform: scale(0) translate(-50%, -50%); opacity: 1; }
@@ -388,7 +439,15 @@
             border-color: var(--accent);
             box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary), inset 0 0 5px rgba(0,0,0,0.2);
             transform: scale(1.15) rotate(5deg);
+            /* 10. Пульсирующая граница активной темы */
+            animation: activeThemePulse 2s infinite ease-in-out;
         }
+        @keyframes activeThemePulse {
+            0% { box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary); }
+            50% { box-shadow: 0 0 15px var(--accent), 0 0 30px var(--primary); }
+            100% { box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary); }
+        }
+
 
         .theme-dark { background: #1a202c; border: 2px solid #a0aec0; }
         .theme-light { background: #f8fafc; border: 2px solid #64748b; }
@@ -397,7 +456,6 @@
         .theme-pink { background: #db2777; border: 2px solid #fef0f8; }
         .theme-purple { background: #9333ea; border: 2px solid #f3e8ff; }
 
-        /* Tabs (Calculations/Settings) */
         .tabs {
             display: flex;
             margin-bottom: var(--gap-large);
@@ -430,29 +488,27 @@
             overflow: hidden;
             z-index: 1;
         }
-
+        /* 11. Эффект бликов на вкладке при наведении */
         .tab::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -100%;
+            width: 50%;
             height: 100%;
-            background: rgba(var(--primary-rgb), 0.15);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-            transform: scale(0.7) rotateY(20deg);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
             z-index: -1;
-            border-radius: inherit;
+        }
+        .tab:hover:not(.active)::before {
+            left: 100%;
         }
 
-        .tab:hover:not(.active)::before {
-            opacity: 1;
-            transform: scale(1) rotateY(0deg);
-        }
         .tab:hover:not(.active) {
             transform: translateY(-4px) scale(1.02);
             color: var(--primary);
+            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3); /* 17. Эффект свечения при наведении на вкладку */
         }
 
         .tab.active {
@@ -464,35 +520,53 @@
             transform: translateY(-3px) scale(1.03);
             z-index: 2;
         }
-
+        /* 12. Эластичность подчеркивания активной вкладки */
         .tab.active::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
-            animation: shimmer 2.8s infinite ease-in-out;
-            filter: blur(6px);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary)); /* Более яркий градиент */
+            transform: scaleX(0);
+            transform-origin: center;
+            animation: activeTabUnderline 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            border-radius: 2px;
         }
 
-        @keyframes shimmer {
-            0% { left: -150%; }
-            40% { left: 150%; }
-            100% { left: 150%; }
+        @keyframes activeTabUnderline {
+            0% { transform: scaleX(0); opacity: 0; }
+            70% { transform: scaleX(1.1); opacity: 1; }
+            100% { transform: scaleX(1); opacity: 1; }
+        }
+        /* 13. Тень текста активной вкладки */
+        .tab.active {
+            text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
 
-        /* Tab Content */
         .tab-content {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            /* 18. Плавный переход контента вкладок */
+            transition: opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             background: var(--card-bg);
             padding: var(--gap-large);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            color: var(--text);
+            transform: translateY(20px);
+        }
+
+        .tab-content.active {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
             animation: tabContentAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             transform-origin: top center;
-            color: var(--text);
+            transform: translateY(0);
         }
 
         @keyframes tabContentAppear {
@@ -500,11 +574,6 @@
             to { transform: translateY(0) scaleY(1) rotateX(0deg); opacity: 1; }
         }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Sub Tabs */
         .sub-tabs {
             display: flex;
             margin-bottom: var(--gap-medium);
@@ -525,14 +594,43 @@
             cursor: pointer;
             font-weight: 600;
             border-radius: calc(var(--border-radius) - 6px);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
             min-width: 120px;
+        }
+        /* 21. Масштабирование подвкладки при наведении */
+        .sub-tab:hover:not(.active) {
+            transform: scale(1.03);
+            background-color: rgba(var(--primary-rgb), 0.1);
         }
 
         .sub-tab.active {
             background: var(--primary);
             color: white;
             box-shadow: 0 2px 5px rgba(var(--primary-rgb), 0.2);
+            transform: scale(1.05); /* 20. Масштабирование подвкладки */
+            /* 19. Свечение границы активной подвкладки */
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
+        }
+        /* 22. Нажатие подвкладки */
+        .sub-tab:active {
+            transform: scale(0.98);
+        }
+        /* 20. Пульсация фона подвкладки при наведении */
+        .sub-tab:hover::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s linear forwards;
+        }
+        @keyframes ripple {
+            to { width: 100%; height: 100%; opacity: 0; }
         }
 
         .sub-tab-content {
@@ -543,14 +641,12 @@
             display: block;
         }
 
-        /* Calculator Layout */
         .calculator {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--gap-large);
         }
 
-        /* Input Section */
         .input-section {
             display: grid;
             gap: var(--gap-medium);
@@ -574,7 +670,7 @@
             from { opacity: 0; transform: translateX(-25px) skewX(-10deg); }
             to { opacity: 1; transform: translateX(0) skewX(0deg); }
         }
-
+        /* 30. Пульсирующий индикатор фокуса ввода */
         .input-group::before {
             content: '';
             position: absolute;
@@ -590,7 +686,13 @@
         .input-group:focus-within::before {
             width: 100%;
             left: 0;
+            animation: inputGroupFocusPulse 1s infinite alternate; 
         }
+        @keyframes inputGroupFocusPulse {
+            from { opacity: 0.7; transform: scaleX(0.9); }
+            to { opacity: 1; transform: scaleX(1); }
+        }
+
 
         .input-group label {
             margin-bottom: 0.5rem;
@@ -599,6 +701,12 @@
             transform: translateX(-10px);
             opacity: 0;
             animation: labelSlideIn 0.5s ease-out 0.2s forwards;
+            transition: text-shadow 0.3s ease, color 0.3s ease; /* 23. Акцент метки ввода */
+        }
+        /* 23. Акцент метки ввода */
+        .input-group:focus-within label {
+            text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5); 
+            color: var(--primary);
         }
         @keyframes labelSlideIn {
             to { transform: translateX(0); opacity: 1;}
@@ -622,16 +730,50 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
-
+        /* 24. Внутренняя тень поля ввода при фокусе */
         .input-group input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb), 0.3);
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb), 0.3), inset 0 0 10px rgba(var(--primary-rgb), 0.2); 
             background-color: var(--card-bg);
             transform: scale(1.01);
         }
+        /* 25. Градиентная граница на фокусе ввода - уже есть, но усилим */
+        .input-group input:focus {
+            border-image: linear-gradient(to right, var(--primary), var(--accent)) 1;
+            border-image-slice: 1;
+        }
+        /* 31. Анимация значения ввода при печати */
+        .input-group input.typing-pulse {
+            animation: typingPulse 0.3s ease-out;
+        }
+        @keyframes typingPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.015); }
+            100% { transform: scale(1); }
+        }
+        /* 27. Анимация дрожания при ошибке ввода */
+        .input-group input.invalid-input {
+            animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+        /* 26. Плавное появление/исчезновение текста-заполнителя - усилено */
+        .input-group input::placeholder {
+            transition: opacity 0.3s ease;
+        }
+        .input-group input:focus::placeholder {
+            opacity: 0.5;
+        }
 
-        /* Slider Styling */
+
         .slider-container {
             display: flex;
             flex-direction: column;
@@ -659,6 +801,15 @@
             transition: background 0.4s ease, box-shadow 0.4s ease;
             cursor: pointer;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        /* 29. Анимация заполнения дорожки слайдера */
+        .slider::-webkit-slider-runnable-track {
+            background: linear-gradient(to right, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            background-size: 200% 100%;
+            background-position: var(--fill-percent, 0%) 0%; /* Переменная для JS */
+            transition: background-position 0.3s ease;
         }
 
         .slider:hover {
@@ -672,10 +823,17 @@
             height: 26px;
             border-radius: 50%;
             background: white;
-            cursor: pointer;
+            cursor: grab;
             transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
             box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
+        }
+        .slider::-webkit-slider-thumb:active {
+            cursor: grabbing;
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary); /* 30. Свечение ползунка слайдера */
+            animation: thumbPop 0.3s ease-in-out;
+            /* 31. Глубина тени ползунка слайдера */
+            box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.8), 0 0 30px var(--primary);
         }
 
         .slider::-moz-range-thumb {
@@ -683,9 +841,16 @@
             height: 26px;
             border-radius: 50%;
             background: white;
-            cursor: pointer;
+            cursor: grab;
             box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
+        }
+         .slider::-moz-range-thumb:active {
+            cursor: grabbing;
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary); /* 30. Свечение ползунка слайдера */
+            animation: thumbPop 0.3s ease-in-out;
+            /* 31. Глубина тени ползунка слайдера */
+            box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.8), 0 0 30px var(--primary);
         }
 
         .slider::-webkit-slider-thumb:hover {
@@ -697,7 +862,33 @@
             box-shadow: 0 5px 10px rgba(var(--accent-rgb), 0.7), 0 0 15px var(--accent);
         }
 
-        /* Results Section */
+        @keyframes thumbPop {
+            0%, 100% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
+        }
+        /* 32. Свечение текста значения слайдера */
+        #riskValue {
+            transition: text-shadow 0.3s ease;
+        }
+        .slider-container:focus-within #riskValue {
+            text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
+        }
+        /* 33. Визуальные отметки слайдера */
+        .slider::before, .slider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 8px;
+            background-color: rgba(255,255,255,0.4);
+            border-radius: 1px;
+            z-index: 1;
+        }
+        .slider::before { left: 5%; }
+        .slider::after { right: 5%; }
+
+
         .results {
             margin-top: var(--gap-large);
              animation: resultsAppear 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s backwards;
@@ -720,11 +911,15 @@
             padding: var(--gap-medium);
             box-shadow: var(--shadow);
             border-left: 6px solid var(--primary);
+            /* 49. Постепенное появление карточек результата */
             animation: fadeInUpResultCard 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
             position: relative;
             overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.35s cubic-bezier(0.075, 0.82, 0.165, 1);
+            /* 45. 3D-наклон карточки результата при наведении */
+            transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), border-color 0.3s ease, background-color 0.3s ease,
+                        transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            transform-style: preserve-3d;
         }
 
         .result-grid .result-card:nth-child(1) { animation-delay: 0.7s; }
@@ -734,35 +929,60 @@
         .result-grid .result-card:nth-child(5) { animation-delay: 1.1s; }
 
         @keyframes fadeInUpResultCard {
-            from { transform: translateY(25px) scale(0.95) skewY(3deg); opacity: 0; }
-            to { transform: translateY(0) scale(1) skewY(0deg); opacity: 1; }
+            from { opacity: 0; transform: translateY(30px) rotateX(-20deg) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
         }
-
+        /* 46. Анимация градиента границы карточки результата */
         .result-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -120%;
-            width: 60%;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
-            transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            transform: skewX(-20deg);
+            background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.1), rgba(var(--accent-rgb), 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
-
         .result-card:hover::before {
-             left: 120%;
+            opacity: 1;
         }
 
         .result-card:hover {
             transform: translateY(-12px) rotateX(7deg) scale(1.04) skewY(-1deg);
-            box-shadow: 0 18px 30px rgba(var(--primary-rgb), 0.25), 0 8px 15px rgba(0,0,0,0.15);
+            /* 50. Анимация тени карточки результата */
+            box-shadow: 0 18px 30px rgba(var(--primary-rgb), 0.25), 0 8px 15px rgba(0,0,0,0.15), 0 0 30px rgba(var(--accent-rgb), 0.4);
         }
+
+        .result-card.calculating-animation {
+            animation: resultCardPulse 0.4s ease-out;
+            border-color: var(--accent); 
+        }
+        /* 47. Пульсация фона карточки результата при обновлении */
+        .result-card.flash-bg {
+            animation: resultCardBgFlash 0.3s ease-out;
+        }
+
+        @keyframes resultCardPulse {
+            0% { transform: scale(1); box-shadow: var(--shadow); border-color: var(--primary); }
+            50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.6); border-color: var(--accent); }
+            100% { transform: scale(1); box-shadow: var(--shadow); border-color: var(--primary); }
+        }
+        @keyframes resultCardBgFlash {
+            0% { background-color: var(--card-bg); }
+            50% { background-color: rgba(var(--primary-rgb), 0.2); }
+            100% { background-color: var(--card-bg); }
+        }
+
 
         .result-title {
             font-size: var(--font-size-result-title);
             font-weight: 600;
-            color: var(--primary);
+            /* 52. Градиент заголовка результата */
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
             opacity: 0;
             transform: translateY(-10px);
@@ -774,8 +994,10 @@
             font-weight: 700;
             color: var(--text);
             word-break: break-all;
-            display: inline-block;
-            transition: opacity 0.25s ease-out, transform 0.25s ease-out, color 0.3s ease;
+            display: flex; /* Для иконок */
+            align-items: center;
+            gap: 0.5rem; /* Отступ для иконок */
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out, color 0.3s ease, text-shadow 0.3s ease;
             opacity: 0;
             transform: translateY(10px);
             animation: resultTextAppear 0.5s ease-out 0.3s forwards;
@@ -805,12 +1027,15 @@
             from { color: var(--warning-color); text-shadow: 0 0 5px rgba(255,0,0,0.3); }
             to { color: #cc3333; text-shadow: 0 0 10px rgba(255,0,0,0.7); }
         }
+        /* 53. Тень текста результатов */
+        .result-value.text-shadow-subtle {
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 8px rgba(var(--primary-rgb), 0.1);
+        }
 
         .footer {
             display: none;
         }
 
-        /* Settings Section */
         .settings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -830,8 +1055,19 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            /* 51. Анимация появления элемента настройки */
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: settingCardAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
+        .settings-section-card:nth-child(1) { animation-delay: 0.1s; }
+        .settings-section-card:nth-child(2) { animation-delay: 0.2s; }
+        .settings-section-card:nth-child(3) { animation-delay: 0.3s; }
 
+        @keyframes settingCardAppear {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        /* 55. Мерцание верхней полосы карточки настроек */
         .settings-section-card::before {
             content: '';
             position: absolute;
@@ -889,11 +1125,11 @@
             border: 1px solid rgba(var(--primary-rgb), 0.1);
             color: var(--text);
         }
-
+        /* 51. Эффект парения для пунктов настроек */
         .setting-item:hover {
             background-color: var(--settings-item-hover-bg);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         .setting-item label {
@@ -924,9 +1160,10 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
+            /* 54. Свечение границы поля валюты */
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 15px rgba(var(--accent-rgb), 0.4);
         }
 
-        /* Custom Dropdown for Precision */
         .settings-dropdown-wrapper {
             position: relative;
             display: inline-block;
@@ -971,12 +1208,18 @@
             transform: translateY(10px);
             transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
         }
-
+        /* 53. Масштабирование выпадающего меню при появлении */
         .settings-dropdown-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scaleY(1);
+            animation: dropdownScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
+        @keyframes dropdownScaleIn {
+            from { transform: translateY(-10px) scaleY(0); opacity: 0; }
+            to { transform: translateY(0) scaleY(1); opacity: 1; }
+        }
+
 
         .settings-dropdown-menu button {
             display: block;
@@ -989,14 +1232,14 @@
             cursor: pointer;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-
+        /* 52. Выделение пунктов выпадающего списка */
         .settings-dropdown-menu button:hover,
         .settings-dropdown-menu button.selected {
-            background-color: var(--primary);
+            background-color: var(--primary); 
             color: var(--selection-text);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
         }
 
-        /* Checkbox Styling */
         .checkbox-container {
             position: relative;
             display: inline-block;
@@ -1024,19 +1267,24 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
             border: 2px solid transparent;
         }
-
+        /* 52. Анимация заполнения чекбокса */
         .checkbox-container input:checked + .custom-checkbox {
             background-color: var(--primary);
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), inset 0 1px 3px rgba(0,0,0,0.2);
+            animation: checkboxFill 0.3s ease forwards;
+        }
+        @keyframes checkboxFill {
+            from { transform: scale(0.8); opacity: 0.5; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .custom-checkbox:after {
             content: "";
             position: absolute;
             display: none;
-            left: 10px; /* Adjusted for better centering */
-            top: 4px; /* Adjusted for better centering */
+            left: 10px;
+            top: 4px;
             width: 6px;
             height: 12px;
             border: solid white;
@@ -1052,7 +1300,6 @@
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
         }
 
-        /* Reset Button */
         .reset-button {
             background-color: #f44336;
             color: white;
@@ -1069,30 +1316,40 @@
             align-self: flex-end;
             display: block;
         }
-
+        /* 41. Эффект парения для кнопок */
         .reset-button:hover {
             background-color: #d32f2f;
-            transform: translateY(-2px);
+            transform: translateY(-2px) rotateZ(-1deg); 
             box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4);
         }
-
+        /* 42. Глубина нажатия кнопок */
         .reset-button:active {
             transform: translateY(0);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: inset 0 3px 8px rgba(0,0,0,0.3); 
+        }
+        /* 56. Кнопка сброса настроек с эффектом пульсации */
+        .reset-button.settings-reset-button:hover {
+            animation: resetButtonPulse 1s infinite alternate;
+        }
+        @keyframes resetButtonPulse {
+            0% { box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4); }
+            100% { box-shadow: 0 8px 20px rgba(244, 67, 54, 0.6), 0 0 25px rgba(244, 67, 54, 0.8); }
         }
 
-        /* Validation Messages */
+
         .validation-message {
             color: var(--warning-color);
             font-size: 0.85rem;
             margin-top: 0.25rem;
             min-height: 1rem;
             opacity: 0;
-            transition: opacity 0.3s ease-out;
+            transform: translateY(5px); /* 28. Сообщение об ошибке с эффектом слайда */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
 
         .validation-message:not(:empty) {
             opacity: 1;
+            transform: translateY(0);
         }
 
         .input-group input.invalid-input {
@@ -1100,7 +1357,6 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5);
         }
 
-        /* Notifications */
         .notification-container {
             position: fixed;
             top: 1rem;
@@ -1125,18 +1381,35 @@
             max-width: 320px;
             word-break: break-word;
             font-size: 0.95rem;
+            display: flex; /* Для иконок уведомлений */
+            align-items: center;
+            gap: 0.75rem;
         }
-
+        .notification.notification-success { border-left-color: var(--profit-color); }
+        .notification.notification-warning { border-left-color: var(--warning-color); }
+        .notification.notification-info { border-left-color: var(--primary); }
+        /* 54. Пульсация фона уведомления при появлении */
         @keyframes slideInNotification {
-            to { opacity: 1; transform: translateX(0) scale(1); }
+            0% { opacity: 0; transform: translateX(120%) scale(0.9) ; box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);}
+            50% { box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.7); }
+            100% { opacity: 1; transform: translateX(0) scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
         }
-
+        /* 55. Анимация "вылета" уведомления */
         @keyframes fadeOutNotification {
-            from { opacity: 1; transform: translateX(0) scale(1); }
-            to { opacity: 0; transform: translateX(120%) scale(0.9); }
+            from { opacity: 1; transform: translateX(0) scale(1) rotateZ(0deg); }
+            to { opacity: 0; transform: translateX(150%) scale(0.7) rotateZ(10deg); } /* Более выраженный вылет */
+        }
+        /* 56. Отскок иконок уведомлений */
+        .notification span.icon {
+            animation: iconBounce 0.5s ease-out;
+            display: inline-block;
+        }
+        @keyframes iconBounce {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
         }
 
-        /* Slider Thumb Animation */
         .slider-container .slider::-webkit-slider-thumb:active {
             animation: thumbPop 0.3s ease-in-out;
         }
@@ -1145,12 +1418,6 @@
             animation: thumbPop 0.3s ease-in-out;
         }
 
-        @keyframes thumbPop {
-            0%, 100% { transform: scale(1.2); }
-            50% { transform: scale(1.1); }
-        }
-
-        /* Function Toggle Button (Risk Amount) */
         .function-toggle-button-container {
             display: flex;
             align-items: center;
@@ -1162,7 +1429,7 @@
             margin-bottom: var(--gap-small);
             cursor: pointer;
         }
-
+        /* 41. Эффект парения для кнопок */
         .function-toggle-button-container:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -1189,13 +1456,21 @@
         .function-toggle-button:focus {
             outline: none;
         }
+        /* 40. Масштабирование текста кнопки-переключателя при клике */
+        .function-toggle-button:active {
+            animation: toggleTextScale 0.3s ease-out;
+        }
+        @keyframes toggleTextScale {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
 
         .function-toggle-button-container:not(.has-dropdown) .function-dropdown-toggle,
         .function-selector:not(.has-dropdown) {
             display: none !important;
         }
 
-        /* Trade Type Switcher (Long/Short) */
         .trade-type-switcher {
             display: flex;
             width: 100%;
@@ -1215,12 +1490,18 @@
             color: white;
             background-color: rgba(var(--text-rgb, 0,0,0), 0.3);
         }
-
+        /* 39. Свечение переключателя типа сделки */
         .trade-type-button.active {
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2), 0 0 15px rgba(var(--primary-rgb), 0.5); 
             position: relative;
             z-index: 1;
+            animation: tradeTypeGlow 1.5s infinite alternate;
         }
+        @keyframes tradeTypeGlow {
+            0% { box-shadow: 0 4px 10px rgba(0,0,0,0.2), 0 0 15px rgba(var(--primary-rgb), 0.5); }
+            100% { box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 25px rgba(var(--primary-rgb), 0.8); }
+        }
+
 
         .trade-type-button:not(.active):hover {
             background-color: rgba(var(--text-rgb, 0,0,0), 0.1);
@@ -1235,153 +1516,254 @@
             background-color: #ef4444;
         }
 
-        /* Copy All Button */
         .copy-all-button {
             background-color: var(--secondary);
             color: white;
             border: none;
-            padding: 0.5rem 1rem; /* Smaller padding */
+            padding: 0.5rem 1rem;
             border-radius: var(--border-radius);
-            font-size: 0.85rem; /* Smaller font size */
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px rgba(var(--secondary-rgb, 0,0,0), 0.2); /* Smaller shadow */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(var(--secondary-rgb), 0.2);
             margin-top: var(--gap-medium);
             width: fit-content;
             align-self: flex-start;
             display: block;
+            position: relative; /* Для shimmer */
+            overflow: hidden;
+            z-index: 0;
+        }
+        /* 36. Мерцающий фон кнопки при наведении */
+        .copy-all-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        .copy-all-button:hover::before {
+            left: 100%;
         }
 
+        /* 41. Эффект парения для кнопок */
         .copy-all-button:hover {
             background-color: var(--primary);
-            transform: translateY(-1px); /* Smaller lift */
-            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3); /* Adjusted shadow */
+            transform: translateY(-1px) rotateZ(1deg); 
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3);
         }
-
+        /* 42. Глубина нажатия кнопок */
         .copy-all-button:active {
             transform: translateY(0);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Adjusted inset shadow */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); 
+        }
+        /* 43. Обратная связь кнопки копирования */
+        .copy-all-button.copied { 
+            background-color: var(--profit-color);
+            color: white;
+            animation: copiedFlash 0.5s ease-out;
+        }
+        @keyframes copiedFlash {
+            0% { background-color: var(--secondary); }
+            50% { background-color: var(--profit-color); transform: scale(1.05); }
+            100% { background-color: var(--secondary); transform: scale(1); }
         }
 
-        /* Responsive Design for Mobile (Landscape 4:3 aspect ratio) */
+        /* History related CSS - will be unused */
+        .history-item {
+            background-color: var(--history-item-bg);
+            border-left: 4px solid var(--primary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(var(--primary-rgb), 0.1);
+        }
+
+        .history-item:hover {
+            background-color: rgba(var(--primary-rgb), 0.1);
+            transform: translateX(5px);
+        }
+
+        .history-item-header {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item-date {
+            font-size: 0.75rem;
+            color: var(--placeholder-text-color);
+            margin-left: auto;
+        }
+
+        .history-item-content {
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: var(--text);
+        }
+
+        .history-clear-all-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.2rem;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+            margin-top: var(--gap-medium);
+            width: fit-content;
+            align-self: flex-end;
+            display: block;
+        }
+        .history-clear-all-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4);
+        }
+        .history-clear-all-button:active {
+            transform: translateY(0);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .input-mode-toggle { /* This entire block will be unused */
+            display: none; 
+        }
+        
         @media (max-width: 768px) and (orientation: landscape) {
             body {
                 padding: 0.5rem;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                justify-content: flex-start; /* Align to top to give space for tabs */
+                align-items: stretch;
+                justify-content: flex-start;
             }
 
             .container {
                 padding: 0.5rem;
                 display: flex;
-                flex-direction: column; /* Keep column layout for main sections */
+                flex-direction: column;
                 width: 100%;
-                height: 100vh; /* Make container take full viewport height */
-                overflow-y: auto; /* Allow scrolling within the container */
+                height: 100vh;
+                overflow-y: auto;
             }
 
             .tabs {
-                flex-direction: row; /* Keep tabs in a row for landscape */
+                flex-direction: row;
                 justify-content: center;
-                margin-bottom: 1rem; /* Reduce margin */
+                margin-bottom: 0.75rem;
                 padding: 0.25rem;
             }
 
             .tab {
                 min-width: unset;
                 flex-basis: auto;
-                margin: 0 0.25rem; /* Small margin between tabs */
+                margin: 0 0.25rem;
                 font-size: 0.9rem;
-                padding: 0.5rem 1rem; /* Smaller padding for tabs */
+                padding: 0.5rem 1rem;
             }
 
             .tab-content {
-                padding: 1rem; /* Smaller padding for tab content */
-                flex-grow: 1; /* Allow tab content to grow */
-                display: flex; /* Use flex for inner layout */
-                flex-direction: column; /* Default to column for inner content */
-                height: auto; /* Allow content height to adjust */
+                padding: 1rem;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                height: auto;
             }
 
-            /* Specific layout for calculations tab in landscape */
             #calculations.tab-content.active {
-                flex-direction: row; /* Arrange sections side-by-side */
-                flex-wrap: wrap; /* Allow wrapping */
-                justify-content: center; /* Center content */
-                align-items: flex-start; /* Align items to the start */
-                gap: 1rem; /* Smaller gap */
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 0.75rem;
             }
 
             .sub-tabs {
-                order: -1; /* Move sub-tabs to the top */
-                width: 100%; /* Take full width */
-                margin-bottom: 0.75rem; /* Smaller margin */
+                order: -1;
+                width: 100%;
+                margin-bottom: 0.5rem;
                 padding: 0.15rem;
+                flex-wrap: nowrap;
+                overflow-x: auto;
             }
             .sub-tab {
                 font-size: 0.8rem;
                 padding: 0.4rem 0.8rem;
-                min-width: unset;
+                min-width: fit-content;
                 flex-basis: auto;
             }
 
             .calculator {
-                grid-template-columns: 1fr; /* Keep single column for input/results sections */
-                width: 48%; /* Each section takes roughly half the width */
-                margin-top: 0; /* Remove top margin from calculator */
-                gap: 0.75rem; /* Smaller gap between input and results */
-                flex-direction: column; /* Ensure inner content stacks vertically */
-                height: auto; /* Adjust height dynamically */
+                display: flex;
+                flex-direction: row;
+                flex-grow: 1;
+                margin-top: 0;
+                gap: 0.75rem;
+                align-items: flex-start;
+                flex-wrap: nowrap;
             }
 
-            .input-section {
-                padding: 0.5rem; /* Smaller padding */
-                gap: 0.75rem; /* Smaller gap between inputs */
+            .input-section, .results {
+                flex: 1;
+                min-width: 0;
+                padding: 0.5rem;
+                gap: 0.75rem;
             }
             .input-group label {
-                margin-bottom: 0.25rem; /* Smaller label margin */
+                margin-bottom: 0.25rem;
                 font-size: 0.9rem;
             }
             .input-group input {
-                padding: 0.5rem 0.75rem; /* Smaller input padding */
+                padding: 0.5rem 0.75rem;
                 font-size: 0.9rem;
             }
             .function-toggle-button-container {
-                margin-bottom: 0.5rem; /* Smaller margin */
+                margin-bottom: 0.5rem;
             }
             .function-toggle-button {
-                padding: 0.6rem 0.8rem; /* Smaller padding */
+                padding: 0.6rem 0.8rem;
                 font-size: 0.9rem;
             }
             .slider-container {
-                padding: 0.5rem 0; /* Smaller padding */
+                padding: 0.5rem 0;
             }
             .slider-label span {
                 font-size: 0.9rem;
             }
             .slider {
-                height: 10px; /* Smaller slider height */
+                height: 10px;
             }
             .slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
-                width: 20px; /* Smaller thumb */
+                width: 20px;
                 height: 20px;
-                border: 2px solid var(--accent); /* Smaller border */
+                border: 2px solid var(--accent);
             }
 
-            .results {
-                margin-top: 0; /* Remove top margin from results */
-                padding: 0.5rem; /* Smaller padding */
-            }
             .result-grid {
-                grid-template-columns: 1fr; /* Keep single column for results */
-                gap: 0.75rem; /* Smaller gap between result cards */
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
             }
             .result-card {
-                padding: 0.75rem; /* Smaller result card padding */
-                border-left-width: 4px; /* Smaller border */
+                padding: 0.75rem;
+                border-left-width: 4px;
             }
             .result-title {
                 font-size: 0.9rem;
@@ -1391,24 +1773,21 @@
                 font-size: 1.2rem;
             }
 
-            .copy-all-button {
-                padding: 0.4rem 0.8rem; /* Even smaller copy button */
+            .copy-all-button, .reset-button {
+                width: 100%;
+                margin-top: 0.75rem;
+                padding: 0.4rem 0.8rem;
                 font-size: 0.75rem;
-                margin-top: 0.75rem; /* Adjusted margin */
             }
             .reset-button {
-                width: 100%;
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-                margin-top: 0.75rem;
+                align-self: stretch;
             }
 
-            /* Settings tab for landscape */
             #settings.tab-content.active {
-                flex-direction: column; /* Stack settings sections */
+                flex-direction: column;
             }
             .settings-grid {
-                grid-template-columns: 1fr; /* Single column for settings sections */
+                grid-template-columns: 1fr;
                 padding: 1rem;
                 gap: 1rem;
             }
@@ -1425,7 +1804,7 @@
                 font-size: 0.9rem;
             }
             .settings-dropdown-wrapper, #currencySymbolInput {
-                width: 60px; /* Smaller width for dropdown and currency input */
+                width: 60px;
                 font-size: 0.9rem;
                 padding: 0.4rem;
             }
@@ -1433,14 +1812,19 @@
                  font-size: 0.9rem;
                  padding: 0.5rem;
             }
-
-            /* Currency symbol input specific mobile landscape adjustment */
             #currencySymbolInput {
-                text-align: center; /* Center align for better look on small screen */
+                text-align: center;
+            }
+
+            .input-mode-toggle {
+                margin-bottom: 0.5rem;
+            }
+            .input-mode-button {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.85rem;
             }
         }
 
-        /* Default Mobile (Portrait) */
         @media (max-width: 768px) and (orientation: portrait) {
             body {
                 padding: 0.75rem;
@@ -1451,6 +1835,7 @@
 
             .calculator {
                 grid-template-columns: 1fr;
+                gap: var(--gap-medium);
             }
 
             .result-grid {
@@ -1498,6 +1883,7 @@
                  padding: 0.2rem;
                  flex-wrap: wrap;
                  justify-content: center;
+                 margin-bottom: var(--gap-medium);
              }
              .sub-tab {
                  min-width: unset;
@@ -1515,19 +1901,17 @@
                  padding-right: 0;
              }
 
-             /* Corrected currency symbol input position for portrait mobile */
             #currencySymbolInput {
                 width: 80px;
                 text-align: right;
                 padding: 0.5rem 0.75rem;
-                position: relative; /* Ensure proper positioning */
-                left: 0; /* Reset left position */
-                box-sizing: border-box; /* Include padding and border in element's total width and height */
+                position: relative;
+                left: 0;
+                box-sizing: border-box;
             }
-            /* Corrected checkbox position for portrait mobile */
             .custom-checkbox:after {
-                left: 10px; /* Adjusted for better centering on mobile */
-                top: 4px; /* Adjusted for better centering on mobile */
+                left: 10px;
+                top: 4px;
             }
 
             .reset-button {
@@ -1549,37 +1933,57 @@
             .setting-item {
                 padding: 0.65rem 0.9rem;
             }
+            .input-mode-toggle {
+                margin-bottom: 0.5rem;
+            }
+            .input-mode-button {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.85rem;
+            }
+            .history-item { /* will be unused */
+                font-size: 0.85rem;
+                padding: 0.65rem 0.9rem;
+            }
+            .history-item-header { /* will be unused */
+                font-size: 0.95rem;
+            }
+            .history-item-date { /* will be unused */
+                font-size: 0.7rem;
+            }
+            .history-clear-all-button { /* will be unused */
+                width: 100%;
+                font-size: 0.85rem;
+                padding: 0.65rem 1rem;
+            }
         }
 
-        /* Tablet and Desktop (769px and above) */
         @media (min-width: 769px) {
             .calculator {
-                grid-template-columns: 1fr 1fr; /* Two columns for input and results */
+                grid-template-columns: 1fr 1fr;
             }
 
-            /* Align sub-tabs in a single row for larger screens */
             .sub-tabs {
                 flex-wrap: nowrap;
             }
 
             .sub-tab {
                 flex-basis: auto;
-                margin-bottom: 0; /* Remove mobile-specific margin */
+                margin-bottom: 0;
             }
 
             .settings-dropdown-wrapper {
-                width: 100px; /* Wider for desktop */
+                width: 100px;
             }
             .settings-dropdown-display {
                 padding: 0.75rem;
             }
             #currencySymbolInput {
-                width: 80px; /* Default width for desktop */
-                text-align: right; /* Align text to the right for desktop */
+                width: 80px;
+                text-align: right;
             }
              .custom-checkbox:after {
-                left: 10px; /* Adjusted for better centering on desktop */
-                top: 4px; /* Adjusted for better centering on desktop */
+                left: 10px;
+                top: 4px;
             }
         }
 
@@ -1595,7 +1999,6 @@
             }
         }
 
-        /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -1615,7 +2018,6 @@
             background: linear-gradient(135deg, var(--secondary), var(--accent));
         }
 
-        /* Focus Visible Outline */
         :focus-visible {
             outline: 3px solid rgba(var(--primary-rgb), 0.7);
             outline-offset: 3px;
@@ -1624,7 +2026,6 @@
     </style>
 </head>
 <body>
-    <!-- Background Animated Elements -->
     <div class="background-element"></div>
     <div class="background-element"></div>
     <div class="background-element"></div>
@@ -1633,32 +2034,25 @@
     <div class="background-element"></div>
     <div class="background-element"></div>
 
-    <!-- Notification Container -->
     <div class="notification-container"></div>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Author Link -->
         <div class="author">
             <p>© <a href="https://t.me/weeloser " target="_blank">@weeloser</a></p>
         </div>
 
-        <!-- Main Tabs -->
         <div class="tabs">
             <div class="tab active" onclick="switchTab('calculations')">Расчеты</div>
             <div class="tab" onclick="switchTab('settings')">Настройки</div>
         </div>
 
-        <!-- Calculations Tab Content -->
-        <div id="calculations" class="tab-content active">
-            <!-- Sub-tabs for Calculations -->
+        <div id="calculations" class="tab-content">
             <div class="sub-tabs">
                 <div class="sub-tab active" onclick="switchSubTab('risk-on-deal')">Риск на сделку</div>
                 <div class="sub-tab" onclick="switchSubTab('risk-reward-ratio')">R/R</div>
-                <div class="sub-tab" onclick="switchSubTab('pnl-calculator')">Расчет п/у</div>
+                <div class="sub-tab" onclick="switchSubTab('pnl-calculator')">П/У</div>
             </div>
 
-            <!-- Risk on Deal Calculator -->
             <div id="risk-on-deal" class="sub-tab-content active">
                 <div class="calculator">
                     <div class="input-section">
@@ -1729,7 +2123,7 @@
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Чистое движение</div>
-                                <div class="result-value" id="pureMovement">0.00%</div>
+                                <div class="result-value text-shadow-subtle" id="pureMovement">0.00%</div>
                             </div>
                         </div>
                         <button class="copy-all-button" onclick="copyAllResults('risk-on-deal')">Копировать все результаты</button>
@@ -1737,10 +2131,10 @@
                 </div>
             </div>
 
-            <!-- Risk/Reward Ratio Calculator -->
             <div id="risk-reward-ratio" class="sub-tab-content">
                 <div class="calculator">
                     <div class="input-section">
+                        <!-- Input mode toggle removed -->
                         <div class="input-group">
                             <label for="rrEntryPoint">Точка входа</label>
                             <input type="number" id="rrEntryPoint" placeholder="Введите точку входа" min="0.01" step="any">
@@ -1748,13 +2142,13 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="rrStopLoss">Цена стоп-лосса</label>
+                            <label for="rrStopLoss" id="rrStopLossLabel">Цена стоп-лосса</label>
                             <input type="number" id="rrStopLoss" placeholder="Введите цену стоп-лосса" min="0.01" step="any">
                             <div class="validation-message" id="rrStopLoss-validation"></div>
                         </div>
 
                         <div class="input-group">
-                            <label for="rrTakeProfit">Цена тейк-профита</label>
+                            <label for="rrTakeProfit" id="rrTakeProfitLabel">Цена тейк-профита</label>
                             <input type="number" id="rrTakeProfit" placeholder="Введите цену тейк-профита" min="0.01" step="any">
                             <div class="validation-message" id="rrTakeProfit-validation"></div>
                         </div>
@@ -1765,17 +2159,17 @@
                         <div class="result-grid">
                             <div class="result-card transition-hover">
                                 <div class="result-title">Пунктов до тейк-профита</div>
-                                <div class="result-value" id="rrTPPoints">0.00</div>
+                                <div class="result-value text-shadow-subtle" id="rrTPPoints">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Пунктов до стоп-лосса</div>
-                                <div class="result-value" id="rrSLPoints">0.00</div>
+                                <div class="result-value text-shadow-subtle" id="rrSLPoints">0.00</div>
                             </div>
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Соотношение риска и прибыли</div>
-                                <div class="result-value" id="rrRatio">0:0</div>
+                                <div class="result-value text-shadow-subtle" id="rrRatio">0:0</div>
                             </div>
                         </div>
                         <button class="copy-all-button" onclick="copyAllResults('risk-reward-ratio')">Копировать все результаты</button>
@@ -1783,7 +2177,6 @@
                 </div>
             </div>
 
-            <!-- PnL Calculator -->
             <div id="pnl-calculator" class="sub-tab-content">
                 <div class="calculator">
                     <div class="input-section">
@@ -1791,6 +2184,7 @@
                             <div class="trade-type-button long active" id="pnlTradeTypeLong">LONG</div>
                             <div class="trade-type-button short" id="pnlTradeTypeShort">SHORT</div>
                         </div>
+                        <!-- Input mode toggle removed -->
                         <div class="input-group">
                             <label for="pnlEntryPrice">Цена входа</label>
                             <input type="number" id="pnlEntryPrice" placeholder="Введите цену входа" min="0.01" step="any">
@@ -1798,7 +2192,7 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="pnlExitPrice">Цена выхода</label>
+                            <label for="pnlExitPrice" id="pnlExitPriceLabel">Цена выхода</label>
                             <input type="number" id="pnlExitPrice" placeholder="Введите цену выхода" min="0.01" step="any">
                             <div class="validation-message" id="pnlExitPrice-validation"></div>
                         </div>
@@ -1832,11 +2226,11 @@
 
                             <div class="result-card transition-hover">
                                 <div class="result-title">Чистое движение в %</div>
-                                <div class="result-value" id="pnlPureMovement">0.00%</div>
+                                <div class="result-value text-shadow-subtle" id="pnlPureMovement">0.00%</div>
                             </div>
                             <div class="result-card transition-hover">
                                 <div class="result-title">Пунктов между входом/выходом</div>
-                                <div class="result-value" id="pnlPointsBetweenEntryExit">0.00</div>
+                                <div class="result-value text-shadow-subtle" id="pnlPointsBetweenEntryExit">0.00</div>
                             </div>
                         </div>
                         <button class="copy-all-button" onclick="copyAllResults('pnl-calculator')">Копировать все результаты</button>
@@ -1845,7 +2239,6 @@
             </div>
         </div>
 
-        <!-- Settings Tab Content -->
         <div id="settings" class="tab-content">
             <div class="settings-grid">
                 <div class="settings-section-card">
@@ -1853,6 +2246,8 @@
                     <p style="color: var(--text);">Выберите одну из предустановленных тем.</p>
                     <div class="theme-switcher" id="settingsThemeSwitcher"></div>
                 </div>
+
+                <!-- History section removed -->
 
                 <div class="settings-section-card">
                     <h3>Другое</h3>
@@ -1869,15 +2264,15 @@
                             <div class="settings-dropdown-wrapper">
                                 <div class="settings-dropdown-display" id="precisionDisplay">2</div>
                                 <div class="settings-dropdown-menu" id="precisionDropdownMenu">
-                                    <!-- Precision options will be generated here by JS -->
                                 </div>
                             </div>
                         </div>
                         <div class="setting-item">
                             <label for="currencySymbolInput">Валютный символ</label>
-                            <input type="text" id="currencySymbolInput" maxlength="10" placeholder="$, €, ₽" style="width: 80px; text-align: center; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+                            <input type="text" id="currencySymbolInput" maxlength="10" placeholder="$, €, ₽" class="input-group-text-input" style="width: 80px; text-align: center; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
                         </div>
-                        <button class="reset-button" onclick="resetAllSettings()">Сбросить все настройки</button>
+                        <!-- Clear all calculators button removed -->
+                        <button class="reset-button settings-reset-button" onclick="resetAllSettings()">Сбросить все настройки</button>
                     </div>
                 </div>
             </div>
@@ -1885,54 +2280,80 @@
     </div>
 
     <script>
-        // Global variables for DOM elements and state
         let balanceInput, leverageInput, riskSlider, riskValue, riskWarning;
         let marginDisplay, positionSizeDisplay, riskAmountDisplay, pureMovementDisplay;
-
         let entryPointInput, stopLossInput;
         let fixedLossInput, fixedLossValidation;
 
         let rrEntryPointInput, rrStopLossInput, rrTakeProfitInput;
         let rrSLPointsDisplay, rrTPPointsDisplay, rrRatioDisplay;
+        let rrStopLossLabel, rrTakeProfitLabel;
 
         let pnlEntryPriceInput, pnlExitPriceInput, pnlPositionAmountInput, pnlLeverageInput;
         let pnlTotalPnLDisplay, pnlRoiDisplay, pnlPureMovementDisplay, pnlPointsBetweenEntryExitDisplay;
         let pnlTradeTypeLongButton, pnlTradeTypeShortButton;
+        let pnlExitPriceLabel;
         let currentPnLTradeType = 'long';
 
         let notificationsEnabled = true;
         let currentPrecision = 2;
         let currencySymbol = '';
-
         let isFixedLossModeForRiskOnDeal = false;
 
         const placeholderMessage = "Заполните больше полей для расчета";
 
-        /**
-         * Displays a notification message to the user.
-         * @param {string} message - The message to display.
-         * @param {string} type - Optional type for specific notification styling (e.g., 'theme', 'global').
-         */
-        function showNotification(message, type = 'global') {
-            if (!notificationsEnabled) return;
+        // Moved function definitions to global scope for accessibility
+        function updateRiskAmountUIMode() {
+            const riskToggleButton = document.getElementById('riskToggleButton');
+            const riskPercentageSliderContainer = document.getElementById('riskPercentageSlider');
+            const fixedLossInputContainer = document.getElementById('fixedLossInput');
+            if (isFixedLossModeForRiskOnDeal) {
+                if (riskToggleButton) riskToggleButton.textContent = 'Фиксированный убыток 🔄';
+                if (riskPercentageSliderContainer) riskPercentageSliderContainer.style.display = 'none';
+                if (fixedLossInputContainer) fixedLossInputContainer.style.display = 'block';
+            } else {
+                if (riskToggleButton) riskToggleButton.textContent = '% риска на сделку 🔄';
+                if (fixedLossInputContainer) fixedLossInputContainer.style.display = 'none';
+                if (riskPercentageSliderContainer) riskPercentageSliderContainer.style.display = 'flex';
+            }
+            if (fixedLossValidation) fixedLossValidation.textContent = '';
+            if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
+        }
 
+        function updatePnLTradeTypeUI() {
+            if (pnlTradeTypeLongButton && pnlTradeTypeShortButton) {
+                if (currentPnLTradeType === 'long') {
+                    pnlTradeTypeLongButton.classList.add('active');
+                    pnlTradeTypeShortButton.classList.remove('active');
+                } else {
+                    pnlTradeTypeLongButton.classList.remove('active');
+                    pnlTradeTypeShortButton.classList.add('active');
+                }
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            if (!notificationsEnabled) return;
             const container = document.querySelector('.notification-container');
             if (!container) return;
             const notification = document.createElement('div');
-            notification.classList.add('notification');
-            notification.classList.add(`notification-${type}`); 
-            notification.textContent = message;
+            notification.classList.add('notification', `notification-${type}`);
+            
+            let icon = '';
+            if (type === 'success') icon = '<span class="icon">✅</span> ';
+            else if (type === 'warning') icon = '<span class="icon">⚠️</span> ';
+            else if (type === 'error') icon = '<span class="icon">❌</span> ';
+            else icon = '<span class="icon">ℹ️</span> ';
 
+            notification.innerHTML = icon + message; // Иконки уведомлений
             container.appendChild(notification);
-
             requestAnimationFrame(() => {
                 notification.style.opacity = '1';
                 notification.style.transform = 'translateX(0) scale(1)';
             });
-
             setTimeout(() => {
                 notification.style.opacity = '0';
-                notification.style.transform = 'translateX(120%) scale(0.9)';
+                notification.style.transform = 'translateX(150%) scale(0.9) rotateZ(5deg)'; 
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.remove();
@@ -1941,7 +2362,6 @@
             }, 3500);
         }
 
-        // Available themes for the calculator
         const availableThemes = [
             { name: 'dark', label: 'Темная' },
             { name: 'light', label: 'Светлая' },
@@ -1951,26 +2371,18 @@
             { name: 'purple', label: 'Фиолетовая' },
         ];
 
-        /**
-         * Sets the active theme for the application.
-         * @param {string} themeName - The name of the theme to set.
-         */
         function setTheme(themeName) {
             document.body.setAttribute('data-theme', themeName);
             localStorage.setItem('theme', themeName);
             const themeLabel = availableThemes.find(t => t.name === themeName)?.label || themeName;
-            showNotification(`Тема изменена на "${themeLabel}"`, 'theme');
+            showNotification(`Тема изменена на "${themeLabel}"`, 'success');
             updateThemeButtonActiveState(themeName);
         }
 
-        /**
-         * Creates theme selection buttons dynamically.
-         */
         function createThemeButtons() {
             const container = document.getElementById('settingsThemeSwitcher');
             if (!container) return;
             container.innerHTML = '';
-
             availableThemes.forEach(theme => {
                 const button = document.createElement('button');
                 button.className = `theme-button theme-${theme.name}`;
@@ -1981,10 +2393,6 @@
             });
         }
 
-        /**
-         * Updates the visual active state of theme buttons.
-         * @param {string} activeThemeName - The name of the currently active theme.
-         */
         function updateThemeButtonActiveState(activeThemeName) {
              document.querySelectorAll('.theme-button').forEach(button => {
                  button.classList.remove('active-theme');
@@ -1994,28 +2402,18 @@
              });
         }
 
-        /**
-         * Toggles the notification system on or off.
-         * @param {boolean} enabled - True to enable notifications, false to disable.
-         */
         function toggleNotifications(enabled) {
             notificationsEnabled = enabled;
             localStorage.setItem('notificationsEnabled', enabled);
-            showNotification(`Уведомления ${enabled ? 'включены' : 'выключены'}`, 'global');
+            showNotification(`Уведомления ${enabled ? 'включены' : 'выключены'}`, 'info');
         }
 
-        /**
-         * Sets the display precision for calculated results.
-         * @param {number} precision - The number of decimal places to display.
-         */
         function setPrecision(precision) {
             currentPrecision = parseInt(precision);
             localStorage.setItem('currentPrecision', currentPrecision);
-            // Update display value
             const precisionDisplay = document.getElementById('precisionDisplay');
             if (precisionDisplay) {
                 precisionDisplay.textContent = currentPrecision;
-                // Update active state in dropdown
                 document.querySelectorAll('#precisionDropdownMenu button').forEach(btn => {
                     btn.classList.remove('selected');
                     if (parseInt(btn.dataset.value) === currentPrecision) {
@@ -2026,13 +2424,9 @@
             calculateRiskOnDeal();
             calculateRiskReward();
             calculatePnL();
-            showNotification(`Точность установлена на ${currentPrecision}`, 'settings');
+            showNotification(`Точность установлена на ${currentPrecision}`, 'info');
         }
 
-        /**
-         * Sets the currency symbol to be used in results.
-         * @param {string} symbol - The currency symbol.
-         */
         function setCurrencySymbol(symbol) {
             currencySymbol = symbol;
             localStorage.setItem('currencySymbol', currencySymbol);
@@ -2040,22 +2434,15 @@
             calculatePnL();
         }
 
-        /**
-         * Resets all application settings to their default values.
-         */
         function resetAllSettings() {
             localStorage.clear();
             notificationsEnabled = true;
             currentPrecision = 2;
             currencySymbol = '';
-
             const themeReset = 'dark';
             setTheme(themeReset);
-
             const notificationToggleInput = document.getElementById('notificationToggle');
             if (notificationToggleInput) notificationToggleInput.checked = true;
-
-            // Reset precision dropdown
             const precisionDisplay = document.getElementById('precisionDisplay');
             if (precisionDisplay) precisionDisplay.textContent = 2;
             const precisionDropdownMenu = document.getElementById('precisionDropdownMenu');
@@ -2067,23 +2454,18 @@
                     }
                 });
             }
-            
             const currencySymbolInput = document.getElementById('currencySymbolInput');
             if (currencySymbolInput) currencySymbolInput.value = '';
-
-            calculateRiskOnDeal();
-            calculateRiskReward();
-            calculatePnL();
-            showNotification('Все настройки сброшены до значений по умолчанию.');
+            
+            resetRiskOnDealCalculator(false);
+            resetRiskRewardCalculator(false);
+            resetPnLCalculator(false);
+            
+            showNotification('Все настройки сброшены до значений по умолчанию.', 'info');
         }
 
-        /**
-         * Initializes the application when the DOM is fully loaded.
-         * Attaches event listeners and loads saved settings.
-         */
         document.addEventListener('DOMContentLoaded', () => {
             try {
-                // Get DOM elements
                 balanceInput = document.getElementById('balance');
                 leverageInput = document.getElementById('leverage');
                 riskSlider = document.getElementById('riskSlider');
@@ -2105,6 +2487,8 @@
                 rrSLPointsDisplay = document.getElementById('rrSLPoints');
                 rrTPPointsDisplay = document.getElementById('rrTPPoints');
                 rrRatioDisplay = document.getElementById('rrRatio');
+                rrStopLossLabel = document.getElementById('rrStopLossLabel');
+                rrTakeProfitLabel = document.getElementById('rrTakeProfitLabel');
 
                 pnlEntryPriceInput = document.getElementById('pnlEntryPrice');
                 pnlExitPriceInput = document.getElementById('pnlExitPrice');
@@ -2116,10 +2500,10 @@
                 pnlRoiDisplay = document.getElementById('pnlRoi');
                 pnlPureMovementDisplay = document.getElementById('pnlPureMovement');
                 pnlPointsBetweenEntryExitDisplay = document.getElementById('pnlPointsBetweenEntryExit');
+                pnlExitPriceLabel = document.getElementById('pnlExitPriceLabel');
 
                 createThemeButtons();
 
-                // Load saved theme or set default
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 if (availableThemes.some(t => t.name === savedTheme)) {
                     setTheme(savedTheme);
@@ -2127,7 +2511,6 @@
                     setTheme('dark');
                 }
 
-                // Load notification setting
                 notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
                 const notificationToggleInput = document.getElementById('notificationToggle');
                 if (notificationToggleInput) {
@@ -2135,7 +2518,6 @@
                     notificationToggleInput.addEventListener('change', () => toggleNotifications(notificationToggleInput.checked));
                 }
 
-                // Initialize Precision Dropdown
                 currentPrecision = parseInt(localStorage.getItem('currentPrecision') || '2');
                 const precisionDisplay = document.getElementById('precisionDisplay');
                 const precisionDropdownMenu = document.getElementById('precisionDropdownMenu');
@@ -2162,7 +2544,6 @@
                         precisionDisplay.classList.toggle('focused');
                     });
 
-                    // Close dropdown if clicked outside
                     document.addEventListener('click', (event) => {
                         if (!precisionDisplay.contains(event.target) && !precisionDropdownMenu.contains(event.target)) {
                             precisionDropdownMenu.classList.remove('active');
@@ -2171,8 +2552,6 @@
                     });
                 }
 
-
-                // Load currency symbol
                 currencySymbol = localStorage.getItem('currencySymbol') || '';
                 const currencySymbolInput = document.getElementById('currencySymbolInput');
                 if (currencySymbolInput) {
@@ -2181,14 +2560,12 @@
                         setCurrencySymbol(event.target.value);
                     });
                 }
-
-                // Restore active tab and sub-tab
+                
                 const initialTab = localStorage.getItem('activeTab') || 'calculations';
                 switchTab(initialTab);
                 const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                 switchSubTab(initialSubTab);
 
-                // Add event listeners for calculator inputs
                 if (balanceInput) balanceInput.addEventListener('input', calculateRiskOnDeal);
                 if (leverageInput) leverageInput.addEventListener('input', calculateRiskOnDeal);
                 if (riskSlider) riskSlider.addEventListener('input', () => {
@@ -2209,10 +2586,10 @@
                 if (pnlPositionAmountInput) pnlPositionAmountInput.addEventListener('input', calculatePnL);
                 if (pnlLeverageInput) pnlLeverageInput.addEventListener('input', calculatePnL);
 
-                // Event listeners for PnL trade type buttons
                 if (pnlTradeTypeLongButton) {
                     pnlTradeTypeLongButton.addEventListener('click', () => {
                         currentPnLTradeType = 'long';
+                        localStorage.setItem('currentPnLTradeType', 'long');
                         updatePnLTradeTypeUI();
                         calculatePnL();
                     });
@@ -2220,88 +2597,51 @@
                 if (pnlTradeTypeShortButton) {
                     pnlTradeTypeShortButton.addEventListener('click', () => {
                         currentPnLTradeType = 'short';
+                        localStorage.setItem('currentPnLTradeType', 'short');
                         updatePnLTradeTypeUI();
                         calculatePnL();
                     });
                 }
 
-                // Event listeners for result cards to copy value
                 document.querySelectorAll('.result-card').forEach(card => {
                     card.addEventListener('click', (event) => {
                         const valueElement = card.querySelector('.result-value');
                         if (valueElement && !valueElement.classList.contains('is-placeholder')) {
-                            const textToCopy = valueElement.textContent.replace(/[^0-9.-]/g, ''); // Remove non-numeric characters for copying
+                            const textToCopy = valueElement.textContent.replace(/[^0-9.-]/g, '');
                             copyToClipboard(textToCopy);
                         }
                     });
                 });
 
-                // Logic for toggling risk amount mode
                 const riskAmountToggleContainer = document.getElementById('riskAmountToggleContainer');
-                const riskToggleButton = document.getElementById('riskToggleButton');
-                const riskPercentageSliderContainer = document.getElementById('riskPercentageSlider');
-                const fixedLossInputContainer = document.getElementById('fixedLossInput');
+                // const riskToggleButton = document.getElementById('riskToggleButton'); // Defined globally
 
                 if (riskAmountToggleContainer) {
                     riskAmountToggleContainer.addEventListener('click', () => {
                         isFixedLossModeForRiskOnDeal = !isFixedLossModeForRiskOnDeal;
+                        localStorage.setItem('isFixedLossModeForRiskOnDeal', isFixedLossModeForRiskOnDeal);
                         updateRiskAmountUIMode();
                         calculateRiskOnDeal();
                     });
                 }
-
-                /**
-                 * Updates the UI based on whether fixed loss mode is active for Risk on Deal calculator.
-                 */
-                function updateRiskAmountUIMode() {
-                    if (isFixedLossModeForRiskOnDeal) {
-                        riskToggleButton.textContent = 'Фиксированный убыток 🔄';
-                        riskPercentageSliderContainer.style.display = 'none';
-                        fixedLossInputContainer.style.display = 'block';
-                        if (fixedLossInput) fixedLossInput.value = '';
-                    } else {
-                        riskToggleButton.textContent = '% риска на сделку 🔄';
-                        fixedLossInputContainer.style.display = 'none';
-                        riskPercentageSliderContainer.style.display = 'flex';
-                    }
-                    if (riskSlider) riskSlider.value = 3;
-                    if (riskValue) riskValue.textContent = '3.0%';
-                    if (fixedLossValidation) fixedLossValidation.textContent = '';
-                    if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
-                }
-
-                /**
-                 * Updates the visual active state of PnL trade type buttons.
-                 */
-                function updatePnLTradeTypeUI() {
-                    if (pnlTradeTypeLongButton && pnlTradeTypeShortButton) {
-                        if (currentPnLTradeType === 'long') {
-                            pnlTradeTypeLongButton.classList.add('active');
-                            pnlTradeTypeShortButton.classList.remove('active');
-                        } else {
-                            pnlTradeTypeLongButton.classList.remove('active');
-                            pnlTradeTypeShortButton.classList.add('active');
-                        }
-                    }
-                }
                 
-                // Initial UI updates
                 updateRiskAmountUIMode();
                 updatePnLTradeTypeUI();
 
-                // Keyboard navigation for inputs (Enter key to move to next input)
                 document.addEventListener('keydown', (event) => {
                     if (event.ctrlKey && event.key === '1') {
                         event.preventDefault();
                         switchTab('calculations');
                     }
+                    if (event.ctrlKey && event.key === '2') {
+                        event.preventDefault();
+                        switchTab('settings');
+                    }
 
                     if (event.key === 'Enter') {
                         const activeElement = document.activeElement;
-                        // Select all visible and enabled input/select elements
                         const formElements = Array.from(document.querySelectorAll('input:not([type="hidden"]):not([disabled]), select:not([disabled])'))
                                             .filter(el => {
-                                                // Check if element or its parent is hidden by style
                                                 let isHidden = false;
                                                 let current = el;
                                                 while(current && current !== document.body) {
@@ -2317,11 +2657,38 @@
 
                         const currentIndex = formElements.indexOf(activeElement);
                         if (currentIndex > -1 && currentIndex < formElements.length - 1) {
-                            event.preventDefault(); // Prevent default Enter key behavior (e.g., form submission)
+                            event.preventDefault();
                             formElements[currentIndex + 1].focus();
                         }
                     }
                 });
+
+                // Add event listener for input typing animation
+                document.querySelectorAll('input[type="number"], .input-group-text-input').forEach(input => {
+                    input.addEventListener('input', (event) => {
+                        event.target.classList.add('typing-pulse');
+                        event.target.addEventListener('animationend', () => {
+                            event.target.classList.remove('typing-pulse');
+                        }, { once: true });
+                        // Update slider fill if it's the risk slider
+                        if (event.target.id === 'riskSlider') {
+                            const min = parseFloat(event.target.min);
+                            const max = parseFloat(event.target.max);
+                            const value = parseFloat(event.target.value);
+                            const percent = ((value - min) / (max - min)) * 100;
+                            event.target.style.setProperty('--fill-percent', `${percent}%`);
+                        }
+                    });
+                });
+                
+                // Initial update for slider fill
+                if (riskSlider) {
+                    const min = parseFloat(riskSlider.min);
+                    const max = parseFloat(riskSlider.max);
+                    const value = parseFloat(riskSlider.value);
+                    const percent = ((value - min) / (max - min)) * 100;
+                    riskSlider.style.setProperty('--fill-percent', `${percent}%`);
+                }
 
             } catch (error) {
                 console.error("Произошла ошибка инициализации: ", error);
@@ -2329,10 +2696,6 @@
             }
         });
 
-        /**
-         * Copies text to the clipboard.
-         * @param {string} text - The text to copy.
-         */
         function copyToClipboard(text) {
             const tempInput = document.createElement('textarea');
             tempInput.value = text;
@@ -2340,27 +2703,21 @@
             tempInput.select();
             try {
                 document.execCommand('copy');
-                showNotification(`Скопировано: ${text}`);
+                showNotification(`Скопировано: ${text}`, 'success');
             } catch (err) {
                 console.error('Не удалось скопировать текст: ', err);
-                showNotification('Не удалось скопировать текст.');
+                showNotification('Не удалось скопировать текст.', 'error');
             } finally {
                 document.body.removeChild(tempInput);
             }
         }
 
-        /**
-         * Copies all visible results from a given sub-tab to the clipboard.
-         * @param {string} subTabId - The ID of the sub-tab to copy results from.
-         */
         function copyAllResults(subTabId) {
             let resultsText = '';
             let titles = [];
             let values = [];
-
             const currentSubTabContent = document.getElementById(subTabId);
             if (!currentSubTabContent) return;
-
             const resultCards = currentSubTabContent.querySelectorAll('.result-card');
             resultCards.forEach(card => {
                 const titleElement = card.querySelector('.result-title');
@@ -2376,23 +2733,32 @@
                 return;
             }
 
-            // Format for copying: "Title: Value\nTitle: Value"
             for (let i = 0; i < titles.length; i++) {
                 resultsText += `${titles[i]}: ${values[i]}\n`;
             }
 
             copyToClipboard(resultsText.trim());
+
+            const copyButton = currentSubTabContent.querySelector('.copy-all-button');
+            if (copyButton) {
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Скопировано!';
+                copyButton.classList.add('copied');
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                    copyButton.classList.remove('copied');
+                }, 1500);
+            }
         }
 
-        /**
-         * Switches the active main tab.
-         * @param {string} tabId - The ID of the tab to activate ('calculations' or 'settings').
-         */
         function switchTab(tabId) {
             try {
                 document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(content => {
                     content.classList.remove('active');
+                    content.style.height = '0';
+                    content.style.opacity = '0';
+                    content.style.visibility = 'hidden';
                 });
 
                 const targetTab = document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`);
@@ -2402,10 +2768,11 @@
                 const targetContent = document.getElementById(tabId);
                 if (targetContent) {
                     targetContent.classList.add('active');
+                    targetContent.style.height = 'auto';
+                    targetContent.style.opacity = '1';
+                    targetContent.style.visibility = 'visible';
                 }
                 localStorage.setItem('activeTab', tabId);
-
-                // If switching to calculations tab, restore its last active sub-tab
                 if (tabId === 'calculations') {
                     const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                     switchSubTab(initialSubTab);
@@ -2416,17 +2783,12 @@
             }
         }
 
-        /**
-         * Switches the active sub-tab within the "Calculations" tab.
-         * @param {string} subTabId - The ID of the sub-tab to activate (e.g., 'risk-on-deal').
-         */
         function switchSubTab(subTabId) {
             try {
                 document.querySelectorAll('#calculations .sub-tab').forEach(tab => tab.classList.remove('active'));
                 document.querySelectorAll('#calculations .sub-tab-content').forEach(content => {
                     content.classList.remove('active');
                 });
-
                 const targetSubTab = document.querySelector(`#calculations .sub-tab[onclick="switchSubTab('${subTabId}')"]`);
                 if (targetSubTab) {
                     targetSubTab.classList.add('active');
@@ -2436,8 +2798,6 @@
                     targetSubContent.classList.add('active');
                 }
                 localStorage.setItem('activeSubTab-calculations', subTabId);
-
-                // Recalculate based on the new active sub-tab
                 if (subTabId === 'risk-on-deal') {
                     calculateRiskOnDeal();
                 } else if (subTabId === 'risk-reward-ratio') {
@@ -2451,22 +2811,13 @@
             }
         }
 
-        /**
-         * Validates a numeric input field.
-         * @param {HTMLElement} inputElement - The input HTML element.
-         * @param {HTMLElement} messageElement - The validation message display element.
-         * @param {number} min - The minimum allowed value.
-         * @param {number} max - The maximum allowed value (defaults to Infinity).
-         * @returns {boolean} True if the input is valid, false otherwise.
-         */
         function validateInput(inputElement, messageElement, min, max = Infinity) {
             if (!inputElement || !messageElement) return true;
             const value = parseFloat(inputElement.value);
             let isValid = true;
             let message = '';
-
             if (inputElement.value.trim() === '') {
-                message = ''; // No message for empty input
+                message = '';
                 isValid = true;
             } else if (isNaN(value)) {
                 message = 'Некорректное число.';
@@ -2478,7 +2829,6 @@
                 message = `Значение должно быть не более ${max}.`;
                 isValid = false;
             }
-
             if (isValid) {
                 inputElement.classList.remove('invalid-input');
                 messageElement.textContent = '';
@@ -2489,17 +2839,14 @@
             return isValid;
         }
 
-        /**
-         * Displays a calculated result in a formatted way.
-         * Includes animations and status-based coloring.
-         * @param {HTMLElement} element - The HTML element to display the value in.
-         * @param {number|string} value - The numerical or string value to display.
-         * @param {string} unit - Optional unit to append (e.g., '%').
-         * @param {boolean} isPlaceholder - If true, displays a placeholder message.
-         * @param {string} status - Optional status ('positive', 'negative') for coloring.
-         */
         function displayResult(element, value, unit = '', isPlaceholder = false, status = '') {
             if (!element) return;
+            const resultCard = element.closest('.result-card');
+            if (resultCard) {
+                resultCard.classList.remove('calculating-animation', 'flash-bg');
+                void resultCard.offsetWidth; 
+                resultCard.classList.add('calculating-animation', 'flash-bg');
+            }
 
             if (isPlaceholder) {
                 element.textContent = placeholderMessage;
@@ -2517,10 +2864,25 @@
                 if (typeof value === 'number') {
                     formattedValue = `${value > 0 && (element.id === 'pnlTotalPnL' || element.id === 'pnlRoi') ? '+' : ''}${value.toFixed(currentPrecision)}`;
                 } else {
-                    formattedValue = `${value}`; // For R:R ratio, it's already a string
+                    formattedValue = `${value}`;
                 }
 
-                // Special formatting for specific result fields
+                let icon = '';
+                if (element.id === 'pnlTotalPnL' || element.id === 'pnlRoi') {
+                    if (typeof value === 'number') {
+                        if (value > 0) icon = '⬆️';
+                        else if (value < 0) icon = '⬇️';
+                    }
+                }
+                
+                if (element.id === 'pureMovement' || element.id === 'pnlPureMovement' ||
+                    element.id === 'rrTPPoints' || element.id === 'rrSLPoints' ||
+                    element.id === 'pnlPointsBetweenEntryExit' || element.id === 'rrRatio') {
+                    element.classList.add('text-shadow-subtle');
+                } else {
+                    element.classList.remove('text-shadow-subtle');
+                }
+
                 if (element.id === 'riskAmount') {
                     const currentBalance = parseFloat(balanceInput?.value);
                     if (!isNaN(currentBalance) && currentBalance > 0 && typeof value === 'number') {
@@ -2542,34 +2904,90 @@
                 } else if (element.id === 'rrTPPoints' || element.id === 'rrSLPoints' || element.id === 'pnlPointsBetweenEntryExit') {
                      formattedValue = value.toFixed(currentPrecision);
                 }
-
-
-                element.style.color = 'var(--text)'; // Default text color
+                element.style.color = 'var(--text)';
                 if (status === 'positive') {
                     element.style.color = 'var(--profit-color)';
                 } else if (status === 'negative') {
                     element.style.color = 'var(--warning-color)';
                 }
 
-                // Animate change if value is different
-                if (element.textContent !== formattedValue) {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(10px) scale(0.95)';
-                    setTimeout(() => {
-                        element.textContent = formattedValue;
+                // 48. Анимация "подсчета" значения результата - только для чисел
+                if (typeof value === 'number' && !element.classList.contains('is-placeholder') && !isNaN(parseFloat(element.textContent))) {
+                    const currentNum = parseFloat(element.textContent.replace(/[^0-9.-]/g, ''));
+                    animateNumber(element, currentNum, value, currentPrecision, icon, unit, status);
+                } else {
+                    if (element.textContent !== icon + formattedValue) {
+                        element.style.opacity = '0';
+                        element.style.transform = 'translateY(10px) scale(0.95)';
+                        setTimeout(() => {
+                            element.innerHTML = icon + formattedValue;
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0px) scale(1)';
+                        }, 50);
+                    } else if (element.style.opacity === '0') {
                         element.style.opacity = '1';
                         element.style.transform = 'translateY(0px) scale(1)';
-                    }, 50);
-                } else if (element.style.opacity === '0') {
-                     element.style.opacity = '1';
-                     element.style.transform = 'translateY(0px) scale(1)';
+                    }
                 }
             }
         }
+        // Helper for 48. Анимация "подсчета" значения результата
+        function animateNumber(element, start, end, precision, icon, unit, status) {
+            const duration = 500; // milliseconds
+            let startTime;
 
-        /**
-         * Calculates and displays results for the "Risk on Deal" calculator.
-         */
+            function animate(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const progress = (currentTime - startTime) / duration;
+
+                const easedProgress = easeOutCubic(progress); // More natural easing
+
+                const currentValue = start + (end - start) * easedProgress;
+
+                let displayValue;
+                if (element.id === 'riskAmount' || element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
+                    displayValue = `${currentValue > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${currentValue.toFixed(precision)}${currencySymbol}`;
+                } else if (element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') {
+                    displayValue = `${currentValue > 0 && (element.id === 'pnlRoi') ? '+' : ''}${currentValue.toFixed(precision)}${unit}`;
+                } else {
+                    displayValue = currentValue.toFixed(precision);
+                }
+
+                element.innerHTML = icon + displayValue;
+                element.style.color = 'var(--text)';
+                if (status === 'positive') {
+                    element.style.color = 'var(--profit-color)';
+                } else if (status === 'negative') {
+                    element.style.color = 'var(--warning-color)';
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    // Ensure final value is exact
+                    element.innerHTML = icon + (
+                        (element.id === 'riskAmount' || element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') ?
+                        `${end > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${end.toFixed(precision)}${currencySymbol}` :
+                        ((element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') ?
+                        `${end > 0 && (element.id === 'pnlRoi') ? '+' : ''}${end.toFixed(precision)}${unit}` :
+                        end.toFixed(precision))
+                    );
+                    element.style.color = 'var(--text)';
+                    if (status === 'positive') {
+                        element.style.color = 'var(--profit-color)';
+                    } else if (status === 'negative') {
+                        element.style.color = 'var(--warning-color)';
+                    }
+                }
+            }
+            // Easing function for smoother animation
+            function easeOutCubic(t) {
+                return (--t) * t * t + 1;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
         function calculateRiskOnDeal() {
             const balanceVal = parseFloat(balanceInput?.value);
             const leverageVal = parseFloat(leverageInput?.value) || 1;
@@ -2580,7 +2998,6 @@
 
             let isValid = true;
 
-            // Validate all necessary inputs
             isValid = validateInput(balanceInput, document.getElementById('balance-validation'), 0.01) && isValid;
             isValid = validateInput(leverageInput, document.getElementById('leverage-validation'), 1) && isValid;
             isValid = validateInput(entryPointInput, document.getElementById('entryPoint-validation'), 0.01) && isValid;
@@ -2595,7 +3012,6 @@
                 }
             }
 
-            // If any input is invalid or missing, show placeholders
             if (!isValid || isNaN(balanceVal) || isNaN(entryPointVal) || isNaN(stopLossVal)) {
                 displayResult(riskAmountDisplay, '', '', true);
                 displayResult(marginDisplay, '', '', true);
@@ -2631,9 +3047,6 @@
             displayResult(pureMovementDisplay, calculatedPureMovement, '%');
         }
 
-        /**
-         * Calculates and displays results for the "Risk/Reward Ratio" calculator.
-         */
         function calculateRiskReward() {
             if (!rrEntryPointInput || !rrStopLossInput || !rrTakeProfitInput ||
                 !rrSLPointsDisplay || !rrTPPointsDisplay || !rrRatioDisplay) {
@@ -2645,8 +3058,8 @@
             const isTakeProfitValid = validateInput(rrTakeProfitInput, document.getElementById('rrTakeProfit-validation'), 0.01);
 
             const entryPoint = parseFloat(rrEntryPointInput.value);
-            const stopLoss = parseFloat(rrStopLossInput.value);
-            const takeProfit = parseFloat(rrTakeProfitInput.value);
+            let stopLoss = parseFloat(rrStopLossInput.value);
+            let takeProfit = parseFloat(rrTakeProfitInput.value);
 
             if (!isEntryPointValid || !isStopLossValid || !isTakeProfitValid ||
                 isNaN(entryPoint) || isNaN(stopLoss) || isNaN(takeProfit)) {
@@ -2662,18 +3075,17 @@
             displayResult(rrTPPointsDisplay, tpPoints);
             displayResult(rrSLPointsDisplay, slPoints);
 
+            let ratioText = '0:0';
             if (slPoints > 0) {
                 const ratio = tpPoints / slPoints;
-                displayResult(rrRatioDisplay, `1:${ratio.toFixed(currentPrecision)}`);
+                ratioText = `1:${ratio.toFixed(currentPrecision)}`;
+                displayResult(rrRatioDisplay, ratioText);
             } else {
                 showNotification('Количество пунктов до стоп-лосса равно 0. Соотношение риска/прибыли не может быть рассчитано.', 'warning');
                 displayResult(rrRatioDisplay, 'Невозможно рассчитать (SL = TP)', '', true);
             }
         }
 
-        /**
-         * Calculates and displays results for the "Profit/Loss" (PnL) calculator.
-         */
         function calculatePnL() {
             if (!pnlEntryPriceInput || !pnlExitPriceInput || !pnlPositionAmountInput || !pnlLeverageInput ||
                 !pnlTotalPnLDisplay || !pnlRoiDisplay || !pnlPureMovementDisplay || !pnlPointsBetweenEntryExitDisplay) {
@@ -2686,17 +3098,15 @@
             const isLeverageValid = pnlLeverageInput.value.trim() === '' || validateInput(pnlLeverageInput, document.getElementById('pnlLeverage-validation'), 1);
 
             const entryPrice = parseFloat(pnlEntryPriceInput.value);
-            const exitPrice = parseFloat(pnlExitPriceInput.value);
+            let exitPrice = parseFloat(pnlExitPriceInput.value);
             const positionAmount = parseFloat(pnlPositionAmountInput.value);
             let leverage = parseFloat(pnlLeverageInput.value);
             const tradeType = currentPnLTradeType;
 
-            // Default leverage to 1 if not provided or invalid
             if (isNaN(leverage) || leverage < 1) {
                 leverage = 1;
             }
 
-            // If critical inputs are invalid, show placeholders
             if (!isEntryPriceValid || !isExitPriceValid) {
                 displayResult(pnlTotalPnLDisplay, '', '', true);
                 displayResult(pnlRoiDisplay, '', '', true);
@@ -2708,7 +3118,7 @@
             let pureMovement;
             if (tradeType === 'long') {
                 pureMovement = ((exitPrice - entryPrice) / entryPrice) * 100;
-            } else { // short
+            } else {
                 pureMovement = ((entryPrice - exitPrice) / entryPrice) * 100;
             }
             
@@ -2717,7 +3127,6 @@
             let totalPnL = 0;
             let roi = 0;
 
-            // Calculate PnL and ROI based on whether position amount is provided
             if (!isNaN(positionAmount) && isPositionAmountValid) {
                 if (tradeType === 'long') {
                     totalPnL = (exitPrice - entryPrice) * (positionAmount / entryPrice);
@@ -2732,7 +3141,6 @@
                     roi = 0;
                 }
             } else {
-                // If position amount is invalid but not empty, show placeholders
                 if (pnlPositionAmountInput.value.trim() !== '' && !isPositionAmountValid) {
                     displayResult(pnlTotalPnLDisplay, '', '', true);
                     displayResult(pnlRoiDisplay, '', '', true);
@@ -2740,8 +3148,8 @@
                     displayResult(pnlPointsBetweenEntryExitDisplay, '', '', true);
                     return;
                 }
-                totalPnL = 0; // Cannot calculate total PnL without position amount
-                roi = pureMovement * leverage; // ROI is based on pure movement and leverage if no position amount
+                totalPnL = 0;
+                roi = pureMovement * leverage;
             }
             
             displayResult(pnlTotalPnLDisplay, totalPnL, '', false, totalPnL > 0 ? 'positive' : (totalPnL < 0 ? 'negative' : ''));
@@ -2750,11 +3158,7 @@
             displayResult(pnlPointsBetweenEntryExitDisplay, pnlPoints);
         }
 
-        /**
-         * Resets the "Risk on Deal" calculator inputs and results.
-         */
-        function resetRiskOnDealCalculator() {
-            // Clear input values
+        function resetRiskOnDealCalculator(showNotif = true) {
             if (balanceInput) balanceInput.value = '';
             if (leverageInput) leverageInput.value = '';
             if (entryPointInput) entryPointInput.value = '';
@@ -2763,79 +3167,71 @@
             if (riskValue) riskValue.textContent = '3.0%';
             if (fixedLossInput) fixedLossInput.value = '';
 
-            // Clear validation messages
+            localStorage.removeItem('isFixedLossModeForRiskOnDeal');
+
             if (document.getElementById('balance-validation')) document.getElementById('balance-validation').textContent = '';
             if (document.getElementById('leverage-validation')) document.getElementById('leverage-validation').textContent = '';
             if (document.getElementById('entryPoint-validation')) document.getElementById('entryPoint-validation').textContent = '';
             if (document.getElementById('stopLoss-validation')) document.getElementById('stopLoss-validation').textContent = '';
             if (fixedLossValidation) fixedLossValidation.textContent = '';
 
-            // Remove invalid input styling
             if (balanceInput) balanceInput.classList.remove('invalid-input');
             if (leverageInput) leverageInput.classList.remove('invalid-input');
             if (entryPointInput) entryPointInput.classList.remove('invalid-input');
             if (stopLossInput) stopLossInput.classList.remove('invalid-input');
             if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
 
-            // Reset risk mode and update UI
             isFixedLossModeForRiskOnDeal = false;
-            if (document.getElementById('riskToggleButton')) document.getElementById('riskToggleButton').textContent = '% риска на сделку 🔄';
-            if (document.getElementById('riskPercentageSlider')) document.getElementById('riskPercentageSlider').style.display = 'flex';
-            if (document.getElementById('fixedLossInput')) document.getElementById('fixedLossInput').style.display = 'none';
-
+            updateRiskAmountUIMode();
             calculateRiskOnDeal();
-            showNotification('Калькулятор "Риск на сделку" сброшен.');
+            if (showNotif) {
+                showNotification('Калькулятор "Риск на сделку" сброшен.', 'info');
+            }
         }
 
-        /**
-         * Resets the "Risk/Reward Ratio" calculator inputs and results.
-         */
-        function resetRiskRewardCalculator() {
-            // Clear input values
+        function resetRiskRewardCalculator(showNotif = true) {
             if (rrEntryPointInput) rrEntryPointInput.value = '';
             if (rrStopLossInput) rrStopLossInput.value = '';
             if (rrTakeProfitInput) rrTakeProfitInput.value = '';
-
-            // Clear validation messages
+            
             if (document.getElementById('rrEntryPoint-validation')) document.getElementById('rrEntryPoint-validation').textContent = '';
             if (document.getElementById('rrStopLoss-validation')) document.getElementById('rrStopLoss-validation').textContent = '';
             if (document.getElementById('rrTakeProfit-validation')) document.getElementById('rrTakeProfit-validation').textContent = '';
 
-            // Remove invalid input styling
             if (rrEntryPointInput) rrEntryPointInput.classList.remove('invalid-input');
             if (rrStopLossInput) rrStopLossInput.classList.remove('invalid-input');
             if (rrTakeProfitInput) rrTakeProfitInput.classList.remove('invalid-input');
 
             calculateRiskReward();
-            showNotification('Калькулятор соотношения риска/прибыли сброшен.');
+            if (showNotif) {
+                showNotification('Калькулятор соотношения риска/прибыли сброшен.', 'info');
+            }
         }
 
-        /**
-         * Resets the "Profit/Loss" (PnL) calculator inputs and results.
-         */
-        function resetPnLCalculator() {
-            // Clear input values
+        function resetPnLCalculator(showNotif = true) {
             if (pnlEntryPriceInput) pnlEntryPriceInput.value = '';
             if (pnlExitPriceInput) pnlExitPriceInput.value = '';
             if (pnlPositionAmountInput) pnlPositionAmountInput.value = '';
             if (pnlLeverageInput) pnlLeverageInput.value = '';
-            currentPnLTradeType = 'long'; // Reset trade type to long
+            currentPnLTradeType = 'long';
 
-            // Clear validation messages
+            localStorage.removeItem('currentPnLTradeType');
+
             if (document.getElementById('pnlEntryPrice-validation')) document.getElementById('pnlEntryPrice-validation').textContent = '';
             if (document.getElementById('pnlExitPrice-validation')) document.getElementById('pnlExitPrice-validation').textContent = '';
             if (document.getElementById('pnlPositionAmount-validation')) document.getElementById('pnlPositionAmount-validation').textContent = '';
             if (document.getElementById('pnlLeverage-validation')) document.getElementById('pnlLeverage-validation').textContent = '';
 
-            // Remove invalid input styling
             if (pnlEntryPriceInput) pnlEntryPriceInput.classList.remove('invalid-input');
             if (pnlExitPriceInput) pnlExitPriceInput.classList.remove('invalid-input');
             if (pnlPositionAmountInput) pnlPositionAmountInput.classList.remove('invalid-input');
             if (pnlLeverageInput) pnlLeverageInput.classList.remove('invalid-input');
 
-            updatePnLTradeTypeUI(); // Update UI for trade type
+            updatePnLTradeTypeUI();
             calculatePnL();
-            showNotification('Калькулятор прибыли/убытка сброшен.');
+            if (showNotif) {
+                showNotification('Калькулятор прибыли/убытка сброшен.', 'info');
+            }
         }
     </script>
 </body>
