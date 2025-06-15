@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator_ByWeeloser</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📈%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📈%3C/text%3E%3Csvg%3E" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         html {
@@ -147,55 +147,8 @@
             --history-item-bg: #161a19;
         }
 
-        [data-theme="pink"] {
-            --primary: #d82777;
-            --secondary: #f472b6;
-            --accent: #facc15;
-            --bg: linear-gradient(135deg, #1a0610 0%, #290f1a 100%);
-            --card-bg: #2d101c;
-            --text: #fef0f8;
-            --shadow: 0 8px 20px rgba(216, 39, 119, 0.35), 0 4px 10px rgba(0,0,0,0.1);
-            --primary-rgb: 216, 39, 119;
-            --secondary-rgb: 244, 114, 182;
-            --accent-rgb: 250, 204, 21;
-            --placeholder-text-color: #fbcfe8;
-            --button-bg: var(--primary);
-            --button-text: #ffffff;
-            --button-hover-bg: var(--accent);
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.4);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.3);
-            --settings-input-bg: rgba(45, 16, 28, 0.7);
-            --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
-            --profit-color: #84cc16;
-            --warning-color: #ef4444;
-            --history-item-bg: #240c17;
-        }
-
-        [data-theme="purple"] {
-            --primary: #9333ea;
-            --secondary: #d946ef;
-            --accent: #06b6d4;
-            --bg: linear-gradient(135deg, #15062a 0%, #250b3e 100%);
-            --card-bg: #2e1248;
-            --text: #f3e8ff;
-            --shadow: 0 8px 20px rgba(147, 51, 234, 0.35), 0 4px 10px rgba(0,0,0,0.1);
-            --primary-rgb: 147, 51, 234;
-            --secondary-rgb: 217, 70, 239;
-            --accent-rgb: 6, 182, 212;
-            --placeholder-text-color: #d8b4fe;
-            --button-bg: var(--primary);
-            --button-text: #ffffff;
-            --button-hover-bg: var(--accent);
-            --settings-card-border: 1px solid rgba(var(--primary-rgb), 0.4);
-            --settings-item-bg: rgba(var(--primary-rgb), 0.2);
-            --settings-item-hover-bg: rgba(var(--primary-rgb), 0.3);
-            --settings-input-bg: rgba(46, 18, 72, 0.7);
-            --settings-input-border: 1px solid rgba(var(--secondary-rgb), 0.5);
-            --profit-color: #4ade80;
-            --warning-color: #ef4444;
-            --history-item-bg: #25103a;
-        }
+        /* УДАЛЕНА РОЗОВАЯ ТЕМА */
+        /* УДАЛЕНА ФИОЛЕТОВАЯ ТЕМА */
 
         body {
             background: var(--bg);
@@ -210,7 +163,7 @@
             font-family: 'Inter', sans-serif;
             padding: var(--body-padding);
         }
-        /* 4. Более выразительная анимация фона */
+        
         body::before, body::after {
             content: '';
             position: fixed;
@@ -230,7 +183,7 @@
                         radial-gradient(circle at 25% 75%, rgba(var(--accent-rgb), 0.25) 0%, transparent 40%);
             animation: moveGradient 20s ease-in-out infinite alternate,
                        hueRotate 40s linear infinite,
-                       radialScale 25s ease-in-out infinite alternate; /* 5. Динамическая радиальная анимация фона */
+                       radialScale 25s ease-in-out infinite alternate; 
         }
 
         body::after {
@@ -239,7 +192,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg,
-                rgba(var(--secondary-rgb), 0.08) 0%, /* Использовать secondary-rgb */
+                rgba(var(--secondary-rgb), 0.08) 0%, 
                 transparent 50%,
                 rgba(var(--primary-rgb), 0.08) 100%
             );
@@ -256,7 +209,6 @@
             z-index: -3;
         }
 
-        /* 2. Анимированные фоновые частицы - добавлены rotate и scale для динамичности */
         .background-element:nth-child(1) { width: 150px; height: 150px; top: 10%; left: 15%; animation-delay: 0s; background-color: rgba(var(--primary-rgb), 0.45); }
         .background-element:nth-child(2) { width: 200px; height: 200px; top: 60%; left: 70%; animation-delay: 8s; background-color: rgba(var(--accent-rgb), 0.45); }
         .background-element:nth-child(3) { width: 100px; height: 100px; top: 30%; left: 80%; animation-delay: 15s; background-color: rgba(var(--secondary-rgb), 0.45); }
@@ -264,19 +216,49 @@
         .background-element:nth-child(5) { width: 120px; height: 120px; top: 5%; left: 40%; animation-delay: 5s; background-color: rgba(var(--accent-rgb), 0.35); }
         .background-element:nth-child(6) { width: 90px; height: 90px; top: 70%; left: 5%; animation-delay: 12s; background-color: rgba(var(--primary-rgb), 0.35); }
         .background-element:nth-child(7) { width: 160px; height: 160px; top: 25%; left: 55%; animation-delay: 18s; background-color: rgba(var(--secondary-rgb), 0.35); }
-        /* 3. Тонкое наложение текстуры шума */
-        body::before {
-            content: '';
+        
+        /* 4. Анимированные фоновые "точки" */
+        .background-dots {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVDb2xvck1hdHJpeCBpbi1rZXl3b3Jkcz0ic2F0dXJhdGUiIHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMCAxIDAgMCAwIDAgMC41IDAgMCI+PC9mZUNvbG9yTWF0cml4PjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcn0idXJsKCNuKSIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4wNSkiLz48L3N2Zz4=');
-            opacity: 0.05;
+            top: 0;
+            left: 0;
+            z-index: -4;
             pointer-events: none;
-            z-index: -1;
+            overflow: hidden;
         }
+        .background-dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: dotMove 20s linear infinite alternate;
+        }
+        .background-dot:nth-child(1) { width: 2px; height: 2px; top: 10%; left: 10%; animation-delay: 0s; }
+        .background-dot:nth-child(2) { width: 3px; height: 3px; top: 50%; left: 80%; animation-delay: 5s; }
+        .background-dot:nth-child(3) { width: 2px; height: 2px; top: 80%; left: 30%; animation-delay: 10s; }
+        .background-dot:nth-child(4) { width: 4px; height: 4px; top: 20%; left: 60%; animation-delay: 15s; }
+        .background-dot:nth-child(5) { width: 2px; height: 2px; top: 40%; left: 20%; animation-delay: 3s; }
+        .background-dot:nth-child(6) { width: 3px; height: 3px; top: 70%; left: 5%; animation-delay: 8s; }
+        .background-dot:nth-child(7) { width: 4px; height: 4px; top: 25%; left: 90%; animation-delay: 12s; }
+        .background-dot:nth-child(8) { width: 2px; height: 2px; top: 90%; left: 50%; animation-delay: 18s; }
+        @keyframes dotMove {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            50% { transform: translate(calc(100vw * 0.1), calc(100vh * 0.1)) scale(1.1); opacity: 0.8; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+        }
+
+        /* 5. Усиленный параллакс на фоновых элементах при движении мыши */
+        .parallax-bg-element {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.05;
+            z-index: -5;
+        }
+        .parallax-bg-element:nth-child(1) { width: 300px; height: 300px; top: -10%; left: -10%; background: radial-gradient(circle, rgba(var(--primary-rgb), 0.1), transparent); }
+        .parallax-bg-element:nth-child(2) { width: 400px; height: 400px; bottom: -15%; right: -15%; background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1), transparent); }
+        .parallax-bg-element:nth-child(3) { width: 200px; height: 200px; top: 30%; left: 40%; background: radial-gradient(circle, rgba(var(--secondary-rgb), 0.08), transparent); }
+
 
         @keyframes moveGradient {
             0% { transform: translate(0, 0); }
@@ -287,7 +269,6 @@
             0% { filter: hue-rotate(0deg) blur(12px); }
             100% { filter: hue-rotate(360deg) blur(12px); }
         }
-        /* 5. Динамическая радиальная анимация фона */
         @keyframes radialScale {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -298,12 +279,26 @@
             0% { background-position: 0% 0%; }
             100% { background-position: 100% 100%; }
         }
-        /* 2. Анимированные фоновые частицы - обновлено */
         @keyframes floatAndFade {
             0% { transform: translateY(0) scale(0.8) rotateZ(0deg); opacity: 0; }
             20% { opacity: 0.6; transform: translateY(-20px) scale(0.9) rotateZ(10deg); }
             80% { opacity: 0.6; transform: translateY(-180px) scale(1.1) rotateZ(-10deg); }
             100% { transform: translateY(-200px) scale(1.2) rotateZ(0deg); opacity: 0; }
+        }
+        /* 7. Анимированная граница загрузки страницы */
+        .loading-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+            z-index: 9999;
+            animation: loadingBar 2s ease-out forwards;
+        }
+        @keyframes loadingBar {
+            0% { width: 0%; }
+            100% { width: 100%; opacity: 0; }
         }
 
         .container {
@@ -314,19 +309,24 @@
             position: relative;
             z-index: 1;
             opacity: 0;
-            transform: translateY(20px) scale(0.98) rotateX(2deg); /* 9. Улучшена анимация загрузки страницы */
-            animation: containerFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
-            /* 6. Эффект свечения краев на контейнере */
+            transform: translateY(20px) scale(0.98) rotateX(2deg); 
             box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7);
             animation: containerFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards,
                        edgeGlow 4s ease-in-out infinite alternate 1s;
         }
-        /* 6. Эффект свечения краев на контейнере */
+        /* 2. Эффект свечения краев на контейнере */
         @keyframes edgeGlow {
             0% { box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7); }
             50% { box-shadow: 0 0 25px 5px rgba(var(--primary-rgb), 0.7), 0 0 50px 10px rgba(var(--accent-rgb), 0.5); }
             100% { box-shadow: 0 0 0 0px rgba(var(--primary-rgb), 0.7); }
         }
+        /* 1. Динамический фон на основе активной вкладки */
+        body[data-current-tab="calculations"] { --tab-bg-blend: rgba(var(--primary-rgb), 0.05); }
+        body[data-current-tab="settings"] { --tab-bg-blend: rgba(var(--secondary-rgb), 0.05); }
+        body::before { background: radial-gradient(circle at 75% 25%, rgba(var(--primary-rgb), 0.25) 0%, transparent 40%),
+                                  radial-gradient(circle at 25% 75%, rgba(var(--accent-rgb), 0.25) 0%, transparent 40%),
+                                  var(--tab-bg-blend, transparent); }
+
 
         @keyframes containerFadeIn {
             to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
@@ -337,7 +337,6 @@
             margin-bottom: var(--gap-large);
             font-size: 0.9rem;
             opacity: 0;
-            /* 7. Анимация появления текста автора */
             animation: fadeInAuthor 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             color: var(--text); 
@@ -347,6 +346,8 @@
             from { opacity: 0; transform: translateY(20px) scale(0.9); }
             to { opacity: 0.8; transform: translateY(0) scale(1); }
         }
+        /* 6. Градиентный текст для заголовка */
+        /* Удален h1 заголовок "Крипто-Калькулятор" */
 
         .author a {
             color: var(--primary);
@@ -387,7 +388,6 @@
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        /* 8. Эффект мерцания при наведении на кнопку темы */
         .theme-button::before {
             content: '';
             position: absolute;
@@ -439,7 +439,6 @@
             border-color: var(--accent);
             box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary), inset 0 0 5px rgba(0,0,0,0.2);
             transform: scale(1.15) rotate(5deg);
-            /* 10. Пульсирующая граница активной темы */
             animation: activeThemePulse 2s infinite ease-in-out;
         }
         @keyframes activeThemePulse {
@@ -453,8 +452,6 @@
         .theme-light { background: #f8fafc; border: 2px solid #64748b; }
         .theme-blue { background: #2563eb; border: 2px solid #e0f2fe; }
         .theme-green { background: #059669; border: 2px solid #f0fdf4; }
-        .theme-pink { background: #db2777; border: 2px solid #fef0f8; }
-        .theme-purple { background: #9333ea; border: 2px solid #f3e8ff; }
 
         .tabs {
             display: flex;
@@ -488,7 +485,6 @@
             overflow: hidden;
             z-index: 1;
         }
-        /* 11. Эффект бликов на вкладке при наведении */
         .tab::before {
             content: '';
             position: absolute;
@@ -508,7 +504,7 @@
         .tab:hover:not(.active) {
             transform: translateY(-4px) scale(1.02);
             color: var(--primary);
-            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3); /* 17. Эффект свечения при наведении на вкладку */
+            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
         }
 
         .tab.active {
@@ -520,7 +516,15 @@
             transform: translateY(-3px) scale(1.03);
             z-index: 2;
         }
-        /* 12. Эластичность подчеркивания активной вкладки */
+        /* 8. Эффект пульсирующей тени активной вкладки */
+        .tab.active {
+            animation: activeTabPulseShadow 2s infinite alternate;
+        }
+        @keyframes activeTabPulseShadow {
+            0% { box-shadow: 0 6px 12px rgba(var(--primary-rgb), 0.4); }
+            100% { box-shadow: 0 8px 16px rgba(var(--primary-rgb), 0.5), 0 0 25px rgba(var(--accent-rgb), 0.35); }
+        }
+
         .tab.active::after {
             content: '';
             position: absolute;
@@ -528,7 +532,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--secondary)); /* Более яркий градиент */
+            background: linear-gradient(90deg, var(--accent), var(--secondary)); 
             transform: scaleX(0);
             transform-origin: center;
             animation: activeTabUnderline 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
@@ -540,7 +544,6 @@
             70% { transform: scaleX(1.1); opacity: 1; }
             100% { transform: scaleX(1); opacity: 1; }
         }
-        /* 13. Тень текста активной вкладки */
         .tab.active {
             text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
@@ -550,7 +553,6 @@
             visibility: hidden;
             height: 0;
             overflow: hidden;
-            /* 18. Плавный переход контента вкладок */
             transition: opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             background: var(--card-bg);
             padding: var(--gap-large);
@@ -596,43 +598,59 @@
             border-radius: calc(var(--border-radius) - 6px);
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
             min-width: 120px;
+            position: relative;
+            overflow: hidden;
         }
-        /* 21. Масштабирование подвкладки при наведении */
         .sub-tab:hover:not(.active) {
             transform: scale(1.03);
             background-color: rgba(var(--primary-rgb), 0.1);
         }
-
+        /* 10. Анимированный фон подвкладки при наведении */
+        .sub-tab:hover:not(.active)::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.05);
+            animation: subTabHoverWave 0.5s ease-out forwards;
+            border-radius: inherit;
+            z-index: -1;
+        }
+        @keyframes subTabHoverWave {
+            0% { transform: scaleX(0) translateX(-100%); }
+            100% { transform: scaleX(1) translateX(0%); opacity: 0; }
+        }
+        /* 19. Свечение границы активной подвкладки */
         .sub-tab.active {
             background: var(--primary);
             color: white;
             box-shadow: 0 2px 5px rgba(var(--primary-rgb), 0.2);
-            transform: scale(1.05); /* 20. Масштабирование подвкладки */
-            /* 19. Свечение границы активной подвкладки */
+            transform: scale(1.05); 
             border: 2px solid var(--accent);
             box-shadow: 0 0 10px var(--accent), 0 0 20px var(--primary);
         }
-        /* 22. Нажатие подвкладки */
+        /* 9. Световой след при переключении подвкладок */
+        .sub-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            animation: subTabLineSweep 0.5s ease-out forwards;
+        }
+        @keyframes subTabLineSweep {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+        
         .sub-tab:active {
             transform: scale(0.98);
         }
-        /* 20. Пульсация фона подвкладки при наведении */
-        .sub-tab:hover::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple 0.6s linear forwards;
-        }
-        @keyframes ripple {
-            to { width: 100%; height: 100%; opacity: 0; }
-        }
-
+        
         .sub-tab-content {
             display: none;
         }
@@ -670,7 +688,6 @@
             from { opacity: 0; transform: translateX(-25px) skewX(-10deg); }
             to { opacity: 1; transform: translateX(0) skewX(0deg); }
         }
-        /* 30. Пульсирующий индикатор фокуса ввода */
         .input-group::before {
             content: '';
             position: absolute;
@@ -701,13 +718,30 @@
             transform: translateX(-10px);
             opacity: 0;
             animation: labelSlideIn 0.5s ease-out 0.2s forwards;
-            transition: text-shadow 0.3s ease, color 0.3s ease; /* 23. Акцент метки ввода */
+            transition: text-shadow 0.3s ease, color 0.3s ease; 
         }
-        /* 23. Акцент метки ввода */
+        /* 16. Плавная тень для меток ввода */
+        .input-group label {
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        /* 14. Градиентный текст на фокусе метки */
         .input-group:focus-within label {
             text-shadow: 0 0 8px rgba(var(--primary-rgb), 0.5); 
-            color: var(--primary);
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        /* 17. Анимация текста метки при ошибке */
+        .input-group.invalid label {
+            animation: labelShake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes labelShake {
+            10%, 90% { transform: translateX(-11px); }
+            20%, 80% { transform: translateX(-9px); }
+            30%, 50%, 70% { transform: translateX(-12px); }
+            40%, 60% { transform: translateX(-8px); }
+        }
+
         @keyframes labelSlideIn {
             to { transform: translateX(0); opacity: 1;}
         }
@@ -730,20 +764,25 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
-        /* 24. Внутренняя тень поля ввода при фокусе */
+        /* 13. Анимация границы ввода на фокусе */
         .input-group input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 12px rgba(var(--accent-rgb), 0.3), inset 0 0 10px rgba(var(--primary-rgb), 0.2); 
             background-color: var(--card-bg);
             transform: scale(1.01);
+            animation: inputBorderShimmer 1.5s infinite linear;
         }
-        /* 25. Градиентная граница на фокусе ввода - уже есть, но усилим */
-        .input-group input:focus {
-            border-image: linear-gradient(to right, var(--primary), var(--accent)) 1;
-            border-image-slice: 1;
+        @keyframes inputBorderShimmer {
+            0% { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5); }
+            50% { border-color: var(--accent); box-shadow: 0 0 0 5px rgba(var(--accent-rgb), 0.7); }
+            100% { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5); }
         }
-        /* 31. Анимация значения ввода при печати */
+        /* 15. Тень текста для значений ввода */
+        .input-group input {
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
         .input-group input.typing-pulse {
             animation: typingPulse 0.3s ease-out;
         }
@@ -752,7 +791,23 @@
             50% { transform: scale(1.015); }
             100% { transform: scale(1); }
         }
-        /* 27. Анимация дрожания при ошибке ввода */
+        /* 11. Анимированный "индикатор ввода" */
+        .input-group input:focus::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: dotIndicator 0.5s forwards;
+        }
+        @keyframes dotIndicator {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
         .input-group input.invalid-input {
             animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
             transform: translate3d(0, 0, 0);
@@ -765,7 +820,7 @@
             30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
             40%, 60% { transform: translate3d(4px, 0, 0); }
         }
-        /* 26. Плавное появление/исчезновение текста-заполнителя - усилено */
+        
         .input-group input::placeholder {
             transition: opacity 0.3s ease;
         }
@@ -804,13 +859,17 @@
             position: relative;
             overflow: hidden;
         }
-        /* 29. Анимация заполнения дорожки слайдера */
         .slider::-webkit-slider-runnable-track {
             background: linear-gradient(to right, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
             background-size: 200% 100%;
-            background-position: var(--fill-percent, 0%) 0%; /* Переменная для JS */
+            background-position: var(--fill-percent, 0%) 0%; 
             transition: background-position 0.3s ease;
         }
+        /* 14. Индикатор заполнения слайдера (дополнительно) */
+        .slider::-webkit-slider-runnable-track {
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 15px rgba(var(--primary-rgb), 0.3);
+        }
+
 
         .slider:hover {
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 10px rgba(var(--primary-rgb), 0.6);
@@ -821,35 +880,42 @@
             appearance: none;
             width: 26px;
             height: 26px;
-            border-radius: 50%;
+            border-radius: 50%; /* Сделано круглым */
             background: white;
             cursor: grab;
             transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
             box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
+            /* 13. Эффект "сияния" на ползунке слайдера */
+            animation: sliderThumbGlow 2s infinite alternate;
         }
+        @keyframes sliderThumbGlow {
+            0% { box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5); }
+            100% { box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.8), 0 0 25px rgba(var(--primary-rgb), 0.5); }
+        }
+
         .slider::-webkit-slider-thumb:active {
             cursor: grabbing;
-            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary); /* 30. Свечение ползунка слайдера */
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary);
             animation: thumbPop 0.3s ease-in-out;
-            /* 31. Глубина тени ползунка слайдера */
             box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.8), 0 0 30px var(--primary);
         }
 
         .slider::-moz-range-thumb {
             width: 26px;
             height: 26px;
-            border-radius: 50%;
+            border-radius: 50%; /* Сделано круглым */
             background: white;
             cursor: grab;
             box-shadow: 0 3px 7px rgba(var(--accent-rgb), 0.5), 0 1px 3px rgba(0,0,0,0.3);
             border: 3px solid var(--accent);
+            /* 13. Эффект "сияния" на ползунке слайдера */
+            animation: sliderThumbGlow 2s infinite alternate;
         }
          .slider::-moz-range-thumb:active {
             cursor: grabbing;
-            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary); /* 30. Свечение ползунка слайдера */
+            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.9), 0 0 20px var(--primary);
             animation: thumbPop 0.3s ease-in-out;
-            /* 31. Глубина тени ползунка слайдера */
             box-shadow: 0 8px 20px rgba(var(--accent-rgb), 0.8), 0 0 30px var(--primary);
         }
 
@@ -866,14 +932,13 @@
             0%, 100% { transform: scale(1.2); }
             50% { transform: scale(1.1); }
         }
-        /* 32. Свечение текста значения слайдера */
+        /* 15. Анимированные подсказки для ползунка - только JS для этого*/
         #riskValue {
             transition: text-shadow 0.3s ease;
         }
         .slider-container:focus-within #riskValue {
             text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
         }
-        /* 33. Визуальные отметки слайдера */
         .slider::before, .slider::after {
             content: '';
             position: absolute;
@@ -911,16 +976,31 @@
             padding: var(--gap-medium);
             box-shadow: var(--shadow);
             border-left: 6px solid var(--primary);
-            /* 49. Постепенное появление карточек результата */
             animation: fadeInUpResultCard 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
             position: relative;
             overflow: hidden;
-            /* 45. 3D-наклон карточки результата при наведении */
+            /* 23. Эффект "глубины" на карточках результатов при наведении */
             transition: transform 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), box-shadow 0.35s cubic-bezier(0.075, 0.82, 0.165, 1), border-color 0.3s ease, background-color 0.3s ease,
                         transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             transform-style: preserve-3d;
         }
+        /* 24. Анимированные разделители в карточках результатов */
+        .result-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb),0.2), transparent);
+            transform: translateY(-50%) scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .result-card:hover::after {
+            transform: translateY(-50%) scaleX(1);
+        }
+
 
         .result-grid .result-card:nth-child(1) { animation-delay: 0.7s; }
         .result-grid .result-card:nth-child(2) { animation-delay: 0.8s; }
@@ -932,7 +1012,6 @@
             from { opacity: 0; transform: translateY(30px) rotateX(-20deg) scale(0.9); }
             to { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
         }
-        /* 46. Анимация градиента границы карточки результата */
         .result-card::before {
             content: '';
             position: absolute;
@@ -951,22 +1030,38 @@
 
         .result-card:hover {
             transform: translateY(-12px) rotateX(7deg) scale(1.04) skewY(-1deg);
-            /* 50. Анимация тени карточки результата */
             box-shadow: 0 18px 30px rgba(var(--primary-rgb), 0.25), 0 8px 15px rgba(0,0,0,0.15), 0 0 30px rgba(var(--accent-rgb), 0.4);
         }
+        /* 25. "Пульсирующая" тень для положительных/отрицательных результатов */
+        .result-card.positive-pnl {
+            border-left-color: var(--profit-color);
+            animation: positiveResultPulse 2s infinite alternate;
+        }
+        .result-card.negative-pnl {
+            border-left-color: var(--warning-color);
+            animation: negativeResultPulse 2s infinite alternate;
+        }
+        @keyframes positiveResultPulse {
+            0% { box-shadow: 0 4px 12px rgba(var(--profit-rgb, 16, 185, 129), 0.3); }
+            100% { box-shadow: 0 0 20px rgba(var(--profit-rgb, 16, 185, 129), 0.6); }
+        }
+        @keyframes negativeResultPulse {
+            0% { box-shadow: 0 4px 12px rgba(var(--warning-color-rgb, 239, 68, 68), 0.3); }
+            100% { box-shadow: 0 0 20px rgba(var(--warning-color-rgb, 239, 68, 68), 0.6); }
+        }
+
 
         .result-card.calculating-animation {
             animation: resultCardPulse 0.4s ease-out;
             border-color: var(--accent); 
         }
-        /* 47. Пульсация фона карточки результата при обновлении */
         .result-card.flash-bg {
             animation: resultCardBgFlash 0.3s ease-out;
         }
-
+        /* 24. Эффект "взлета" заголовка на обновлении */
         @keyframes resultCardPulse {
             0% { transform: scale(1); box-shadow: var(--shadow); border-color: var(--primary); }
-            50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.6); border-color: var(--accent); }
+            50% { transform: scale(1.03) translateY(-5px); box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.6); border-color: var(--accent); }
             100% { transform: scale(1); box-shadow: var(--shadow); border-color: var(--primary); }
         }
         @keyframes resultCardBgFlash {
@@ -979,7 +1074,6 @@
         .result-title {
             font-size: var(--font-size-result-title);
             font-weight: 600;
-            /* 52. Градиент заголовка результата */
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -1027,9 +1121,18 @@
             from { color: var(--warning-color); text-shadow: 0 0 5px rgba(255,0,0,0.3); }
             to { color: #cc3333; text-shadow: 0 0 10px rgba(255,0,0,0.7); }
         }
-        /* 53. Тень текста результатов */
+        
         .result-value.text-shadow-subtle {
             text-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 8px rgba(var(--primary-rgb), 0.1);
+        }
+        /* 26. Эффект "мерцания" на значениях результата при копировании */
+        .result-value.copied-flash {
+            animation: copiedResultFlash 0.3s ease-out;
+        }
+        @keyframes copiedResultFlash {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .footer {
@@ -1055,7 +1158,6 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            /* 51. Анимация появления элемента настройки */
             opacity: 0;
             transform: translateY(20px) scale(0.95);
             animation: settingCardAppear 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -1067,7 +1169,6 @@
         @keyframes settingCardAppear {
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        /* 55. Мерцание верхней полосы карточки настроек */
         .settings-section-card::before {
             content: '';
             position: absolute;
@@ -1125,7 +1226,6 @@
             border: 1px solid rgba(var(--primary-rgb), 0.1);
             color: var(--text);
         }
-        /* 51. Эффект парения для пунктов настроек */
         .setting-item:hover {
             background-color: var(--settings-item-hover-bg);
             transform: translateY(-3px); 
@@ -1160,7 +1260,6 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.3);
-            /* 54. Свечение границы поля валюты */
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.5), 0 0 15px rgba(var(--accent-rgb), 0.4);
         }
 
@@ -1208,7 +1307,6 @@
             transform: translateY(10px);
             transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
         }
-        /* 53. Масштабирование выпадающего меню при появлении */
         .settings-dropdown-menu.active {
             opacity: 1;
             visibility: visible;
@@ -1232,13 +1330,28 @@
             cursor: pointer;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-        /* 52. Выделение пунктов выпадающего списка */
         .settings-dropdown-menu button:hover,
         .settings-dropdown-menu button.selected {
             background-color: var(--primary); 
             color: var(--selection-text);
             box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
         }
+        /* 29. Элементы выпадающего меню плавно появляются */
+        .settings-dropdown-menu button {
+            opacity: 0;
+            transform: translateY(-5px);
+            animation: dropdownItemFadeIn 0.3s ease-out forwards;
+        }
+        .settings-dropdown-menu button:nth-child(1) { animation-delay: 0.05s; }
+        .settings-dropdown-menu button:nth-child(2) { animation-delay: 0.1s; }
+        .settings-dropdown-menu button:nth-child(3) { animation-delay: 0.15s; }
+        .settings-dropdown-menu button:nth-child(4) { animation-delay: 0.2s; }
+        .settings-dropdown-menu button:nth-child(5) { animation-delay: 0.25s; }
+
+        @keyframes dropdownItemFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
 
         .checkbox-container {
             position: relative;
@@ -1267,7 +1380,6 @@
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
             border: 2px solid transparent;
         }
-        /* 52. Анимация заполнения чекбокса */
         .checkbox-container input:checked + .custom-checkbox {
             background-color: var(--primary);
             border-color: var(--accent);
@@ -1290,6 +1402,12 @@
             border: solid white;
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
+            /* 30. Анимация отметки чекбокса */
+            animation: checkboxTick 0.3s ease-out forwards;
+        }
+        @keyframes checkboxTick {
+            0% { transform: scale(0) rotate(45deg); opacity: 0; }
+            100% { transform: scale(1) rotate(45deg); opacity: 1; }
         }
 
         .checkbox-container input:checked + .custom-checkbox:after {
@@ -1315,25 +1433,41 @@
             width: fit-content;
             align-self: flex-end;
             display: block;
+            position: relative; /* Для эффекта "взрыва" */
+            overflow: hidden;
         }
-        /* 41. Эффект парения для кнопок */
         .reset-button:hover {
             background-color: #d32f2f;
             transform: translateY(-2px) rotateZ(-1deg); 
             box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4);
         }
-        /* 42. Глубина нажатия кнопок */
         .reset-button:active {
             transform: translateY(0);
             box-shadow: inset 0 3px 8px rgba(0,0,0,0.3); 
         }
-        /* 56. Кнопка сброса настроек с эффектом пульсации */
         .reset-button.settings-reset-button:hover {
             animation: resetButtonPulse 1s infinite alternate;
         }
         @keyframes resetButtonPulse {
             0% { box-shadow: 0 6px 15px rgba(244, 67, 54, 0.4); }
             100% { box-shadow: 0 8px 20px rgba(244, 67, 54, 0.6), 0 0 25px rgba(244, 67, 54, 0.8); }
+        }
+        /* 22. Кнопка сброса настроек с эффектом "взрыва" */
+        .reset-button.settings-reset-button:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.7), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: resetButtonExplosion 0.6s ease-out forwards;
+        }
+        @keyframes resetButtonExplosion {
+            0% { width: 0; height: 0; opacity: 0.7; }
+            100% { width: 200%; height: 200%; opacity: 0; }
         }
 
 
@@ -1343,8 +1477,9 @@
             margin-top: 0.25rem;
             min-height: 1rem;
             opacity: 0;
-            transform: translateY(5px); /* 28. Сообщение об ошибке с эффектом слайда */
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            transform: translateY(5px); 
+            /* 17. Сообщения об ошибках плавный fade-in */
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, color 0.3s ease;
         }
 
         .validation-message:not(:empty) {
@@ -1359,11 +1494,13 @@
 
         .notification-container {
             position: fixed;
-            top: 1rem;
+            /* 26. Уведомления появляются справа снизу */
+            top: auto;
+            bottom: 1rem;
             right: 1rem;
             z-index: 2000;
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse; /* Новые сверху */
             gap: 0.75rem;
         }
 
@@ -1384,22 +1521,22 @@
             display: flex; /* Для иконок уведомлений */
             align-items: center;
             gap: 0.75rem;
+            /* 28. Уведомления с затухающим градиентом */
+            background: linear-gradient(90deg, var(--card-bg), rgba(var(--card-bg-rgb, 28, 25, 23), 0.9));
         }
         .notification.notification-success { border-left-color: var(--profit-color); }
         .notification.notification-warning { border-left-color: var(--warning-color); }
         .notification.notification-info { border-left-color: var(--primary); }
-        /* 54. Пульсация фона уведомления при появлении */
+        /* 29. Эффект "парения" уведомлений при появлении */
         @keyframes slideInNotification {
-            0% { opacity: 0; transform: translateX(120%) scale(0.9) ; box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);}
-            50% { box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.7); }
-            100% { opacity: 1; transform: translateX(0) scale(1); box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+            0% { opacity: 0; transform: translateY(20px) translateX(120%) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
         }
-        /* 55. Анимация "вылета" уведомления */
+        /* 30. Уведомления с мягким поворотом при исчезновении */
         @keyframes fadeOutNotification {
             from { opacity: 1; transform: translateX(0) scale(1) rotateZ(0deg); }
-            to { opacity: 0; transform: translateX(150%) scale(0.7) rotateZ(10deg); } /* Более выраженный вылет */
+            to { opacity: 0; transform: translateY(-20px) translateX(150%) scale(0.7) rotateZ(10deg); }
         }
-        /* 56. Отскок иконок уведомлений */
         .notification span.icon {
             animation: iconBounce 0.5s ease-out;
             display: inline-block;
@@ -1429,7 +1566,6 @@
             margin-bottom: var(--gap-small);
             cursor: pointer;
         }
-        /* 41. Эффект парения для кнопок */
         .function-toggle-button-container:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -1448,17 +1584,32 @@
             border-radius: var(--border-radius);
             transition: background-color 0.2s ease;
         }
-
+        /* 20. Анимация иконки "обновить" на кнопках сброса */
+        .function-toggle-button span.icon-refresh {
+            display: inline-block;
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .function-toggle-button:hover span.icon-refresh {
+            animation: rotateRefresh 0.6s ease-in-out forwards;
+        }
+        @keyframes rotateRefresh {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .function-toggle-button:hover {
             background-color: rgba(255, 255, 255, 0.1);
+            /* 18. Градиентный текст на кнопках при наведении */
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .function-toggle-button:focus {
-            outline: none;
-        }
-        /* 40. Масштабирование текста кнопки-переключателя при клике */
+        /* 19. Эффект "вылета" иконки при наведении/клике */
         .function-toggle-button:active {
             animation: toggleTextScale 0.3s ease-out;
+            background: var(--primary); /* Отменить градиент текста при активации */
+            -webkit-text-fill-color: initial;
+            color: white;
         }
         @keyframes toggleTextScale {
             0% { transform: scale(1); }
@@ -1490,7 +1641,6 @@
             color: white;
             background-color: rgba(var(--text-rgb, 0,0,0), 0.3);
         }
-        /* 39. Свечение переключателя типа сделки */
         .trade-type-button.active {
             box-shadow: 0 4px 10px rgba(0,0,0,0.2), 0 0 15px rgba(var(--primary-rgb), 0.5); 
             position: relative;
@@ -1531,11 +1681,10 @@
             width: fit-content;
             align-self: flex-start;
             display: block;
-            position: relative; /* Для shimmer */
+            position: relative; 
             overflow: hidden;
             z-index: 0;
         }
-        /* 36. Мерцающий фон кнопки при наведении */
         .copy-all-button::before {
             content: '';
             position: absolute;
@@ -1552,18 +1701,15 @@
             left: 100%;
         }
 
-        /* 41. Эффект парения для кнопок */
         .copy-all-button:hover {
             background-color: var(--primary);
             transform: translateY(-1px) rotateZ(1deg); 
             box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.3);
         }
-        /* 42. Глубина нажатия кнопок */
         .copy-all-button:active {
             transform: translateY(0);
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); 
         }
-        /* 43. Обратная связь кнопки копирования */
         .copy-all-button.copied { 
             background-color: var(--profit-color);
             color: white;
@@ -1823,6 +1969,21 @@
                 padding: 0.5rem 0.6rem;
                 font-size: 0.85rem;
             }
+            .history-item { /* will be unused */
+                font-size: 0.85rem;
+                padding: 0.65rem 0.9rem;
+            }
+            .history-item-header { /* will be unused */
+                font-size: 0.95rem;
+            }
+            .history-item-date { /* will be unused */
+                font-size: 0.7rem;
+            }
+            .history-clear-all-button { /* will be unused */
+                width: 100%;
+                font-size: 0.85rem;
+                padding: 0.65rem 1rem;
+            }
         }
 
         @media (max-width: 768px) and (orientation: portrait) {
@@ -2026,6 +2187,9 @@
     </style>
 </head>
 <body>
+    <!-- 3. Светящийся эффект следования за мышью -->
+    <div class="mouse-follower-glow" style="position: fixed; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--accent-rgb), 0.3), transparent 70%); pointer-events: none; transform: translate(-50%, -50%); transition: opacity 0.1s ease-out, transform 0.05s linear; z-index: 1000; opacity: 0;"></div>
+    
     <div class="background-element"></div>
     <div class="background-element"></div>
     <div class="background-element"></div>
@@ -2033,6 +2197,23 @@
     <div class="background-element"></div>
     <div class="background-element"></div>
     <div class="background-element"></div>
+
+    <div class="parallax-bg-element"></div>
+    <div class="parallax-bg-element"></div>
+    <div class="parallax-bg-element"></div>
+
+    <div class="background-dots">
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+        <div class="background-dot"></div>
+    </div>
+
+    <div class="loading-bar"></div> <!-- 7. Анимированная граница загрузки страницы -->
 
     <div class="notification-container"></div>
 
@@ -2040,6 +2221,8 @@
         <div class="author">
             <p>© <a href="https://t.me/weeloser " target="_blank">@weeloser</a></p>
         </div>
+
+        <!-- УДАЛЕН ЗАГОЛОВОК H1 "Крипто-Калькулятор" -->
 
         <div class="tabs">
             <div class="tab active" onclick="switchTab('calculations')">Расчеты</div>
@@ -2081,7 +2264,7 @@
                         </div>
 
                         <div class="function-toggle-button-container" id="riskAmountToggleContainer">
-                            <button id="riskToggleButton" class="function-toggle-button">% риска на сделку 🔄</button>
+                            <button id="riskToggleButton" class="function-toggle-button">% риска на сделку <span class="icon-refresh">🔄</span></button>
                         </div>
 
                         <div id="riskPercentageSlider" class="slider-container">
@@ -2134,7 +2317,6 @@
             <div id="risk-reward-ratio" class="sub-tab-content">
                 <div class="calculator">
                     <div class="input-section">
-                        <!-- Input mode toggle removed -->
                         <div class="input-group">
                             <label for="rrEntryPoint">Точка входа</label>
                             <input type="number" id="rrEntryPoint" placeholder="Введите точку входа" min="0.01" step="any">
@@ -2184,7 +2366,6 @@
                             <div class="trade-type-button long active" id="pnlTradeTypeLong">LONG</div>
                             <div class="trade-type-button short" id="pnlTradeTypeShort">SHORT</div>
                         </div>
-                        <!-- Input mode toggle removed -->
                         <div class="input-group">
                             <label for="pnlEntryPrice">Цена входа</label>
                             <input type="number" id="pnlEntryPrice" placeholder="Введите цену входа" min="0.01" step="any">
@@ -2247,8 +2428,6 @@
                     <div class="theme-switcher" id="settingsThemeSwitcher"></div>
                 </div>
 
-                <!-- History section removed -->
-
                 <div class="settings-section-card">
                     <h3>Другое</h3>
                     <div class="settings-list">
@@ -2271,7 +2450,6 @@
                             <label for="currencySymbolInput">Валютный символ</label>
                             <input type="text" id="currencySymbolInput" maxlength="10" placeholder="$, €, ₽" class="input-group-text-input" style="width: 80px; text-align: center; background-color: var(--settings-input-bg); border: var(--settings-input-border); border-radius: var(--border-radius); padding: 0.5rem 0.75rem; color: var(--text); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
                         </div>
-                        <!-- Clear all calculators button removed -->
                         <button class="reset-button settings-reset-button" onclick="resetAllSettings()">Сбросить все настройки</button>
                     </div>
                 </div>
@@ -2280,6 +2458,7 @@
     </div>
 
     <script>
+        // Global variables declaration
         let balanceInput, leverageInput, riskSlider, riskValue, riskWarning;
         let marginDisplay, positionSizeDisplay, riskAmountDisplay, pureMovementDisplay;
         let entryPointInput, stopLossInput;
@@ -2345,7 +2524,7 @@
             else if (type === 'error') icon = '<span class="icon">❌</span> ';
             else icon = '<span class="icon">ℹ️</span> ';
 
-            notification.innerHTML = icon + message; // Иконки уведомлений
+            notification.innerHTML = icon + message;
             container.appendChild(notification);
             requestAnimationFrame(() => {
                 notification.style.opacity = '1';
@@ -2367,8 +2546,7 @@
             { name: 'light', label: 'Светлая' },
             { name: 'blue', label: 'Голубая' },
             { name: 'green', label: 'Зеленая' },
-            { name: 'pink', label: 'Розовая' },
-            { name: 'purple', label: 'Фиолетовая' },
+            // Удалены темы "pink" и "purple"
         ];
 
         function setTheme(themeName) {
@@ -2466,6 +2644,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             try {
+                // Initialize global variables with DOM elements
                 balanceInput = document.getElementById('balance');
                 leverageInput = document.getElementById('leverage');
                 riskSlider = document.getElementById('riskSlider');
@@ -2502,8 +2681,8 @@
                 pnlPointsBetweenEntryExitDisplay = document.getElementById('pnlPointsBetweenEntryExit');
                 pnlExitPriceLabel = document.getElementById('pnlExitPriceLabel');
 
+                // Initialize theme
                 createThemeButtons();
-
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 if (availableThemes.some(t => t.name === savedTheme)) {
                     setTheme(savedTheme);
@@ -2511,6 +2690,7 @@
                     setTheme('dark');
                 }
 
+                // Initialize notifications
                 notificationsEnabled = localStorage.getItem('notificationsEnabled') !== 'false';
                 const notificationToggleInput = document.getElementById('notificationToggle');
                 if (notificationToggleInput) {
@@ -2518,6 +2698,7 @@
                     notificationToggleInput.addEventListener('change', () => toggleNotifications(notificationToggleInput.checked));
                 }
 
+                // Initialize precision dropdown
                 currentPrecision = parseInt(localStorage.getItem('currentPrecision') || '2');
                 const precisionDisplay = document.getElementById('precisionDisplay');
                 const precisionDropdownMenu = document.getElementById('precisionDropdownMenu');
@@ -2552,6 +2733,7 @@
                     });
                 }
 
+                // Initialize currency symbol
                 currencySymbol = localStorage.getItem('currencySymbol') || '';
                 const currencySymbolInput = document.getElementById('currencySymbolInput');
                 if (currencySymbolInput) {
@@ -2561,11 +2743,13 @@
                     });
                 }
                 
+                // Set initial active tab and sub-tab
                 const initialTab = localStorage.getItem('activeTab') || 'calculations';
                 switchTab(initialTab);
                 const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                 switchSubTab(initialSubTab);
 
+                // Add event listeners for calculators
                 if (balanceInput) balanceInput.addEventListener('input', calculateRiskOnDeal);
                 if (leverageInput) leverageInput.addEventListener('input', calculateRiskOnDeal);
                 if (riskSlider) riskSlider.addEventListener('input', () => {
@@ -2603,19 +2787,24 @@
                     });
                 }
 
+                // Add event listeners for result card copy
                 document.querySelectorAll('.result-card').forEach(card => {
                     card.addEventListener('click', (event) => {
                         const valueElement = card.querySelector('.result-value');
                         if (valueElement && !valueElement.classList.contains('is-placeholder')) {
                             const textToCopy = valueElement.textContent.replace(/[^0-9.-]/g, '');
                             copyToClipboard(textToCopy);
+                            // 26. Эффект "мерцания" на значениях результата при копировании
+                            valueElement.classList.add('copied-flash');
+                            valueElement.addEventListener('animationend', () => {
+                                valueElement.classList.remove('copied-flash');
+                            }, { once: true });
                         }
                     });
                 });
 
+                // Risk Amount Toggle
                 const riskAmountToggleContainer = document.getElementById('riskAmountToggleContainer');
-                // const riskToggleButton = document.getElementById('riskToggleButton'); // Defined globally
-
                 if (riskAmountToggleContainer) {
                     riskAmountToggleContainer.addEventListener('click', () => {
                         isFixedLossModeForRiskOnDeal = !isFixedLossModeForRiskOnDeal;
@@ -2628,6 +2817,7 @@
                 updateRiskAmountUIMode();
                 updatePnLTradeTypeUI();
 
+                // Keyboard navigation
                 document.addEventListener('keydown', (event) => {
                     if (event.ctrlKey && event.key === '1') {
                         event.preventDefault();
@@ -2663,14 +2853,13 @@
                     }
                 });
 
-                // Add event listener for input typing animation
+                // Add event listener for input typing animation and slider fill
                 document.querySelectorAll('input[type="number"], .input-group-text-input').forEach(input => {
                     input.addEventListener('input', (event) => {
                         event.target.classList.add('typing-pulse');
                         event.target.addEventListener('animationend', () => {
                             event.target.classList.remove('typing-pulse');
                         }, { once: true });
-                        // Update slider fill if it's the risk slider
                         if (event.target.id === 'riskSlider') {
                             const min = parseFloat(event.target.min);
                             const max = parseFloat(event.target.max);
@@ -2689,6 +2878,46 @@
                     const percent = ((value - min) / (max - min)) * 100;
                     riskSlider.style.setProperty('--fill-percent', `${percent}%`);
                 }
+
+                // 3. Mouse-follower glow effect
+                const mouseGlow = document.querySelector('.mouse-follower-glow');
+                if (mouseGlow) {
+                    document.addEventListener('mousemove', (e) => {
+                        mouseGlow.style.left = `${e.clientX}px`;
+                        mouseGlow.style.top = `${e.clientY}px`;
+                        mouseGlow.style.opacity = '1';
+                    });
+                    document.addEventListener('mouseleave', () => {
+                        mouseGlow.style.opacity = '0';
+                    });
+                }
+
+                // 5. Parallax for background elements
+                const parallaxElements = document.querySelectorAll('.parallax-bg-element');
+                if (parallaxElements.length > 0) {
+                    document.addEventListener('mousemove', (e) => {
+                        const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                        const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+                        parallaxElements.forEach((el, index) => {
+                            const depth = (index + 1) * 10; // Deeper elements move more
+                            const translateX = mouseX * depth;
+                            const translateY = mouseY * depth;
+                            el.style.transform = `translate(${translateX}px, ${translateY}px)`;
+                        });
+                    });
+                }
+                 // 1. Dynamic background gradient based on active tab
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.getAttribute('onclick').match(/'([^']+)'/)[1];
+                        document.body.setAttribute('data-current-tab', tabId);
+                    });
+                });
+                // Set initial tab data attribute
+                const initialActiveTab = localStorage.getItem('activeTab') || 'calculations';
+                document.body.setAttribute('data-current-tab', initialActiveTab);
 
             } catch (error) {
                 console.error("Произошла ошибка инициализации: ", error);
@@ -2722,7 +2951,7 @@
             resultCards.forEach(card => {
                 const titleElement = card.querySelector('.result-title');
                 const valueElement = card.querySelector('.result-value');
-                if (titleElement && valueElement && !valueElement.classList.contains('is-placeholder')) {
+                if (valueElement && !valueElement.classList.contains('is-placeholder')) {
                     titles.push(titleElement.textContent.trim());
                     values.push(valueElement.textContent.trim());
                 }
@@ -2773,6 +3002,7 @@
                     targetContent.style.visibility = 'visible';
                 }
                 localStorage.setItem('activeTab', tabId);
+                document.body.setAttribute('data-current-tab', tabId); // Update background blend
                 if (tabId === 'calculations') {
                     const initialSubTab = localStorage.getItem('activeSubTab-calculations') || 'risk-on-deal';
                     switchSubTab(initialSubTab);
@@ -2832,9 +3062,11 @@
             if (isValid) {
                 inputElement.classList.remove('invalid-input');
                 messageElement.textContent = '';
+                inputElement.closest('.input-group')?.classList.remove('invalid'); // Remove invalid class from input-group
             } else {
                 inputElement.classList.add('invalid-input');
                 messageElement.textContent = message;
+                inputElement.closest('.input-group')?.classList.add('invalid'); // Add invalid class to input-group for label animation
             }
             return isValid;
         }
@@ -2843,7 +3075,7 @@
             if (!element) return;
             const resultCard = element.closest('.result-card');
             if (resultCard) {
-                resultCard.classList.remove('calculating-animation', 'flash-bg');
+                resultCard.classList.remove('calculating-animation', 'flash-bg', 'positive-pnl', 'negative-pnl'); // Clear previous states
                 void resultCard.offsetWidth; 
                 resultCard.classList.add('calculating-animation', 'flash-bg');
             }
@@ -2907,8 +3139,10 @@
                 element.style.color = 'var(--text)';
                 if (status === 'positive') {
                     element.style.color = 'var(--profit-color)';
+                    resultCard?.classList.add('positive-pnl'); // Apply class for pulsing shadow
                 } else if (status === 'negative') {
                     element.style.color = 'var(--warning-color)';
+                    resultCard?.classList.add('negative-pnl'); // Apply class for pulsing shadow
                 }
 
                 // 48. Анимация "подсчета" значения результата - только для чисел
@@ -2945,11 +3179,28 @@
                 const currentValue = start + (end - start) * easedProgress;
 
                 let displayValue;
-                if (element.id === 'riskAmount' || element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
+                if (element.id === 'riskAmount') {
+                    const currentBalance = parseFloat(balanceInput?.value);
+                    if (!isNaN(currentBalance) && currentBalance > 0) {
+                         const riskPercentageDisplay = (currentValue / currentBalance) * 100;
+                         displayValue = `${currentValue.toFixed(precision)}${currencySymbol} (${riskPercentageDisplay.toFixed(2)}%)`;
+                    } else {
+                         displayValue = `${currentValue.toFixed(precision)}${currencySymbol}`;
+                    }
+                } else if (element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
                     displayValue = `${currentValue > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${currentValue.toFixed(precision)}${currencySymbol}`;
                 } else if (element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') {
                     displayValue = `${currentValue > 0 && (element.id === 'pnlRoi') ? '+' : ''}${currentValue.toFixed(precision)}${unit}`;
-                } else {
+                } else if (element.id === 'rrRatio') { // Special handling for ratio string
+                    const slPoints = Math.abs(parseFloat(rrStopLossInput.value) - parseFloat(rrEntryPointInput.value));
+                    const tpPoints = Math.abs(parseFloat(rrTakeProfitInput.value) - parseFloat(rrEntryPointInput.value));
+                    if (slPoints > 0) {
+                        displayValue = `1:${(tpPoints / slPoints).toFixed(precision)}`;
+                    } else {
+                        displayValue = 'Невозможно рассчитать (SL = TP)';
+                    }
+                }
+                else {
                     displayValue = currentValue.toFixed(precision);
                 }
 
@@ -2965,13 +3216,32 @@
                     requestAnimationFrame(animate);
                 } else {
                     // Ensure final value is exact
-                    element.innerHTML = icon + (
-                        (element.id === 'riskAmount' || element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') ?
-                        `${end > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${end.toFixed(precision)}${currencySymbol}` :
-                        ((element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') ?
-                        `${end > 0 && (element.id === 'pnlRoi') ? '+' : ''}${end.toFixed(precision)}${unit}` :
-                        end.toFixed(precision))
-                    );
+                    let finalDisplayValue;
+                    if (element.id === 'riskAmount') {
+                        const currentBalance = parseFloat(balanceInput?.value);
+                        if (!isNaN(currentBalance) && currentBalance > 0) {
+                            const riskPercentageDisplay = (end / currentBalance) * 100;
+                            finalDisplayValue = `${end.toFixed(precision)}${currencySymbol} (${riskPercentageDisplay.toFixed(2)}%)`;
+                        } else {
+                            finalDisplayValue = `${end.toFixed(precision)}${currencySymbol}`;
+                        }
+                    } else if (element.id === 'margin' || element.id === 'positionSize' || element.id === 'pnlTotalPnL') {
+                        finalDisplayValue = `${end > 0 && (element.id === 'pnlTotalPnL') ? '+' : ''}${end.toFixed(precision)}${currencySymbol}`;
+                    } else if (element.id === 'pnlRoi' || element.id === 'pureMovement' || element.id === 'pnlPureMovement') {
+                        finalDisplayValue = `${end > 0 && (element.id === 'pnlRoi') ? '+' : ''}${end.toFixed(precision)}${unit}`;
+                    } else if (element.id === 'rrRatio') {
+                         const slPoints = Math.abs(parseFloat(rrStopLossInput.value) - parseFloat(rrEntryPointInput.value));
+                         const tpPoints = Math.abs(parseFloat(rrTakeProfitInput.value) - parseFloat(rrEntryPointInput.value));
+                         if (slPoints > 0) {
+                             finalDisplayValue = `1:${(tpPoints / slPoints).toFixed(precision)}`;
+                         } else {
+                             finalDisplayValue = 'Невозможно рассчитать (SL = TP)';
+                         }
+                    }
+                    else {
+                        finalDisplayValue = end.toFixed(precision);
+                    }
+                    element.innerHTML = icon + finalDisplayValue;
                     element.style.color = 'var(--text)';
                     if (status === 'positive') {
                         element.style.color = 'var(--profit-color)';
@@ -2980,7 +3250,6 @@
                     }
                 }
             }
-            // Easing function for smoother animation
             function easeOutCubic(t) {
                 return (--t) * t * t + 1;
             }
@@ -3008,6 +3277,7 @@
                 if (!isNaN(fixedLossVal) && !isNaN(balanceVal) && fixedLossVal > balanceVal) {
                     fixedLossValidation.textContent = 'Фиксированный убыток не может быть больше баланса.';
                     fixedLossInput.classList.add('invalid-input');
+                    fixedLossInput.closest('.input-group')?.classList.add('invalid');
                     isValid = false;
                 }
             }
@@ -3180,6 +3450,14 @@
             if (entryPointInput) entryPointInput.classList.remove('invalid-input');
             if (stopLossInput) stopLossInput.classList.remove('invalid-input');
             if (fixedLossInput) fixedLossInput.classList.remove('invalid-input');
+            
+            // Remove invalid class from parent input-groups
+            document.getElementById('balance')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('leverage')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('entryPoint')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('stopLoss')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('fixedLoss')?.closest('.input-group')?.classList.remove('invalid');
+
 
             isFixedLossModeForRiskOnDeal = false;
             updateRiskAmountUIMode();
@@ -3201,6 +3479,10 @@
             if (rrEntryPointInput) rrEntryPointInput.classList.remove('invalid-input');
             if (rrStopLossInput) rrStopLossInput.classList.remove('invalid-input');
             if (rrTakeProfitInput) rrTakeProfitInput.classList.remove('invalid-input');
+
+            document.getElementById('rrEntryPoint')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('rrStopLoss')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('rrTakeProfit')?.closest('.input-group')?.classList.remove('invalid');
 
             calculateRiskReward();
             if (showNotif) {
@@ -3226,6 +3508,11 @@
             if (pnlExitPriceInput) pnlExitPriceInput.classList.remove('invalid-input');
             if (pnlPositionAmountInput) pnlPositionAmountInput.classList.remove('invalid-input');
             if (pnlLeverageInput) pnlLeverageInput.classList.remove('invalid-input');
+
+            document.getElementById('pnlEntryPrice')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('pnlExitPrice')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('pnlPositionAmount')?.closest('.input-group')?.classList.remove('invalid');
+            document.getElementById('pnlLeverage')?.closest('.input-group')?.classList.remove('invalid');
 
             updatePnLTradeTypeUI();
             calculatePnL();
